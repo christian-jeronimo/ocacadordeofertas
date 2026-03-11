@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 // COLE O LINK DA SUA PLANILHA AQUI (Tem que ser o link gerado no "Publicar na Web")
-const urlPlanilha = 'https://docs.google.com/spreadsheets/d/1FSQAX-oL9sH_CSZ0g2mVLVEOGtI4KZiglo5XYm8Wdlc/edit?usp=sharing';
+const urlPlanilha = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR2REpLC9EdFoSD2Fs5kl7MjOeEhYzSjoi7152nupjhb-rGMC8zkkkd3qB8c3ZroDljaklkkA35pXbZ/pub?output=tsv';
 
 async function atualizarViaPlanilha() {
     console.log("Conectando ao Google Sheets...");
