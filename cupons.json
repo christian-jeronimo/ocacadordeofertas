@@ -38,5 +38,13 @@
     "codigo": "TELA15",
     "link": "https://mercadolivre.com.br",
     "ativo": false
+  },
+  {
+    "loja": "Xuxus",
+    "titulo": "Teste de atualização",
+    "descricao": "Testando atualização da planinha",
+    "codigo": "PLANILHA15",
+    "link": "https://mercadolivre.com.br",
+    "ativo": true
   }
 ]
