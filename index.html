@@ -183,7 +183,8 @@
     // Sua função original de carregar os cupons (Mantida igualzinho)
     async function carregarCupons() {
         try {
-            const resposta = await fetch('cupons.json');
+            // Adiciona a hora e os milissegundos atuais ao final da URL
+            const resposta = await fetch('cupons.json?nocache=' + new Date().getTime());
             const cupons = await resposta.json();
             
             const containerAtivos = document.getElementById('lista-ativos');
@@ -234,4 +235,5 @@
 </script>
 
 </body>
+
 </html>
