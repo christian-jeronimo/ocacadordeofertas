@@ -1,0 +1,32 @@
+name: Atualizador de Cupões Diário
+
+on:
+  schedule:
+    - cron: '0 8 * * *' # Corre todos os dias de manhã
+  workflow_dispatch: # Cria um botão para corrermos manualmente sempre que quisermos
+
+jobs:
+  atualizar-site:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Dá permissão ao robô para alterar o site
+
+    steps:
+      - name: Aceder aos ficheiros do site
+        uses: actions/checkout@v4
+
+      - name: Preparar o ambiente JavaScript
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Executar o script
+        run: node atualizador.js
+
+      - name: Guardar e publicar as alterações
+        run: |
+          git config --global user.name "Robô Caçador de Ofertas"
+          git config --global user.email "actions@github.com"
+          git add cupons.json
+          git commit -m "Atualização automática de cupões" || echo "Sem alterações novas"
+          git push
