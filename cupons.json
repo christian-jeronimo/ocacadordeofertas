@@ -1,0 +1,34 @@
+[
+  {
+    "loja": "ML",
+    "titulo": "R$ 50 OFF",
+    "descricao": "Em todo o site (acima de R$499)",
+    "codigo": "MELI50",
+    "link": "https://mercadolivre.com.br/seu-link-de-afiliado",
+    "ativo": true
+  },
+  {
+    "loja": "AMZ",
+    "titulo": "Frete Grátis",
+    "descricao": "Em livros selecionados",
+    "codigo": "LIVROSAMZ",
+    "link": "https://amazon.com.br/seu-link-de-afiliado",
+    "ativo": true
+  },
+  {
+    "loja": "TECH",
+    "titulo": "15% OFF",
+    "descricao": "Especial em Notebooks Dell",
+    "codigo": "DELL15",
+    "link": "https://dell.com.br/seu-link",
+    "ativo": false
+  },
+  {
+    "loja": "DARK LAB",
+    "titulo": "R$20 OFF",
+    "descricao": "Especial em Produtos Dark Lab",
+    "codigo": "20OFFDARK",
+    "link": "https://mercadolivre.com.br/seu-link-de-afiliado",
+    "ativo": true
+  }
+]

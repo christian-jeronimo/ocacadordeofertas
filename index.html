@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Encontre os melhores cupons de desconto e ofertas ativas para o Mercado Livre. Economize em produtos Dark Lab, Arno e muito mais com O Caçador de Ofertas.">
+    <meta name="keywords" content="cupom de desconto, ofertas mercado livre, cupom dark lab, cupom arno, promoção, descontos">
+    
+    <meta property="og:title" content="O Caçador de Ofertas | Cupons Mercado Livre">
+    <meta property="og:description" content="Pegue agora seus cupons de desconto e economize nas suas compras do Mercado Livre.">
+    <meta property="og:type" content="website">
+    
+    <title>O Caçador de Ofertas | Cupons e Ofertas Mercado Livre</title>
+    <style>
+        :root {
+            --primary: #fff159; /* Amarelo Mercado Livre */
+            --secondary: #3483fa; /* Azul Mercado Livre */
+            --text: #333;
+            --bg: #ebebeb;
+            --expired: #999;
+        }
+
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: var(--bg); margin: 0; color: var(--text); }
+        header { background-color: var(--primary); padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        
+        h2 { text-align: center; margin-bottom: 30px; margin-top: 40px; color: #444; }
+        .section-title { border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
+
+        /* Estilo dos Cards de Cupom */
+        .coupon-card { 
+            background: white; 
+            border-radius: 8px; 
+            display: flex; 
+            align-items: center; 
+            padding: 20px; 
+            margin-bottom: 15px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            transition: transform 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Efeito Hover apenas para cartões não expirados */
+        .coupon-card:not(.expired):hover { transform: translateY(-3px); }
+
+        .store-logo { 
+            width: 80px; 
+            height: 80px; 
+            background: #f5f5f5; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-right: 20px; 
+            font-weight: bold; 
+            color: #666; 
+            text-align: center; 
+            font-size: 12px; 
+            flex-shrink: 0;
+        }
+        
+        .coupon-info { flex-grow: 1; }
+        .coupon-info h3 { margin: 0 0 5px 0; color: #000; }
+        .coupon-info p { margin: 0; font-size: 14px; color: #666; }
+
+        .btn-get { 
+            background-color: var(--secondary); 
+            color: white; 
+            border: none; 
+            padding: 12px 25px; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            text-decoration: none; 
+            transition: background 0.3s; 
+        }
+        .btn-get:hover { background-color: #2968c8; }
+
+        /* ESTILO PARA CUPONS EXPIRADOS */
+        .coupon-card.expired {
+            background: #f9f9f9;
+            filter: grayscale(1);
+            opacity: 0.7;
+        }
+        .expired .coupon-info h3, .expired .coupon-info p {
+            text-decoration: line-through;
+            color: var(--expired);
+        }
+        .expired .btn-get {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .expired-badge {
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background: #ff4444;
+            color: white;
+            padding: 5px 40px;
+            font-size: 10px;
+            font-weight: bold;
+            transform: rotate(45deg);
+        }
+
+        /* Modal de Cupom */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 1000; }
+        .modal-content { background: white; padding: 30px; border-radius: 12px; text-align: center; max-width: 400px; width: 90%; }
+        .coupon-code { display: block; border: 2px dashed var(--secondary); padding: 15px; margin: 20px 0; font-size: 24px; font-weight: bold; letter-spacing: 2px; background: #f0f7ff; cursor: pointer; }
+        .close-btn { margin-top: 15px; display: inline-block; color: #666; cursor: pointer; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🔥 O Caçador de Ofertas</h1>
+    <p>As melhores ofertas do Mercado Livre em um só lugar</p>
+</header>
+
+
+<div class="container">
+    <h2 class="section-title">Cupons Ativos ✅</h2>
+    <div id="lista-ativos"></div>
+
+    <h2 class="section-title">Cupons Expirados ❌</h2>
+    <div id="lista-expirados"></div>
+</div>
+
+<div id="couponModal" class="modal">
+    <div class="modal-content">
+        <h3>Cupom Copiado!</h3>
+        <p>Use o código abaixo no fechamento da compra:</p>
+        <span class="coupon-code" id="displayCode" onclick="copyToClipboard()">CÓDIGO</span>
+        <p style="font-size: 12px; color: green;">A página do produto já foi aberta em outra aba.</p>
+        <span class="close-btn" onclick="fecharModal()">Fechar janela</span>
+    </div>
+</div>
+
+<script>
+// Nova Lógica de Inversão de Abas
+    function revelarCupom(linkAfiliado, codigo) {
+        // 1. Limpa a URL atual do seu site (remove parâmetros antigos se houver)
+        const urlAtual = window.location.href.split('?')[0];
+        
+        // 2. Abre uma NOVA GUIA com o seu site, enviando o código do cupom pela URL
+        window.open(`${urlAtual}?cupom=${codigo}`, '_blank');
+
+        // 3. Redireciona a GUIA ANTIGA (atual) para a loja do Mercado Livre
+        window.location.href = linkAfiliado;
+    }
+
+    function fecharModal() { 
+        document.getElementById('couponModal').style.display = 'none'; 
+        
+        // Limpa a URL para que o modal não reabra se o usuário recarregar a página
+        const urlLimpa = window.location.href.split('?')[0];
+        window.history.replaceState({}, document.title, urlLimpa);
+    }
+
+    function copyToClipboard() {
+        const code = document.getElementById('displayCode').innerText;
+        navigator.clipboard.writeText(code);
+        alert("Código copiado novamente!");
+    }
+
+    // Função para checar a URL ao carregar a página e abrir o modal se necessário
+    function checarCupomNaUrl() {
+        const parametrosDaUrl = new URLSearchParams(window.location.search);
+        const codigoNaUrl = parametrosDaUrl.get('cupom');
+
+        if (codigoNaUrl) {
+            // Se encontrou um cupom na URL, preenche e exibe o modal
+            document.getElementById('displayCode').innerText = codigoNaUrl;
+            document.getElementById('couponModal').style.display = 'flex';
+            
+            // Tenta copiar para a área de transferência automaticamente
+            navigator.clipboard.writeText(codigoNaUrl).catch(() => {
+                console.log("O navegador exigiu clique manual para copiar.");
+            });
+        }
+    }
+
+    // Sua função original de carregar os cupons (Mantida igualzinho)
+    async function carregarCupons() {
+        try {
+            const resposta = await fetch('cupons.json');
+            const cupons = await resposta.json();
+            
+            const containerAtivos = document.getElementById('lista-ativos');
+            const containerExpirados = document.getElementById('lista-expirados');
+            
+            let htmlAtivos = '';
+            let htmlExpirados = '';
+
+            cupons.forEach(cupom => {
+                if(cupom.ativo) {
+                    htmlAtivos += `
+                        <div class="coupon-card">
+                            <div class="store-logo">${cupom.loja}</div>
+                            <div class="coupon-info">
+                                <h3>${cupom.titulo}</h3>
+                                <p>${cupom.descricao}</p>
+                            </div>
+                            <button class="btn-get" onclick="revelarCupom('${cupom.link}', '${cupom.codigo}')">PEGAR CUPOM</button>
+                        </div>
+                    `;
+                } else {
+                    htmlExpirados += `
+                        <div class="coupon-card expired">
+                            <div class="expired-badge">EXPIRADO</div>
+                            <div class="store-logo">${cupom.loja}</div>
+                            <div class="coupon-info">
+                                <h3>${cupom.titulo}</h3>
+                                <p>${cupom.descricao}</p>
+                            </div>
+                            <button class="btn-get" disabled>EXPIRADO</button>
+                        </div>
+                    `;
+                }
+            });
+
+            containerAtivos.innerHTML = htmlAtivos;
+            containerExpirados.innerHTML = htmlExpirados;
+
+            // Depois de carregar os cupons, verifica se deve abrir o modal
+            checarCupomNaUrl();
+
+        } catch (erro) {
+            console.error("Erro ao carregar o arquivo JSON:", erro);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', carregarCupons);
+</script>
+
+</body>
+</html>
