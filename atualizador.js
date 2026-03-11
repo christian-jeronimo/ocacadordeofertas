@@ -1,47 +1,50 @@
 const fs = require('fs');
 
-async function buscarOfertas() {
-    console.log("A ligar à API do Mercado Livre...");
+// COLE O LINK DA SUA PLANILHA AQUI (Tem que ser o link gerado no "Publicar na Web")
+const urlPlanilha = 'https://docs.google.com/spreadsheets/d/1FSQAX-oL9sH_CSZ0g2mVLVEOGtI4KZiglo5XYm8Wdlc/edit?usp=sharing';
 
+async function atualizarViaPlanilha() {
+    console.log("Conectando ao Google Sheets...");
+    
     try {
-        // 1. Fazemos a busca, mas agora com um "disfarce" (User-Agent) para não sermos bloqueados
-        const resposta = await fetch('https://api.mercadolibre.com/sites/MLB/search?q=suplementos&limit=6', {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-            }
-        });
-        
-        const dados = await resposta.json();
+        const resposta = await fetch(urlPlanilha);
+        const textoTSV = await resposta.text();
 
-        // 2. Trava de segurança: Verifica se a loja enviou mesmo os produtos
-        if (!dados || !dados.results) {
-            console.error("❌ A API não devolveu a lista de produtos. Resposta recebida:", JSON.stringify(dados));
-            return; // Interrompe o processo para não estragar o site
+        // Separa o texto em linhas
+        const linhas = textoTSV.split('\n');
+        
+        // Pega a primeira linha para ser as chaves do nosso JSON (loja, titulo, etc)
+        const cabecalhos = linhas[0].split('\t').map(h => h.trim());
+        const ofertas = [];
+
+        // Começa a ler a partir da segunda linha (i = 1)
+        for (let i = 1; i < linhas.length; i++) {
+            if (!linhas[i].trim()) continue; // Pula linhas vazias
+
+            const valores = linhas[i].split('\t');
+            const produto = {};
+            
+            cabecalhos.forEach((cabecalho, index) => {
+                let valor = valores[index] ? valores[index].trim() : '';
+                
+                // Se a coluna for "ativo", converte o texto para booleano (verdadeiro/falso)
+                if (cabecalho === 'ativo') {
+                    produto[cabecalho] = (valor.toLowerCase() === 'true' || valor.toLowerCase() === 'verdadeiro' || valor.toLowerCase() === 'sim' || valor === '1');
+                } else {
+                    produto[cabecalho] = valor;
+                }
+            });
+            
+            ofertas.push(produto);
         }
 
-        console.log(`Sucesso! Encontrados ${dados.results.length} produtos.`);
-
-        // 3. Transformamos os dados brutos da loja no formato do nosso site
-        const ofertas = dados.results.map(produto => {
-            const linkAfiliado = produto.permalink; 
-            
-            return {
-                loja: "Mercado Livre",
-                titulo: produto.title.substring(0, 45) + "...", 
-                descricao: `Preço especial: R$ ${produto.price.toFixed(2)}`,
-                codigo: "ATIVAR", 
-                link: linkAfiliado,
-                ativo: true
-            };
-        });
-
-        // 4. Guarda os novos produtos no nosso ficheiro JSON
+        // Salva os produtos no nosso banco de dados JSON
         fs.writeFileSync('cupons.json', JSON.stringify(ofertas, null, 2));
-        console.log("✅ Ofertas reais descarregadas e guardadas com sucesso no ficheiro!");
+        console.log(`✅ Sucesso! ${ofertas.length} ofertas atualizadas a partir da planilha.`);
 
     } catch (erro) {
-        console.error("❌ Erro técnico ao buscar ofertas:", erro);
+        console.error("❌ Erro ao ler a planilha:", erro);
     }
 }
 
-buscarOfertas();
+atualizarViaPlanilha();
