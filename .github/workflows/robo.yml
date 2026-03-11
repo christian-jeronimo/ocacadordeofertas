@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write # Dá permissão ao robô para alterar o site
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # Força o uso da versão mais nova
 
     steps:
       - name: Aceder aos ficheiros do site
@@ -18,7 +20,7 @@ jobs:
       - name: Preparar o ambiente JavaScript
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24' # Versão atualizada
 
       - name: Executar o script
         run: node atualizador.js
