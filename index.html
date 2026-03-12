@@ -25,16 +25,18 @@
             --expired: #999;
         }
 
-        /* Usando fontes de sistema para garantir tempo de carregamento ZERO (Lighthouse 100/100) */
+        /* Fontes de sistema para garantir carregamento imediato */
         body { font-family: system-ui, -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: var(--bg); margin: 0; color: var(--text); -webkit-font-smoothing: antialiased; }
         
         header { background-color: var(--primary); padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        
+        /* A altura mínima na main resolve o CLS (salto de layout) sem mudar o visual */
+        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; min-height: 80vh; }
         
         h2 { text-align: center; margin-bottom: 30px; margin-top: 40px; color: #444; }
         .section-title { border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
 
-        /* Estilo dos Cards de Cupom */
+        /* Estilo original dos Cards de Cupom */
         .coupon-card { 
             background: white; 
             border-radius: 8px; 
@@ -46,10 +48,9 @@
             transition: transform 0.2s;
             position: relative;
             overflow: hidden;
-            border: 1px solid transparent; /* Evita reflow visual */
+            border: 1px solid transparent; 
         }
         
-        /* Efeito Hover apenas para cartões não expirados */
         .coupon-card:not(.expired):hover { transform: translateY(-3px); }
 
         .store-logo { 
@@ -73,6 +74,7 @@
         .coupon-info h3 { margin: 0 0 5px 0; color: #000; font-size: 1.1rem; }
         .coupon-info p { margin: 0; font-size: 14px; color: #666; line-height: 1.4; }
 
+        /* Botão Original */
         .btn-get { 
             background-color: var(--secondary); 
             color: white; 
@@ -87,7 +89,7 @@
         }
         .btn-get:hover, .btn-get:focus { background-color: #2968c8; outline: none; }
 
-        /* ESTILO PARA CUPONS EXPIRADOS */
+        /* Estilo para Cupons Expirados */
         .coupon-card.expired {
             background: #f9f9f9;
             filter: grayscale(1);
@@ -115,13 +117,14 @@
             letter-spacing: 1px;
         }
 
-        /* Modal de Cupom Otimizado */
+        /* Modal Original */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(2px); }
         .modal-content { background: white; padding: 30px; border-radius: 12px; text-align: center; max-width: 400px; width: 90%; }
         .coupon-code { display: block; border: 2px dashed var(--secondary); padding: 15px; margin: 20px 0; font-size: 24px; font-weight: bold; letter-spacing: 2px; background: #f0f7ff; cursor: pointer; color: var(--secondary); transition: background 0.2s;}
         .coupon-code:hover { background: #e0f0ff; }
         .close-btn { margin-top: 15px; display: inline-block; color: #666; cursor: pointer; text-decoration: underline; font-size: 14px; }
         
+        /* Ajuste para telas pequenas (Celular) */
         @media (max-width: 600px) {
             .coupon-card { flex-direction: column; text-align: center; }
             .store-logo { margin: 0 auto 15px auto; }
@@ -140,7 +143,7 @@
 <main class="container">
     <section aria-labelledby="titulo-ativos">
         <h2 id="titulo-ativos" class="section-title">Cupons Ativos ✅</h2>
-        <div id="lista-ativos"></div>
+        <div id="lista-ativos" style="min-height: 200px;"></div>
     </section>
 
     <section aria-labelledby="titulo-expirados">
@@ -160,7 +163,7 @@
 </div>
 
 <script>
-    // Nova Lógica de Inversão de Abas
+    // Lógica de Inversão de Abas
     function revelarCupom(linkAfiliado, codigo) {
         const urlAtual = window.location.href.split('?')[0];
         window.open(`${urlAtual}?cupom=${codigo}`, '_blank');
@@ -195,7 +198,7 @@
 
     async function carregarCupons() {
         try {
-            // Cache busting mantido
+            // Anti-cache garantido para a sua automação do GitHub Actions
             const resposta = await fetch('cupons.json?nocache=' + new Date().getTime());
             const cupons = await resposta.json();
             
@@ -207,7 +210,7 @@
             let schemaOfertas = []; // Array para o Google Rich Snippets
 
             cupons.forEach(cupom => {
-                // Renderização Semântica com <article>
+                // Renderização Semântica com <article> mantendo a aparência original
                 if(cupom.ativo) {
                     htmlAtivos += `
                         <article class="coupon-card">
