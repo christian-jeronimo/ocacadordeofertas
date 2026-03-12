@@ -19,10 +19,12 @@
     <style>
         :root {
             --primary: #fff159; /* Amarelo Mercado Livre */
-            --secondary: #3483fa; /* Azul Mercado Livre */
+            --secondary: #1b5bc7; /* Azul ajustado para Acessibilidade (Contraste AAA) */
             --text: #333;
+            --text-light: #555; /* Cinza escurecido para passar no teste de contraste */
             --bg: #ebebeb;
-            --expired: #999;
+            --expired: #555; /* Texto de cupons expirados escurecido */
+            --danger: #d32f2f; /* Vermelho ajustado para Acessibilidade */
         }
 
         /* Fontes de sistema para garantir carregamento imediato */
@@ -63,7 +65,7 @@
             justify-content: center; 
             margin-right: 20px; 
             font-weight: bold; 
-            color: #666; 
+            color: #444; /* Cor escurecida para passar no teste de contraste no fundo f5f5f5 */
             text-align: center; 
             font-size: 12px; 
             flex-shrink: 0;
@@ -72,7 +74,7 @@
         
         .coupon-info { flex-grow: 1; padding-right: 15px; }
         .coupon-info h3 { margin: 0 0 5px 0; color: #000; font-size: 1.1rem; }
-        .coupon-info p { margin: 0; font-size: 14px; color: #666; line-height: 1.4; }
+        .coupon-info p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.4; }
 
         /* Botão Original */
         .btn-get { 
@@ -87,28 +89,28 @@
             transition: background 0.3s; 
             flex-shrink: 0;
         }
-        .btn-get:hover, .btn-get:focus { background-color: #2968c8; outline: none; }
+        .btn-get:hover, .btn-get:focus { background-color: #14469e; outline: none; }
 
         /* Estilo para Cupons Expirados */
         .coupon-card.expired {
-            background: #f9f9f9;
+            background: #fdfdfd;
             filter: grayscale(1);
-            opacity: 0.7;
             border: 1px solid #ddd;
+            /* Opacidade removida para garantir a aprovação no contraste de texto */
         }
         .expired .coupon-info h3, .expired .coupon-info p {
             text-decoration: line-through;
             color: var(--expired);
         }
         .expired .btn-get {
-            background-color: #ccc;
+            background-color: #666; /* Cinza escuro com contraste suficiente para o texto branco */
             cursor: not-allowed;
         }
         .expired-badge {
             position: absolute;
             top: 10px;
             right: -30px;
-            background: #ff4444;
+            background: var(--danger);
             color: white;
             padding: 5px 40px;
             font-size: 10px;
@@ -122,7 +124,7 @@
         .modal-content { background: white; padding: 30px; border-radius: 12px; text-align: center; max-width: 400px; width: 90%; }
         .coupon-code { display: block; border: 2px dashed var(--secondary); padding: 15px; margin: 20px 0; font-size: 24px; font-weight: bold; letter-spacing: 2px; background: #f0f7ff; cursor: pointer; color: var(--secondary); transition: background 0.2s;}
         .coupon-code:hover { background: #e0f0ff; }
-        .close-btn { margin-top: 15px; display: inline-block; color: #666; cursor: pointer; text-decoration: underline; font-size: 14px; }
+        .close-btn { margin-top: 15px; display: inline-block; color: #555; cursor: pointer; text-decoration: underline; font-size: 14px; font-weight: bold; }
         
         /* Ajuste para telas pequenas (Celular) */
         @media (max-width: 600px) {
@@ -157,7 +159,7 @@
         <h3 id="modal-title">Cupom Copiado!</h3>
         <p>Use o código abaixo no fechamento da compra:</p>
         <span class="coupon-code" id="displayCode" onclick="copyToClipboard()" title="Clique para copiar novamente">CÓDIGO</span>
-        <p style="font-size: 12px; color: green; font-weight: bold;">A página do produto já foi aberta em outra aba.</p>
+        <p style="font-size: 12px; color: #2e7d32; font-weight: bold;">A página do produto já foi aberta em outra aba.</p>
         <span class="close-btn" onclick="fecharModal()" tabindex="0" role="button">Fechar janela</span>
     </div>
 </div>
@@ -198,7 +200,7 @@
 
     async function carregarCupons() {
         try {
-            // Anti-cache garantido para a sua automação do GitHub Actions
+            // Anti-cache garantido
             const resposta = await fetch('cupons.json?nocache=' + new Date().getTime());
             const cupons = await resposta.json();
             
@@ -207,10 +209,10 @@
             
             let htmlAtivos = '';
             let htmlExpirados = '';
-            let schemaOfertas = []; // Array para o Google Rich Snippets
+            let schemaOfertas = [];
 
             cupons.forEach(cupom => {
-                // Renderização Semântica com <article> mantendo a aparência original
+                // Renderização Semântica com <article>
                 if(cupom.ativo) {
                     htmlAtivos += `
                         <article class="coupon-card">
@@ -223,7 +225,6 @@
                         </article>
                     `;
 
-                    // Popula os dados estruturados para o Google (SEO)
                     schemaOfertas.push({
                         "@type": "Offer",
                         "name": cupom.titulo + " em " + cupom.loja,
@@ -241,7 +242,7 @@
                                 <h3>${cupom.titulo}</h3>
                                 <p>${cupom.descricao}</p>
                             </div>
-                            <button class="btn-get" disabled aria-label="Cupom expirado">EXPIRADO</button>
+                            <button class="btn-get" disabled aria-label="Cupom expirado para ${cupom.titulo}">EXPIRADO</button>
                         </article>
                     `;
                 }
@@ -252,7 +253,6 @@
 
             checarCupomNaUrl();
 
-            // Injeta o Schema Markup invisível para o motor de busca do Google
             if(schemaOfertas.length > 0) {
                 const scriptSeo = document.createElement('script');
                 scriptSeo.type = 'application/ld+json';
