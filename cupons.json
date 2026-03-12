@@ -4,15 +4,7 @@
     "titulo": "Whey Protein Isolado 1kg",
     "descricao": "20% de desconto em toda a linha de proteínas",
     "codigo": "WHEY20",
-    "link": "https://mercadolivre.com.br",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Mouse Logitech MX Master 3S",
-    "descricao": "Ergonomia essencial para horas de modelagem 3D",
-    "codigo": "ATIVAR",
-    "link": "https://amazon.com.br",
+    "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=true",
     "ativo": true
   },
   {
@@ -24,14 +16,6 @@
     "ativo": true
   },
   {
-    "loja": "Amazon",
-    "titulo": "Prensa Térmica para Camisetas",
-    "descricao": "Frete grátis em equipamentos de sublimação",
-    "codigo": "ESTAMPAFREE",
-    "link": "https://amazon.com.br",
-    "ativo": true
-  },
-  {
     "loja": "Mercado Livre",
     "titulo": "Monitor Ultrawide LG 29\"",
     "descricao": "Promoção relâmpago de fim de semana",
@@ -40,11 +24,35 @@
     "ativo": false
   },
   {
-    "loja": "Xuxus",
-    "titulo": "Teste de atualização",
-    "descricao": "Testando atualização da planinha",
-    "codigo": "PLANILHA15",
-    "link": "https://mercadolivre.com.br",
+    "loja": "Mercado Livre",
+    "titulo": "20% OFF em compras a partir de R$ 29",
+    "descricao": "20% OFF (em compras a partir de R$ 29)",
+    "codigo": "MELHOROFERTA",
+    "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "10% OFF (em compras R$ 299,99+)",
+    "descricao": "10% OFF (em compras R$ 299,99+)",
+    "codigo": "ARMANIBEAUTY",
+    "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
     "ativo": false
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "R$40 off em compras a partir de R$350",
+    "descricao": "Ganhe R$40 off em compras a partir de R$350",
+    "codigo": "VEMVEM",
+    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "R$55 off em compras a partir de R$350",
+    "descricao": "Ganhe R$55 off em compras a partir de R$350",
+    "codigo": "HRPRIME55",
+    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
+    "ativo": true
   }
 ]
