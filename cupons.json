@@ -86,5 +86,13 @@
     "codigo": "HRPRIME40",
     "link": "https://www.amazon.com.br/?tag=camposmayara-20",
     "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Ganhe R$75 de desconto em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$599",
+    "codigo": "SEUMOMENTO",
+    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
+    "ativo": true
   }
 ]
