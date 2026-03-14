@@ -1,8 +1,98 @@
 [
   {
-    "": "clique_whatsapp"
+    "loja": "Mercado Livre",
+    "titulo": "Até R$30 de desconto no Mercado Livre",
+    "descricao": "Válido em produtos selecionados Dark Lab",
+    "codigo": "",
+    "link": "https://meli.la/2mgzfKd",
+    "ativo": true
   },
   {
-    "": "clique_cupom"
+    "loja": "Mercado Livre",
+    "titulo": "20% OFF com cupom Mercado Livre",
+    "descricao": "Válido em em compras a partir de R$ 29",
+    "codigo": "MELHOROFERTA",
+    "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "Ganhe 10% OFF com cupom Mercado Livre",
+    "descricao": "Válido em compras a partir de R$ 299,99",
+    "codigo": "ARMANIBEAUTY",
+    "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
+    "ativo": false
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "Mercado Livre com 10% OFF",
+    "descricao": "Válido em Moda Full. Ative a promoção no link",
+    "codigo": "",
+    "link": "https://meli.la/2a5gAMs",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Ganhe R$100 de desconto em Amazon",
+    "descricao": "Ganhe R$100 off em compras a partir de R$999",
+    "codigo": "MTBOMDIA",
+    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Ganhe R$40 de desconto em compras na Amazon",
+    "descricao": "Oferta válida em compras a partir de R$350",
+    "codigo": "VEMVEM",
+    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Amazon concede R$55 de desconto com cupom",
+    "descricao": "Válido em compras a partir de R$350",
+    "codigo": "HRPRIME55",
+    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Ganhe R$60 de desconto em compras na Amazon",
+    "descricao": "Oferta válida em compras a partir de R$500",
+    "codigo": "AMAZONCOMVC",
+    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Ganhe R$70 de desconto com cupom na Amazon",
+    "descricao": "Cupom válido em compras a patir de R$699",
+    "codigo": "SEUMOMENTO",
+    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Amazon concede R$50 em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$499",
+    "codigo": "TADEGRACA",
+    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Ganhe R$40 de desconto em compras com cupom",
+    "descricao": "Oferta válida para assinantes Prime e em compras a partir de R$300",
+    "codigo": "HRPRIME40",
+    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Ganhe R$75 de desconto em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$599",
+    "codigo": "SEUMOMENTO",
+    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
+    "ativo": true
   }
 ]
