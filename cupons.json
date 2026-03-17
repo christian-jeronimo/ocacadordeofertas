@@ -94,5 +94,29 @@
     "codigo": "SEUMOMENTO",
     "link": "https://www.amazon.com.br/?tag=camposmayara-20",
     "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "20% OFF com cupom Mercado Livre",
+    "descricao": "Válido em todo o site em compras a partir de R$29, limitado a R$60",
+    "codigo": "VIDAMELHOR",
+    "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "Ganhe 20% OFF com cupom no Mercado Livre",
+    "descricao": "Válido em compras a partir de R$29, limitado a R$60",
+    "codigo": "PROMOHOJE",
+    "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "mercado Livre com 20% OFF",
+    "descricao": "Válido em compras a partir de R$29, limitado a R$60",
+    "codigo": "PROMONOMELI",
+    "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
+    "ativo": true
   }
 ]
