@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Métricas | O Caçador de Ofertas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #1b5bc7;
+        }
+
+        .setup-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #90caf9;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            background: #1b5bc7;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #14469e;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #555;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1b5bc7;
+        }
+
+        #charts {
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f9f9f9;
+        }
+
+        .success-text {
+            color: #2e7d32;
+            font-weight: bold;
+            display: none;
+            margin-top: 10px;
+        }
+
+        .tipo-badge {
+            background: #e0e0e0;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .tipo-clique_cupom {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .tipo-clique_whatsapp {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>📊 Painel de Métricas Interno</h1>
+
+        <div class="setup-box" id="setupBox">
+            <h3 style="margin-top:0;">Configuração: Importar Dados</h3>
+            <p style="margin: 5px 0 10px 0; font-size: 14px;">1. Vá na sua planilha, selecione a aba
+                <b>Metricas</b>.<br>2. Clique em <b>Arquivo > Compartilhar > Publicar na Web</b>.<br>3. Escolha
+                <b>"Metricas"</b> e <b>"Valores separados por tabulação (.tsv)"</b> e clique em Publicar.<br>4. Cole o
+                link gerado abaixo para visualizar seus gráficos:</p>
+            <input type="text" id="tsvUrl"
+                placeholder="https://docs.google.com/spreadsheets/d/e/.../pub?gid=XYZ&single=true&output=tsv">
+            <button onclick="salvarECarregar()">Carregar Gráficos</button>
+            <div id="successMsg" class="success-text">✅ Dados atualizados com sucesso!</div>
+        </div>
+
+        <div id="loading" style="display:none; text-align:center; padding: 40px; color:#666; font-size:18px;">🔄
+            Baixando dados da planilha...</div>
+
+        <div id="charts">
+            <div class="grid">
+                <div class="card">
+                    <h3>Total de Interações (Tudo)</h3>
+                    <div class="stat-value" id="totalClicks">0</div>
+                </div>
+                <div class="card">
+                    <h3>Cliques VIP (WhatsApp)</h3>
+                    <div class="stat-value" id="totalWhats" style="color: #2e7d32;">0</div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Interações por Dia (Últimos 7)</h3>
+                    <canvas id="chartDias"></canvas>
+                </div>
+                <div class="card">
+                    <h3>Top 5 Lojas (Mais clicadas)</h3>
+                    <div style="max-height: 250px; display:flex; justify-content:center;">
+                        <canvas id="chartLojas"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top:20px;">
+                <h3>Top 5 Produtos (Mais acessados)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Loja</th>
+                            <th>Ações Realizadas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaProdutos">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let chartDiasInstance = null;
+        let chartLojasInstance = null;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedUrl = localStorage.getItem("urlMetricasTsv");
+            if (savedUrl) {
+                document.getElementById("tsvUrl").value = savedUrl;
+                carregarDados(savedUrl);
+            }
+        });
+
+        function salvarECarregar() {
+            const url = document.getElementById("tsvUrl").value.trim();
+            if (!url) return alert("Por favor, cole a URL!");
+            localStorage.setItem("urlMetricasTsv", url);
+            carregarDados(url);
+        }
+
+        async function carregarDados(url) {
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("charts").style.display = "none";
+            document.getElementById("successMsg").style.display = "none";
+
+            try {
+                // Um fator randômico para não pegar cache do navegador e forçar puxar fresco
+                const response = await fetch(url + "&t=" + new Date().getTime());
+                if (!response.ok) throw new Error("Erro de rede");
+                const tsvText = await response.text();
+
+                processarDados(tsvText);
+
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("charts").style.display = "block";
+                document.getElementById("successMsg").style.display = "block";
+                setTimeout(() => { document.getElementById("successMsg").style.display = "none"; }, 3000);
+
+            } catch (e) {
+                alert("Erro ao carregar os dados. Verifique a URL colada e veja se publicou realmente como TSV.");
+                document.getElementById("loading").style.display = "none";
+            }
+        }
+
+        function processarDados(tsv) {
+            const linhas = tsv.split('\n');
+            if (linhas.length < 2) return;
+
+            const cabecalhos = linhas[0].split('\t').map(h => h.trim().toLowerCase());
+            const dados = [];
+
+            // Inverte a ordem para ler da mais antiga para a mais nova, pois Apps Script insere no topo
+            for (let i = 1; i < linhas.length; i++) {
+                if (!linhas[i].trim()) continue;
+                const cols = linhas[i].split('\t');
+                const row = {};
+                cabecalhos.forEach((cab, index) => {
+                    row[cab] = cols[index] ? cols[index].trim() : '';
+                });
+                if (row.data) Object.assign(row, parseData(row.data));
+                dados.push(row);
+            }
+
+            renderBoxes(dados);
+            renderCharts(dados);
+            renderTable(dados);
+        }
+
+        function parseData(dataStr) {
+            try {
+                const datePart = dataStr.split(' ')[0];
+                return { rawDate: datePart };
+            } catch { return { rawDate: '-' }; }
+        }
+
+        function renderBoxes(dados) {
+            document.getElementById("totalClicks").innerText = dados.length;
+            const whats = dados.filter(d => d.tipo === 'clique_whatsapp').length;
+            document.getElementById("totalWhats").innerText = whats;
+        }
+
+        function renderCharts(dados) {
+            // Grafico de Dias
+            const clicksPorDia = {};
+            dados.forEach(d => {
+                if (!d.rawDate || d.rawDate === '-') return;
+                clicksPorDia[d.rawDate] = (clicksPorDia[d.rawDate] || 0) + 1;
+            });
+
+            // Ordena pela string de data (DD/MM/YYYY convertido para YYYY/MM/DD)
+            const sortedDias = Object.keys(clicksPorDia).sort((a, b) => {
+                const partsA = a.split('/');
+                const partsB = b.split('/');
+                if (partsA.length !== 3 || partsB.length !== 3) return 0;
+                const da = partsA[2] + partsA[1] + partsA[0];
+                const db = partsB[2] + partsB[1] + partsB[0];
+                return da.localeCompare(db);
+            }).slice(-7);
+
+            const labelsDias = [];
+            const dataDias = [];
+            sortedDias.forEach(d => {
+                // Mostra apenas DD/MM para ficar bonito
+                labelsDias.push(d.substring(0, 5));
+                dataDias.push(clicksPorDia[d]);
+            });
+
+            if (chartDiasInstance) chartDiasInstance.destroy();
+            chartDiasInstance = new Chart(document.getElementById('chartDias'), {
+                type: 'bar',
+                data: { labels: labelsDias, datasets: [{ label: 'Interações', data: dataDias, backgroundColor: '#1b5bc7', borderRadius: 4 }] },
+                options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
+            });
+
+            // Gráfico Lojas
+            const cliquesLoja = {};
+            dados.forEach(d => {
+                if (!d.loja || d.loja === '-' || d.loja === 'Geral') return;
+                cliquesLoja[d.loja] = (cliquesLoja[d.loja] || 0) + 1;
+            });
+
+            const sortedLojas = Object.keys(cliquesLoja).sort((a, b) => cliquesLoja[b] - cliquesLoja[a]).slice(0, 5);
+            const labelsLojas = [];
+            const dataLojas = [];
+            sortedLojas.forEach(L => { labelsLojas.push(L); dataLojas.push(cliquesLoja[L]); });
+
+            if (chartLojasInstance) chartLojasInstance.destroy();
+            chartLojasInstance = new Chart(document.getElementById('chartLojas'), {
+                type: 'doughnut',
+                data: {
+                    labels: labelsLojas,
+                    datasets: [{ data: dataLojas, backgroundColor: ['#1b5bc7', '#ff3366', '#ffc107', '#4caf50', '#9c27b0'] }]
+                },
+                options: { plugins: { legend: { position: 'right' } }, maintainAspectRatio: false }
+            });
+        }
+
+        function renderTable(dados) {
+            const countProd = {};
+            const lojaProd = {};
+            // Conta tipos de acao para o mesmo produto
+
+            dados.forEach(d => {
+                if (!d.titulo || d.titulo === '-' || d.titulo === 'Grupo VIP WhatsApp') return;
+                countProd[d.titulo] = (countProd[d.titulo] || 0) + 1;
+                lojaProd[d.titulo] = d.loja;
+            });
+
+            const sortedProd = Object.keys(countProd).sort((a, b) => countProd[b] - countProd[a]).slice(0, 5);
+
+            const tbody = document.getElementById('tabelaProdutos');
+            tbody.innerHTML = '';
+
+            if (sortedProd.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:#888;">Nenhum produto clicado ainda.</td></tr>';
+                return;
+            }
+
+            sortedProd.forEach(p => {
+                tbody.innerHTML += `<tr>
+                <td>${p}</td>
+                <td><span class="tipo-badge">${lojaProd[p]}</span></td>
+                <td><b style="color:#1b5bc7; font-size:16px;">${countProd[p]}</b></td>
+            </tr>`;
+            });
+        }
+    </script>
+
+</body>
+
+</html>

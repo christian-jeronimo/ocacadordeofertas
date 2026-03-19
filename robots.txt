@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cacadordeofertas.com.br/sitemap.xml

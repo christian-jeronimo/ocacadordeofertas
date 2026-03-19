@@ -3,16 +3,23 @@ const fs = require('fs');
 // COLE O LINK DA SUA PLANILHA AQUI (Tem que ser o link gerado no "Publicar na Web")
 const urlPlanilha = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR2REpLC9EdFoSD2Fs5kl7MjOeEhYzSjoi7152nupjhb-rGMC8zkkkd3qB8c3ZroDljaklkkA35pXbZ/pub?output=tsv';
 
+// DOMÍNIO REAL DO SITE (usado no sitemap, canonical URLs e robots.txt)
+const baseUrl = 'https://cacadordeofertas.com.br';
+
+function criarSlug(texto) {
+    return texto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
 async function atualizarViaPlanilha() {
     console.log("Conectando ao Google Sheets...");
-    
+
     try {
         const resposta = await fetch(urlPlanilha);
         const textoTSV = await resposta.text();
 
         // Separa o texto em linhas
         const linhas = textoTSV.split('\n');
-        
+
         // Pega a primeira linha para ser as chaves do nosso JSON (loja, titulo, etc)
         const cabecalhos = linhas[0].split('\t').map(h => h.trim());
         const ofertas = [];
@@ -23,10 +30,10 @@ async function atualizarViaPlanilha() {
 
             const valores = linhas[i].split('\t');
             const produto = {};
-            
+
             cabecalhos.forEach((cabecalho, index) => {
                 let valor = valores[index] ? valores[index].trim() : '';
-                
+
                 // Se a coluna for "ativo", converte o texto para booleano (verdadeiro/falso)
                 if (cabecalho === 'ativo') {
                     produto[cabecalho] = (valor.toLowerCase() === 'true' || valor.toLowerCase() === 'verdadeiro' || valor.toLowerCase() === 'sim' || valor === '1');
@@ -34,17 +41,321 @@ async function atualizarViaPlanilha() {
                     produto[cabecalho] = valor;
                 }
             });
-            
+
             ofertas.push(produto);
         }
 
         // Salva os produtos no nosso banco de dados JSON
         fs.writeFileSync('cupons.json', JSON.stringify(ofertas, null, 2));
-        console.log(`✅ Sucesso! ${ofertas.length} ofertas atualizadas a partir da planilha.`);
+        console.log(`✅ Sucesso! JSON gerado: ${ofertas.length} ofertas salvas.`);
+
+        // --- INÍCIO DA GERAÇÃO ESTÁTICA (SSG) ---
+        console.log("Iniciando geração das páginas estáticas (SSG)...");
+
+        const templateHtml = fs.readFileSync('template.html', 'utf8');
+
+        // Agrupar e contar ofertas ativas por loja
+        const contagemLojas = {};
+        const lojasSlugs = {};
+
+        ofertas.forEach(oferta => {
+            const loja = oferta.loja.trim();
+            if (!loja) return;
+
+            if (!contagemLojas[loja]) {
+                contagemLojas[loja] = 0;
+                lojasSlugs[loja] = criarSlug(loja);
+            }
+            if (oferta.ativo) {
+                contagemLojas[loja]++;
+            }
+        });
+
+        // Função auxiliar para gerar o menu de lojas
+        function gerarMenuLojas(lojaAtualSlug = null) {
+            let htmlMenu = `<a href="index.html" class="store-chip ${lojaAtualSlug === null ? 'active' : ''}">Todas as Ofertas</a>`;
+
+            // Ordenar lojas pelo nome
+            const lojasOrdenadas = Object.keys(contagemLojas).sort((a, b) => a.localeCompare(b));
+
+            lojasOrdenadas.forEach(lojaNome => {
+                const count = contagemLojas[lojaNome];
+                if (count === 0) return; // Não exibe no menu se não tem oferta ativa nesta avaliação
+
+                const slug = lojasSlugs[lojaNome];
+                const activeClass = lojaAtualSlug === slug ? 'active' : '';
+
+                htmlMenu += `<a href="${slug}.html" class="store-chip ${activeClass}">${lojaNome} <span class="store-badge">${count}</span></a>`;
+            });
+            return htmlMenu;
+        }
+
+        // Função auxiliar para gerar os cards de cupom e o JSON-LD de schema.org
+        function gerarCardsESchema(listaOfertas, nomeLoja) {
+            let htmlAtivos = '';
+            let htmlExpirados = '';
+            let schemaOfertas = [];
+            let inativeMessage = ""; // Se não tiver a gente adiciona
+
+            listaOfertas.forEach(cupom => {
+                const temCodigo = cupom.codigo && cupom.codigo.trim() !== '';
+
+                // Codificar para garantir
+                const linkSafe = cupom.link.replace(/'/g, "\\'");
+                const codigoSafe = temCodigo ? cupom.codigo.replace(/'/g, "\\'") : "";
+                
+                const lojaSafe = cupom.loja.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                const tituloSafe = cupom.titulo.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+
+                const acaoBotao = temCodigo ? `revelarCupom('${linkSafe}', '${codigoSafe}', '${lojaSafe}', '${tituloSafe}')` : `abrirPromocao('${linkSafe}', '${lojaSafe}', '${tituloSafe}')`;
+                const labelAcessibilidade = temCodigo ? `Pegar cupom para ${cupom.titulo}` : `Pegar promoção de ${cupom.titulo}`;
+
+                let htmlBotaoAtivo = '';
+                if (temCodigo) {
+                    const cod = cupom.codigo.trim();
+                    if (cod.length >= 3) {
+                        const spoiler = cod.slice(-3);
+                        htmlBotaoAtivo = `
+                             <button class="btn-spoiler" onclick="${acaoBotao}" aria-label="${labelAcessibilidade}">
+                                 <span class="spoiler-left">PEGAR CUPOM<span class="spoiler-fold"></span></span>
+                                 <span class="spoiler-right">${spoiler}</span>
+                             </button>
+                         `;
+                    } else if (cod.length > 0) {
+                        const spoiler = cod.slice(-1);
+                        htmlBotaoAtivo = `
+                             <button class="btn-spoiler" onclick="${acaoBotao}" aria-label="${labelAcessibilidade}">
+                                 <span class="spoiler-left">PEGAR CUPOM<span class="spoiler-fold"></span></span>
+                                 <span class="spoiler-right">${spoiler}</span>
+                             </button>
+                         `;
+                    } else {
+                        htmlBotaoAtivo = `<button class="btn-get" onclick="${acaoBotao}" aria-label="${labelAcessibilidade}">PEGAR CUPOM</button>`;
+                    }
+                } else {
+                    htmlBotaoAtivo = `<button class="btn-get" onclick="${acaoBotao}" aria-label="${labelAcessibilidade}">PEGAR PROMOÇÃO</button>`;
+                }
+
+                if (cupom.ativo) {
+                    htmlAtivos += `
+                        <article class="coupon-card">
+                            <div class="store-logo">${cupom.loja}</div>
+                            <div class="coupon-info">
+                                <h3>${cupom.titulo}</h3>
+                                <p>${cupom.descricao}</p>
+                            </div>
+                            ${htmlBotaoAtivo}
+                        </article>
+                    `;
+
+                    schemaOfertas.push({
+                        "@type": "Offer",
+                        "name": cupom.titulo + " em " + cupom.loja,
+                        "description": cupom.descricao,
+                        "url": cupom.link,
+                        "availability": "https://schema.org/InStock"
+                    });
+
+                } else {
+                    htmlExpirados += `
+                        <article class="coupon-card expired">
+                            <div class="expired-badge">EXPIRADO</div>
+                            <div class="store-logo">${cupom.loja}</div>
+                            <div class="coupon-info">
+                                <h3>${cupom.titulo}</h3>
+                                <p>${cupom.descricao}</p>
+                            </div>
+                            <button class="btn-get" disabled aria-label="Oferta expirada para ${cupom.titulo}">ESGOTADO</button>
+                        </article>
+                    `;
+                }
+            });
+
+            if (htmlAtivos === '') { htmlAtivos = `<p style="text-align:center; padding: 20px; color: #666;">Nenhuma oferta ativa no momento para esta categoria.</p>` }
+            if (htmlExpirados === '') { htmlExpirados = `<p style="text-align:center; padding: 20px; color: #666;">Nenhuma oferta expirada registrada nesta categoria.</p>` }
+
+            let schemaLd = '';
+            if (schemaOfertas.length > 0) {
+                schemaLd = `
+                <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "ItemList",
+                    "itemListElement": ${JSON.stringify(schemaOfertas)}
+                }
+                </script>`;
+            }
+
+            return { htmlAtivos, htmlExpirados, schemaLd };
+        }
+
+        // --- FUNÇÕES SEO ---
+
+        // Gerar keywords dinâmicas por loja
+        function gerarKeywords(nomeLoja = null) {
+            const keywordsBase = ['cupom de desconto', 'ofertas', 'promoção', 'descontos', 'economizar'];
+            if (nomeLoja) {
+                const lojaLower = nomeLoja.toLowerCase();
+                return [
+                    `cupom ${lojaLower}`,
+                    `desconto ${lojaLower}`,
+                    `promoção ${lojaLower}`,
+                    `ofertas ${lojaLower}`,
+                    `cupom de desconto ${lojaLower}`,
+                    `código promocional ${lojaLower}`,
+                    ...keywordsBase
+                ].join(', ');
+            }
+            // Home: keywords genéricas com nomes das lojas
+            const lojasNomes = Object.keys(contagemLojas).map(l => l.toLowerCase());
+            return [
+                ...keywordsBase,
+                ...lojasNomes.map(l => `cupom ${l}`),
+                ...lojasNomes.map(l => `ofertas ${l}`),
+                'achadinhos', 'cupom suplementos'
+            ].join(', ');
+        }
+
+        // Gerar breadcrumbs HTML (estilo chips igual ao menu de lojas)
+        function gerarBreadcrumbsHtml(slugAtual = null) {
+            let html = `<a href="index.html" class="store-chip ${slugAtual === null ? 'active' : ''}">Todas as Ofertas</a>`;
+
+            const lojasOrdenadas = Object.keys(contagemLojas).sort((a, b) => a.localeCompare(b));
+
+            lojasOrdenadas.forEach(lojaNome => {
+                const count = contagemLojas[lojaNome];
+                if (count === 0) return;
+
+                const slug = lojasSlugs[lojaNome];
+                const activeClass = slugAtual === slug ? 'active' : '';
+
+                html += `<a href="${slug}.html" class="store-chip ${activeClass}">${lojaNome} <span class="store-badge">${count}</span></a>`;
+            });
+            return html;
+        }
+
+        // Gerar Schema.org BreadcrumbList
+        function gerarBreadcrumbSchema(nomeArquivo, nomeLoja = null) {
+            const items = [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Início",
+                    "item": `${baseUrl}/`
+                }
+            ];
+            if (nomeLoja) {
+                items.push({
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": `Cupons ${nomeLoja}`,
+                    "item": `${baseUrl}/${nomeArquivo}`
+                });
+            }
+            return `
+                <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "BreadcrumbList",
+                    "itemListElement": ${JSON.stringify(items)}
+                }
+                </script>`;
+        }
+
+        // Função para instanciar as marcações e criar de fato o HTML da página
+        function construirPagina(listaOfertas, title, metadescription, slug, nomeLoja = null) {
+            const { htmlAtivos, htmlExpirados, schemaLd } = gerarCardsESchema(listaOfertas, title);
+
+            const nomeArquivo = slug ? `${slug}.html` : 'index.html';
+            const canonicalUrl = `${baseUrl}/${nomeArquivo}`;
+            const keywords = gerarKeywords(nomeLoja);
+            const breadcrumbsHtml = gerarBreadcrumbsHtml(slug);
+            const breadcrumbSchema = gerarBreadcrumbSchema(nomeArquivo, nomeLoja);
+            const anoAtual = new Date().getFullYear().toString();
+
+            let htmlFinal = templateHtml
+                .replace(/{{TITLE}}/g, title)
+                .replace(/{{META_DESCRIPTION}}/g, metadescription)
+                .replace(/{{META_KEYWORDS}}/g, keywords)
+                .replace(/{{CANONICAL_URL}}/g, canonicalUrl)
+                .replace(/{{CONTEUDO_ATIVOS}}/g, htmlAtivos)
+                .replace(/{{CONTEUDO_EXPIRADOS}}/g, htmlExpirados)
+                .replace(/{{SCHEMA_ORG}}/g, schemaLd)
+                .replace(/{{BREADCRUMBS_HTML}}/g, breadcrumbsHtml)
+                .replace(/{{BREADCRUMB_SCHEMA}}/g, breadcrumbSchema)
+                .replace(/{{ANO_ATUAL}}/g, anoAtual);
+
+            return htmlFinal;
+        }
+
+        // Setup para gerar o Sitemap XML
+        let urlsParaSitemap = [];
+        const ultimaModificacao = new Date().toISOString().split('T')[0];
+
+        // 1. Gerar index.html (Home) - Contém todas as ofertas
+        const tituloHome = "Caçador de Ofertas | Cupons e Ofertas Mercado Livre, Amazon e mais";
+        const descHome = "Encontre os melhores cupons de desconto. Economize em suplementos, eletrodomésticos e veja nossos achadinhos!";
+        const htmlHome = construirPagina(ofertas, tituloHome, descHome, null, null);
+        fs.writeFileSync('index.html', htmlHome);
+        console.log("✅ Página gerada: index.html (Principal)");
+        urlsParaSitemap.push(`${baseUrl}/index.html`);
+
+        // 2. Gerar páginas individuais por loja e apagar as antigas sem cupons
+        const nomesLojas = Object.keys(contagemLojas);
+        const slugsAtivos = ['index']; // Mantém o index.html principal
+
+        for (const nomeLoja of nomesLojas) {
+            const slugDaLoja = lojasSlugs[nomeLoja];
+            const ofertasDestaLoja = ofertas.filter(o => o.loja.trim() === nomeLoja);
+
+            // Não gera a página se a loja não tiver cupons ativos ou ofertas
+            if (contagemLojas[nomeLoja] === 0 || ofertasDestaLoja.length === 0) continue;
+
+            const tituloLoja = `Cupons de Desconto ${nomeLoja} | Caçador de Ofertas`;
+            const descLoja = `Pegue agora os melhores cupons e ofertas exclusivas para compras na loja patrocinada ${nomeLoja}.`;
+
+            const htmlLoja = construirPagina(ofertasDestaLoja, tituloLoja, descLoja, slugDaLoja, nomeLoja);
+            fs.writeFileSync(`${slugDaLoja}.html`, htmlLoja);
+            console.log(`✅ Página gerada: ${slugDaLoja}.html (${nomeLoja})`);
+
+            urlsParaSitemap.push(`${baseUrl}/${slugDaLoja}.html`);
+            slugsAtivos.push(slugDaLoja);
+        }
+
+        // Limpeza de arquivos .html órfãos (lojas removidas ou vazias)
+        const htmlFiles = fs.readdirSync('.').filter(f => f.endsWith('.html'));
+        for (const arquivo of htmlFiles) {
+            if (arquivo === 'template.html' || arquivo === 'dashboard.html') continue;
+            
+            const slugName = arquivo.replace('.html', '');
+            if (!slugsAtivos.includes(slugName)) {
+                fs.unlinkSync(arquivo);
+                console.log(`🗑️ Página apagada: ${arquivo} (Sem cupons válidos)`);
+            }
+        }
+
+        // 3. Gerar Sitemap.xml para SEO do Google (com changefreq)
+        let xmlSitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+        urlsParaSitemap.forEach(url => {
+            const priority = url.includes('index.html') ? '1.0' : '0.8';
+            const changefreq = 'daily';
+            xmlSitemap += `  <url>\n    <loc>${url}</loc>\n    <lastmod>${ultimaModificacao}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>\n`;
+        });
+        xmlSitemap += `</urlset>`;
+        fs.writeFileSync('sitemap.xml', xmlSitemap);
+        console.log("✅ Sitemap gerado: sitemap.xml");
+
+        // 4. Gerar robots.txt
+        const robotsTxt = `User-agent: *\nAllow: /\n\nSitemap: ${baseUrl}/sitemap.xml\n`;
+        fs.writeFileSync('robots.txt', robotsTxt);
+        console.log("✅ robots.txt gerado");
+
+        console.log("🎉 Processo de Geração Estática finalizado!");
 
     } catch (erro) {
-        console.error("❌ Erro ao ler a planilha:", erro);
+        console.error("❌ Erro ao ler a planilha e gerar o site:", erro);
     }
 }
 
 atualizarViaPlanilha();
+
