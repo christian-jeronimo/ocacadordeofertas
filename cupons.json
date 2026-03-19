@@ -56,10 +56,26 @@
     "ativo": true
   },
   {
+    "loja": "Mercado Livre",
+    "titulo": "Mercado Livre com 10% OFF",
+    "descricao": "Válido em Casa e Decoração. Ative a promoção no link",
+    "codigo": "",
+    "link": "https://meli.la/1YfWn4e",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "Whey Soldiers com desconto no Mercado Livre",
+    "descricao": "Whey com 60% off. Ative a promoção no link",
+    "codigo": "",
+    "link": "https://meli.la/2n5p1Ru",
+    "ativo": true
+  },
+  {
     "loja": "Amazon",
     "titulo": "Ganhe R$100 de desconto em Amazon",
     "descricao": "Ganhe R$100 off em compras a partir de R$999",
-    "codigo": "MTBOMDIA",
+    "codigo": "PRAVC",
     "link": "https://www.amazon.com.br/?tag=camposmayara-20",
     "ativo": true
   },
@@ -73,9 +89,9 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Amazon concede R$55 de desconto com cupom",
+    "titulo": "Amazon concede R$40 de desconto com cupom",
     "descricao": "Válido em compras a partir de R$350",
-    "codigo": "HRPRIME55",
+    "codigo": "BORA",
     "link": "https://www.amazon.com.br/?tag=camposmayara-20",
     "ativo": true
   },
@@ -91,7 +107,7 @@
     "loja": "Amazon",
     "titulo": "Ganhe R$70 de desconto com cupom na Amazon",
     "descricao": "Cupom válido em compras a patir de R$699",
-    "codigo": "SEUMOMENTO",
+    "codigo": "CUPOM",
     "link": "https://www.amazon.com.br/?tag=camposmayara-20",
     "ativo": true
   },
