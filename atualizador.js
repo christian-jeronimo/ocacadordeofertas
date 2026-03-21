@@ -64,7 +64,7 @@ async function atualizarViaPlanilha() {
 
             if (!contagemLojas[loja]) {
                 contagemLojas[loja] = 0;
-                lojasSlugs[loja] = criarSlug(loja);
+                lojasSlugs[loja] = 'cupom-' + criarSlug(loja);
             }
             if (oferta.ativo) {
                 contagemLojas[loja]++;
