@@ -8,15 +8,15 @@
     <meta name="robots" content="index, follow">
     <meta name="author" content="Caçador de Ofertas">
 
-    <title>Caçador de Ofertas | Cupons e Ofertas Mercado Livre, Amazon e mais</title>
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
-    <meta name="description" content="Encontre os melhores cupons de desconto. Economize em suplementos, eletrodomésticos e veja nossos achadinhos!">
+    <title>Caçador de Ofertas | Cupons e Ofertas - março de 2026</title>
+    <link rel="icon" type="image/svg+xml" href="https://cacadordeofertas.com.br/icon.svg">
+    <!-- Adicione um apple-touch-icon posteriormente se quiser -->
+    <meta name="description" content="Encontre cupons de desconto validados em março de 2026. Economize agora nas maiores lojas com nossos achadinhos!">
     <meta name="keywords" content="cupom de desconto, ofertas, promoção, descontos, economizar, cupom mercado livre, cupom amazon, ofertas mercado livre, ofertas amazon, achadinhos, cupom suplementos">
     <link rel="canonical" href="https://cacadordeofertas.com.br/index.html">
 
-    <meta property="og:title" content="Caçador de Ofertas | Cupons e Ofertas Mercado Livre, Amazon e mais">
-    <meta property="og:description" content="Encontre os melhores cupons de desconto. Economize em suplementos, eletrodomésticos e veja nossos achadinhos!">
+    <meta property="og:title" content="Caçador de Ofertas | Cupons e Ofertas - março de 2026">
+    <meta property="og:description" content="Encontre cupons de desconto validados em março de 2026. Economize agora nas maiores lojas com nossos achadinhos!">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:url" content="https://cacadordeofertas.com.br/index.html">
@@ -181,6 +181,34 @@
         .store-chip.active .store-badge {
             background-color: white;
             color: var(--secondary);
+        }
+
+        .coupon-date {
+            font-size: 11.5px;
+            color: #2e7d32;
+            margin-top: 8px !important;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .seo-text-area {
+            padding: 20px 10px;
+            margin-top: 40px;
+            border-top: 2px solid rgba(0,0,0,0.05);
+            line-height: 1.6;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .seo-text-area h2, .seo-text-area h3 {
+            text-align: left;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #222;
+            font-size: 1.3rem;
+            border: none;
         }
 
         h2 {
@@ -567,28 +595,6 @@
             opacity: 1;
             bottom: 50px;
         }
-
-        /* Breadcrumbs */
-        .breadcrumbs {
-            font-size: 13px;
-            color: #777;
-            margin-bottom: 20px;
-            padding: 0;
-        }
-
-        .breadcrumbs a {
-            color: var(--secondary);
-            text-decoration: none;
-        }
-
-        .breadcrumbs a:hover {
-            text-decoration: underline;
-        }
-
-        .breadcrumbs span.separator {
-            margin: 0 6px;
-            color: #999;
-        }
     </style>
 
     
@@ -617,6 +623,15 @@
         "inLanguage": "pt-BR"
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Caçador de Ofertas",
+        "url": "https://cacadordeofertas.com.br/",
+        "logo": "https://cacadordeofertas.com.br/icon.svg"
+    }
+    </script>
 </head>
 
 <body>
@@ -643,8 +658,8 @@
                 onclick="registrarClique('Geral', 'Grupo VIP WhatsApp', 'clique_whatsapp')">Entrar no Grupo</a>
         </div>
 
-        <!-- Navegação / Breadcrumb -->
-        <nav class="store-menu" aria-label="Breadcrumb">
+        <!-- Navegação / Menu de Lojas -->
+        <nav class="store-menu" aria-label="Navegação de Lojas">
             <a href="index.html" class="store-chip active">Todas as Ofertas</a><a href="cupom-amazon.html" class="store-chip ">Amazon <span class="store-badge">8</span></a><a href="cupom-mercado-livre.html" class="store-chip ">Mercado Livre <span class="store-badge">8</span></a>
         </nav>
 
@@ -657,6 +672,7 @@
                             <div class="coupon-info">
                                 <h3>20% OFF com cupom Mercado Livre</h3>
                                 <p>Válido em todo o site em compras a partir de R$29, limitado a R$60</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             
                              <button class="btn-spoiler" onclick="revelarCupom('https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br', 'VIDAMELHOR', 'Mercado Livre', '20% OFF com cupom Mercado Livre')" aria-label="Pegar cupom para 20% OFF com cupom Mercado Livre">
@@ -671,6 +687,7 @@
                             <div class="coupon-info">
                                 <h3>Até R$30 de desconto no Mercado Livre</h3>
                                 <p>Válido em produtos selecionados Dark Lab</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             <button class="btn-get" onclick="abrirPromocao('https://meli.la/2mgzfKd', 'Mercado Livre', 'Até R$30 de desconto no Mercado Livre')" aria-label="Pegar promoção de Até R$30 de desconto no Mercado Livre">PEGAR PROMOÇÃO</button>
                         </article>
@@ -680,6 +697,7 @@
                             <div class="coupon-info">
                                 <h3>20% OFF com cupom Mercado Livre</h3>
                                 <p>Válido em em compras a partir de R$ 29</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             
                              <button class="btn-spoiler" onclick="revelarCupom('https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br', 'MELHOROFERTA', 'Mercado Livre', '20% OFF com cupom Mercado Livre')" aria-label="Pegar cupom para 20% OFF com cupom Mercado Livre">
@@ -694,6 +712,7 @@
                             <div class="coupon-info">
                                 <h3>Ganhe 20% OFF com cupom no Mercado Livre</h3>
                                 <p>Válido em compras a partir de R$29, limitado a R$60</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             
                              <button class="btn-spoiler" onclick="revelarCupom('https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br', 'PROMOHOJE', 'Mercado Livre', 'Ganhe 20% OFF com cupom no Mercado Livre')" aria-label="Pegar cupom para Ganhe 20% OFF com cupom no Mercado Livre">
@@ -708,6 +727,7 @@
                             <div class="coupon-info">
                                 <h3>Mercado Livre com 10% OFF</h3>
                                 <p>Válido em Moda Full. Ative a promoção no link</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             <button class="btn-get" onclick="abrirPromocao('https://meli.la/2a5gAMs', 'Mercado Livre', 'Mercado Livre com 10% OFF')" aria-label="Pegar promoção de Mercado Livre com 10% OFF">PEGAR PROMOÇÃO</button>
                         </article>
@@ -717,6 +737,7 @@
                             <div class="coupon-info">
                                 <h3>Mercado Livre com 20% OFF</h3>
                                 <p>Válido em compras a partir de R$29, limitado a R$60</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             
                              <button class="btn-spoiler" onclick="revelarCupom('https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br', 'PROMONOMELI', 'Mercado Livre', 'Mercado Livre com 20% OFF')" aria-label="Pegar cupom para Mercado Livre com 20% OFF">
@@ -731,6 +752,7 @@
                             <div class="coupon-info">
                                 <h3>Mercado Livre com 10% OFF</h3>
                                 <p>Válido em Casa e Decoração. Ative a promoção no link</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             <button class="btn-get" onclick="abrirPromocao('https://meli.la/1YfWn4e', 'Mercado Livre', 'Mercado Livre com 10% OFF')" aria-label="Pegar promoção de Mercado Livre com 10% OFF">PEGAR PROMOÇÃO</button>
                         </article>
@@ -740,6 +762,7 @@
                             <div class="coupon-info">
                                 <h3>Whey Soldiers com desconto no Mercado Livre</h3>
                                 <p>Whey com 60% off. Ative a promoção no link</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             <button class="btn-get" onclick="abrirPromocao('https://meli.la/2n5p1Ru', 'Mercado Livre', 'Whey Soldiers com desconto no Mercado Livre')" aria-label="Pegar promoção de Whey Soldiers com desconto no Mercado Livre">PEGAR PROMOÇÃO</button>
                         </article>
@@ -749,6 +772,7 @@
                             <div class="coupon-info">
                                 <h3>Ganhe R$100 de desconto em Amazon</h3>
                                 <p>Ganhe R$100 off em compras a partir de R$999</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             
                              <button class="btn-spoiler" onclick="revelarCupom('https://www.amazon.com.br/?tag=camposmayara-20', 'PRAVC', 'Amazon', 'Ganhe R$100 de desconto em Amazon')" aria-label="Pegar cupom para Ganhe R$100 de desconto em Amazon">
@@ -763,6 +787,7 @@
                             <div class="coupon-info">
                                 <h3>Ganhe R$40 de desconto em compras na Amazon</h3>
                                 <p>Oferta válida em compras a partir de R$350</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             
                              <button class="btn-spoiler" onclick="revelarCupom('https://www.amazon.com.br/?tag=camposmayara-20', 'VEMVEM', 'Amazon', 'Ganhe R$40 de desconto em compras na Amazon')" aria-label="Pegar cupom para Ganhe R$40 de desconto em compras na Amazon">
@@ -777,6 +802,7 @@
                             <div class="coupon-info">
                                 <h3>Amazon concede R$40 de desconto com cupom</h3>
                                 <p>Válido em compras a partir de R$350</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             
                              <button class="btn-spoiler" onclick="revelarCupom('https://www.amazon.com.br/?tag=camposmayara-20', 'BORA', 'Amazon', 'Amazon concede R$40 de desconto com cupom')" aria-label="Pegar cupom para Amazon concede R$40 de desconto com cupom">
@@ -791,6 +817,7 @@
                             <div class="coupon-info">
                                 <h3>Ganhe R$60 de desconto em compras na Amazon</h3>
                                 <p>Oferta válida em compras a partir de R$500</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             
                              <button class="btn-spoiler" onclick="revelarCupom('https://www.amazon.com.br/?tag=camposmayara-20', 'AMAZONCOMVC', 'Amazon', 'Ganhe R$60 de desconto em compras na Amazon')" aria-label="Pegar cupom para Ganhe R$60 de desconto em compras na Amazon">
@@ -805,6 +832,7 @@
                             <div class="coupon-info">
                                 <h3>Ganhe R$70 de desconto com cupom na Amazon</h3>
                                 <p>Cupom válido em compras a patir de R$699</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             
                              <button class="btn-spoiler" onclick="revelarCupom('https://www.amazon.com.br/?tag=camposmayara-20', 'CUPOM', 'Amazon', 'Ganhe R$70 de desconto com cupom na Amazon')" aria-label="Pegar cupom para Ganhe R$70 de desconto com cupom na Amazon">
@@ -819,6 +847,7 @@
                             <div class="coupon-info">
                                 <h3>Amazon concede R$50 em compras com cupom</h3>
                                 <p>Oferta válida em compras a partir de R$499</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             
                              <button class="btn-spoiler" onclick="revelarCupom('https://www.amazon.com.br/?tag=camposmayara-20', 'TADEGRACA', 'Amazon', 'Amazon concede R$50 em compras com cupom')" aria-label="Pegar cupom para Amazon concede R$50 em compras com cupom">
@@ -833,6 +862,7 @@
                             <div class="coupon-info">
                                 <h3>Ganhe R$40 de desconto em compras com cupom</h3>
                                 <p>Oferta válida para assinantes Prime e em compras a partir de R$300</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             
                              <button class="btn-spoiler" onclick="revelarCupom('https://www.amazon.com.br/?tag=camposmayara-20', 'HRPRIME40', 'Amazon', 'Ganhe R$40 de desconto em compras com cupom')" aria-label="Pegar cupom para Ganhe R$40 de desconto em compras com cupom">
@@ -847,6 +877,7 @@
                             <div class="coupon-info">
                                 <h3>Ganhe R$75 de desconto em compras com cupom</h3>
                                 <p>Oferta válida em compras a partir de R$599</p>
+                                <p class="coupon-date">⏳ Validado em: 23/03/2026</p>
                             </div>
                             
                              <button class="btn-spoiler" onclick="revelarCupom('https://www.amazon.com.br/?tag=camposmayara-20', 'SEUMOMENTO', 'Amazon', 'Ganhe R$75 de desconto em compras com cupom')" aria-label="Pegar cupom para Ganhe R$75 de desconto em compras com cupom">
@@ -875,12 +906,21 @@
                     
             </div>
         </section>
+
+        
+                <article class="seo-text-area">
+                    <h2>Melhores Cupons de Desconto e Ofertas</h2>
+                    <p>Seja bem-vindo ao <strong>Caçador de Ofertas</strong>, o seu local definitivo para economizar de verdade nas maiores lojas de e-commerce da internet. Nós verificamos os nossos códigos todos os dias incansavelmente.</p>
+                    <h3>Como economizar com o Caçador de Ofertas</h3>
+                    <p>Basta navegar no nosso sumário de lojas parceiras, encontrar a oferta ou cupom ideal que você procura e aproveitar. Sem letras miúdas ou complicações. O abatimento rola fácil e vai direto pro seu bolso!</p>
+                </article>
     </main>
 
     <footer
         style="background: #222; color: #aaa; text-align: center; padding: 25px 15px; font-size: 13px; margin-top: 40px;">
         <p style="margin: 0 0 8px 0; font-weight: 600; color: #ddd;">🔥 Caçador de Ofertas</p>
-        <p style="margin: 0 0 5px 0;">Cupons de desconto e ofertas verificadas diariamente.</p>
+        <p style="margin: 0 0 5px 0;">Cupons de desconto e ofertas verificadas diariamente por especialistas.</p>
+        <p style="margin: 0 0 5px 0;">O Caçador de Ofertas é o seu portal seguro para economizar nas melhores lojas do Brasil.</p>
         <p style="margin: 0;">© 2026 Caçador de Ofertas. Todos os direitos reservados.</p>
     </footer>
 
