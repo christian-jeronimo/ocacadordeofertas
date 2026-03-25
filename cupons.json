@@ -5,7 +5,7 @@
     "descricao": "Válido em todo o site em compras a partir de R$29, limitado a R$60",
     "codigo": "VIDAMELHOR",
     "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
-    "ativo": true
+    "ativo": false
   },
   {
     "loja": "Mercado Livre",
@@ -17,25 +17,25 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "20% OFF com cupom Mercado Livre",
-    "descricao": "Válido em em compras a partir de R$ 29",
-    "codigo": "MELHOROFERTA",
+    "titulo": "12% OFF com cupom Mercado Livre",
+    "descricao": "Válido em em compras a partir de R$ 79",
+    "codigo": "MODANOML",
     "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Ganhe 20% OFF com cupom no Mercado Livre",
-    "descricao": "Válido em compras a partir de R$29, limitado a R$60",
-    "codigo": "PROMOHOJE",
+    "titulo": "Ganhe 10% OFF com cupom no Mercado Livre",
+    "descricao": "Válido em compras a partir de R$39",
+    "codigo": "PROMONESTLE",
     "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Ganhe 10% OFF com cupom Mercado Livre",
-    "descricao": "Válido em compras a partir de R$ 299,99",
-    "codigo": "ARMANIBEAUTY",
+    "titulo": "Ganhe 30% OFF com cupom Mercado Livre",
+    "descricao": "Válido em compras a partir de R$79",
+    "codigo": "CASACOMPLETA",
     "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
     "ativo": false
   },
