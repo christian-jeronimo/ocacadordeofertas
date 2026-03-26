@@ -1,73 +1,124 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fff159">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Caçador de Ofertas">
-    
+
     <title>{{TITLE}}</title>
+    <link rel="icon" type="image/svg+xml" href="https://cacadordeofertas.com.br/icon.svg">
+    <!-- Adicione um apple-touch-icon posteriormente se quiser -->
     <meta name="description" content="{{META_DESCRIPTION}}">
     <meta name="keywords" content="{{META_KEYWORDS}}">
     <link rel="canonical" href="{{CANONICAL_URL}}">
-    
+
     <meta property="og:title" content="{{TITLE}}">
     <meta property="og:description" content="{{META_DESCRIPTION}}">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:url" content="{{CANONICAL_URL}}">
     <meta property="og:site_name" content="Caçador de Ofertas">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <style>
         :root {
-            --primary: #fff159; 
-            --secondary: #1b5bc7; 
+            --primary: #fff159;
+            --secondary: #1b5bc7;
             --text: #333;
-            --text-light: #555; 
+            --text-light: #555;
             --bg: #ebebeb;
-            --expired: #555; 
-            --danger: #d32f2f; 
+            --expired: #555;
+            --danger: #d32f2f;
         }
 
-        body { font-family: system-ui, -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: var(--bg); margin: 0; color: var(--text); -webkit-font-smoothing: antialiased; }
-        
-        header { 
-            background: linear-gradient(135deg, rgba(255, 241, 89, 1), rgba(255, 224, 0, 1)); 
-            padding: 25px 20px; 
-            text-align: center; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+        body {
+            font-family: system-ui, -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(255, 241, 89, 1), rgba(255, 224, 0, 1));
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             width: 100%;
             box-sizing: border-box;
             position: relative;
         }
-        header h1 { margin: 0; font-size: 1.8rem; color: #111; font-weight: 800; letter-spacing: -0.5px; }
-        header p { margin: 5px 0 0 0; font-size: 0.95rem; color: #444; font-weight: 500; }
-        
-        .container { max-width: 800px; margin: 25px auto; padding: 0 15px; min-height: 80vh; }
-        
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #111;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            font-size: 0.95rem;
+            color: #444;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 25px auto;
+            padding: 0 15px;
+            min-height: 80vh;
+        }
+
         /* BANNER DO WHATSAPP - VERSÃO COMPACTA */
         .vip-banner {
             background: linear-gradient(135deg, #128C7E, #25D366);
             color: white;
             border-radius: 8px;
-            padding: 12px 16px; 
+            padding: 12px 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .vip-banner-content { display: flex; align-items: center; gap: 12px; }
-        .vip-icon { width: 32px; height: 32px; fill: white; flex-shrink: 0;}
-        .vip-text h3 { margin: 0 0 2px 0; font-size: 1rem; line-height: 1.2; }
-        .vip-text p { margin: 0; font-size: 13px; opacity: 0.95; line-height: 1.3; }
+
+        .vip-banner-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .vip-icon {
+            width: 32px;
+            height: 32px;
+            fill: white;
+            flex-shrink: 0;
+        }
+
+        .vip-text h2 {
+            margin: 0 0 2px 0;
+            font-size: 1rem;
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        .vip-text p {
+            margin: 0;
+            font-size: 13px;
+            opacity: 0.95;
+            line-height: 1.3;
+        }
+
         .btn-vip {
             background: white;
-            color: #128C7E;
+            color: #045248;
             padding: 8px 18px;
             border-radius: 20px;
             font-weight: bold;
@@ -75,10 +126,14 @@
             text-decoration: none;
             white-space: nowrap;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             flex-shrink: 0;
         }
-        .btn-vip:hover { transform: scale(1.05); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+
+        .btn-vip:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 
         /* Estilo do Menu de Lojas */
         .store-menu {
@@ -88,6 +143,7 @@
             justify-content: center;
             margin-bottom: 30px;
         }
+
         .store-chip {
             background-color: white;
             color: var(--text);
@@ -96,19 +152,22 @@
             font-size: 14px;
             font-weight: 500;
             text-decoration: none;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             transition: all 0.2s;
             display: flex;
             align-items: center;
             gap: 8px;
             border: 1px solid #ddd;
         }
-        .store-chip:hover, .store-chip.active {
+
+        .store-chip:hover,
+        .store-chip.active {
             background-color: var(--secondary);
             color: white;
             border-color: var(--secondary);
             transform: translateY(-2px);
         }
+
         .store-badge {
             background-color: var(--danger);
             color: white;
@@ -118,81 +177,146 @@
             border-radius: 10px;
             display: inline-block;
         }
+
         .store-chip.active .store-badge {
             background-color: white;
             color: var(--secondary);
         }
 
-        h2 { text-align: center; margin-bottom: 30px; margin-top: 40px; color: #444; }
-        .section-title { border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
+        .coupon-date {
+            font-size: 11.5px;
+            color: #2e7d32;
+            margin-top: 8px !important;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
 
-        .coupon-card { 
-            background: white; 
-            border-radius: 12px; 
-            display: flex; 
-            align-items: center; 
-            padding: 20px; 
-            margin-bottom: 18px; 
-            box-shadow: 0 6px 12px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03); 
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        .seo-text-area {
+            padding: 20px 10px;
+            margin-top: 40px;
+            border-top: 2px solid rgba(0,0,0,0.05);
+            line-height: 1.6;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .seo-text-area h2, .seo-text-area h3 {
+            text-align: left;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #222;
+            font-size: 1.3rem;
+            border: none;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 40px;
+            color: #444;
+        }
+
+        .section-title {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .coupon-card {
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            padding: 22px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.02); 
-        }
-        
-        .coupon-card:not(.expired):hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 12px 24px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.03);
-            border-color: rgba(27, 91, 199, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.04);
         }
 
-        .store-logo { 
-            width: 80px; 
-            height: 80px; 
-            background: #f5f5f5; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            margin-right: 20px; 
-            font-weight: bold; 
-            color: #444; 
-            text-align: center; 
-            font-size: 12px; 
+        .coupon-card:not(.expired):hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            border-color: rgba(0, 0, 0, 0.06);
+        }
+
+        .store-logo {
+            width: 60px;
+            height: 60px;
+            background: #f8f8f8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 18px;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            font-size: 10px;
             flex-shrink: 0;
             text-transform: uppercase;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
         }
-        
-        .coupon-info { flex-grow: 1; padding-right: 15px; }
-        .coupon-info h3 { margin: 0 0 5px 0; color: #000; font-size: 1.1rem; }
-        .coupon-info p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.4; }
 
-        .btn-get { 
-            color: white; 
-            border: none; 
-            padding: 12px 25px; 
-            border-radius: 6px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            text-decoration: none; 
-            transition: background 0.3s; 
+        .coupon-info {
+            flex-grow: 1;
+            padding-right: 15px;
+        }
+
+        .coupon-info h3 {
+            margin: 0 0 4px 0;
+            color: #111;
+            font-size: 1.15rem;
+            font-weight: bold;
+            letter-spacing: -0.3px;
+        }
+
+        .coupon-info p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.35;
+        }
+
+        .btn-get {
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
             flex-shrink: 0;
             text-align: center;
-            background-color: var(--secondary); 
-            height: 42px;
+            background-color: var(--secondary);
+            height: 44px;
             box-sizing: border-box;
             display: inline-flex;
             align-items: center;
             justify-content: center;
         }
-        .btn-get:hover, .btn-get:focus { background-color: #14469e; outline: none; }
+
+        .btn-get:active {
+            transform: scale(0.96);
+        }
+
+        .btn-get:hover,
+        .btn-get:focus {
+            background-color: #14469e;
+            outline: none;
+        }
 
         .btn-spoiler {
             display: inline-flex;
             align-items: center;
             background: #eaeaec;
-            border-radius: 6px;
-            height: 42px;
+            border-radius: 14px;
+            height: 44px;
             cursor: pointer;
             border: none;
             padding: 0;
@@ -203,9 +327,12 @@
             font-family: inherit;
         }
 
+        .btn-spoiler:active {
+            transform: scale(0.96);
+        }
+
         .btn-spoiler:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
         }
 
         .btn-spoiler:hover .spoiler-left {
@@ -217,15 +344,15 @@
         }
 
         .spoiler-left {
-            background: var(--secondary); 
+            background: var(--secondary);
             color: white;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 14px;
             height: 100%;
-            padding: 0 15px 0 20px;
+            padding: 0 16px 0 20px;
             display: flex;
             align-items: center;
-            border-radius: 6px 0 0 6px;
+            border-radius: 14px 0 0 14px;
             position: relative;
             z-index: 2;
             transition: background 0.3s;
@@ -246,13 +373,13 @@
 
         .spoiler-right {
             color: var(--secondary);
-            font-weight: 900;
+            font-weight: 800;
             font-size: 15px;
             height: 100%;
-            padding: 0 15px 0 22px;
+            padding: 0 16px 0 22px;
             display: flex;
             align-items: center;
-            border-radius: 0 6px 6px 0;
+            border-radius: 0 14px 14px 0;
             margin-left: -14px;
             z-index: 1;
             letter-spacing: 1px;
@@ -262,16 +389,20 @@
         .coupon-card.expired {
             background: #fdfdfd;
             filter: grayscale(1);
-            border: 1px solid #ddd;
+            border: 1px solid #eaeaea;
         }
-        .expired .coupon-info h3, .expired .coupon-info p {
+
+        .expired .coupon-info h3,
+        .expired .coupon-info p {
             text-decoration: line-through;
             color: var(--expired);
         }
+
         .expired .btn-get {
-            background-color: #666; 
+            background-color: #666;
             cursor: not-allowed;
         }
+
         .expired-badge {
             position: absolute;
             top: 10px;
@@ -286,29 +417,152 @@
         }
 
         /* Modal */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(2px); }
-        .modal-content { background: white; padding: 30px; border-radius: 12px; text-align: center; max-width: 400px; width: 90%; }
-        .coupon-code { display: flex; align-items: center; justify-content: center; gap: 10px; border: 2px dashed var(--secondary); padding: 15px; margin: 20px 0; font-size: 24px; font-weight: bold; letter-spacing: 2px; background: #f0f7ff; cursor: pointer; color: var(--secondary); transition: background 0.2s; border-radius: 8px; }
-        .coupon-code:hover { background: #e0f0ff; transform: scale(1.02); }
-        .coupon-code svg { flex-shrink: 0; }
-        .close-btn { margin-top: 15px; display: inline-block; color: #555; cursor: pointer; text-decoration: underline; font-size: 14px; font-weight: bold; }
-        
-        @media (max-width: 600px) {
-            .vip-banner { flex-direction: column; padding: 12px; gap: 12px; }
-            .vip-banner-content { align-items: flex-start; }
-            .vip-icon { width: 28px; height: 28px; }
-            .vip-text h3 { font-size: 0.95rem; }
-            .vip-text p { font-size: 12px; }
-            .btn-vip { width: 100%; text-align: center; padding: 10px; box-sizing: border-box; }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(2px);
+        }
 
-            .coupon-card { flex-direction: column; text-align: center; }
-            .store-logo { margin: 0 auto 15px auto; }
-            .coupon-info { padding-right: 0; margin-bottom: 15px; }
-            .btn-get, .btn-spoiler { width: 100%; justify-content: center; }
-            .spoiler-left { flex-grow: 1; justify-content: center; padding-left: 25px; }
-            
-            .store-menu { gap: 6px; }
-            .store-chip { font-size: 13px; padding: 6px 12px; }
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .coupon-code {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 2px dashed var(--secondary);
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            background: #f0f7ff;
+            cursor: pointer;
+            color: var(--secondary);
+            transition: background 0.2s;
+            border-radius: 8px;
+        }
+
+        .coupon-code:hover {
+            background: #e0f0ff;
+            transform: scale(1.02);
+        }
+
+        .coupon-code svg {
+            flex-shrink: 0;
+        }
+
+        .close-btn {
+            margin-top: 15px;
+            display: inline-block;
+            color: #555;
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .vip-banner {
+                flex-direction: column;
+                padding: 12px;
+                gap: 12px;
+            }
+
+            .vip-banner-content {
+                align-items: flex-start;
+            }
+
+            .vip-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            .vip-text h2 {
+                font-size: 0.95rem;
+            }
+
+            .vip-text p {
+                font-size: 12px;
+            }
+
+            .btn-vip {
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+
+            .coupon-card {
+                display: grid;
+                grid-template-columns: 48px 1fr;
+                grid-template-areas:
+                    "logo info"
+                    "button button";
+                gap: 12px 14px;
+                padding: 18px;
+                text-align: left;
+            }
+
+            .store-logo {
+                grid-area: logo;
+                width: 48px;
+                height: 48px;
+                margin: 0;
+                font-size: 9px;
+            }
+
+            .coupon-info {
+                grid-area: info;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .coupon-info h3 {
+                margin-bottom: 2px;
+                font-size: 1.05rem;
+            }
+
+            .btn-get,
+            .btn-spoiler {
+                grid-area: button;
+                width: 100%;
+                justify-content: center;
+                margin-top: 4px;
+            }
+
+            .spoiler-left {
+                flex-grow: 1;
+                justify-content: center;
+                padding-left: 25px;
+            }
+
+            .store-menu {
+                gap: 6px;
+            }
+
+            .store-chip {
+                font-size: 13px;
+                padding: 6px 12px;
+            }
         }
 
         /* Toast Notification */
@@ -327,7 +581,7 @@
             transform: translateX(-50%);
             font-size: 15px;
             font-weight: 500;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             opacity: 0;
             transition: opacity 0.3s, bottom 0.3s, visibility 0.3s;
             display: flex;
@@ -335,32 +589,14 @@
             justify-content: center;
             gap: 8px;
         }
+
         .toast.show {
             visibility: visible;
             opacity: 1;
             bottom: 50px;
         }
-
-        /* Breadcrumbs */
-        .breadcrumbs {
-            font-size: 13px;
-            color: #777;
-            margin-bottom: 20px;
-            padding: 0;
-        }
-        .breadcrumbs a {
-            color: var(--secondary);
-            text-decoration: none;
-        }
-        .breadcrumbs a:hover {
-            text-decoration: underline;
-        }
-        .breadcrumbs span.separator {
-            margin: 0 6px;
-            color: #999;
-        }
     </style>
-    
+
     {{SCHEMA_ORG}}
     {{BREADCRUMB_SCHEMA}}
     <script type="application/ld+json">
@@ -373,139 +609,158 @@
         "inLanguage": "pt-BR"
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Caçador de Ofertas",
+        "url": "https://cacadordeofertas.com.br/",
+        "logo": "https://cacadordeofertas.com.br/icon.svg"
+    }
+    </script>
 </head>
+
 <body>
 
-<header>
-    <h1>🔥 Caçador de Ofertas</h1>
-    <p>As melhores ofertas testadas e validadas</p>
-</header>
+    <header>
+        <h1>🔥 Caçador de Ofertas</h1>
+        <p>As melhores ofertas testadas e validadas</p>
+    </header>
 
-<main class="container">
-    
-    <div class="vip-banner">
-        <div class="vip-banner-content">
-            <svg class="vip-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-            </svg>
-            <div class="vip-text">
-                <h3>Vem para o grupo Caçador de Ofertas</h3>
-                <p>Descontos relâmpago, cupons e alertas de ofertas todos os dias!</p>
+    <main class="container">
+
+        <div class="vip-banner">
+            <div class="vip-banner-content">
+                <svg class="vip-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+                </svg>
+                <div class="vip-text">
+                    <h2>Vem para o grupo Caçador de Ofertas</h2>
+                    <p>Descontos relâmpago, cupons e alertas de ofertas todos os dias!</p>
+                </div>
             </div>
+            <a href="SEU_LINK_DO_WHATSAPP_AQUI" class="btn-vip" target="_blank" rel="noopener nofollow"
+                onclick="registrarClique('Geral', 'Grupo VIP WhatsApp', 'clique_whatsapp')">Entrar no Grupo</a>
         </div>
-        <a href="SEU_LINK_DO_WHATSAPP_AQUI" class="btn-vip" target="_blank" rel="noopener nofollow" onclick="registrarClique('Geral', 'Grupo VIP WhatsApp', 'clique_whatsapp')">Entrar no Grupo</a>
+
+        <!-- Navegação / Menu de Lojas -->
+        <nav class="store-menu" aria-label="Navegação de Lojas">
+            {{MENU_LOJAS}}
+        </nav>
+
+        <section aria-labelledby="titulo-ativos">
+            <h2 id="titulo-ativos" class="section-title">Cupons e Promoções ✅</h2>
+            <div id="lista-ativos" style="min-height: 200px;">
+                {{CONTEUDO_ATIVOS}}
+            </div>
+        </section>
+
+        <section aria-labelledby="titulo-expirados">
+            <h2 id="titulo-expirados" class="section-title">Ofertas Encerradas ❌</h2>
+            <div id="lista-expirados">
+                {{CONTEUDO_EXPIRADOS}}
+            </div>
+        </section>
+
+        {{SEO_TEXT_FAQ}}
+    </main>
+
+    <footer
+        style="background: #222; color: #aaa; text-align: center; padding: 25px 15px; font-size: 13px; margin-top: 40px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #ddd;">🔥 Caçador de Ofertas</p>
+        <p style="margin: 0 0 5px 0;">Cupons de desconto e ofertas verificadas diariamente por especialistas.</p>
+        <p style="margin: 0 0 5px 0;">O Caçador de Ofertas é o seu portal seguro para economizar nas melhores lojas do Brasil.</p>
+        <p style="margin: 0;">© {{ANO_ATUAL}} Caçador de Ofertas. Todos os direitos reservados.</p>
+    </footer>
+
+    <div id="couponModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <h3 id="modal-title">Cupom Copiado!</h3>
+            <p>Use o código abaixo no fechamento da compra:</p>
+            <div class="coupon-code" onclick="copyToClipboard()" title="Clique para copiar novamente">
+                <span id="displayCode">CÓDIGO</span>
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+            </div>
+            <p style="font-size: 12px; color: #2e7d32; font-weight: bold;">A página do produto já foi aberta em outra
+                aba.</p>
+            <span class="close-btn" onclick="fecharModal()" tabindex="0" role="button">Fechar janela</span>
+        </div>
     </div>
 
-    <!-- Navegação / Breadcrumb -->
-    <nav class="store-menu" aria-label="Breadcrumb">
-        {{BREADCRUMBS_HTML}}
-    </nav>
+    <div id="toast" class="toast">✅ Código copiado com sucesso!</div>
 
-    <section aria-labelledby="titulo-ativos">
-        <h2 id="titulo-ativos" class="section-title">Cupons e Promoções ✅</h2>
-        <div id="lista-ativos" style="min-height: 200px;">
-            {{CONTEUDO_ATIVOS}}
-        </div>
-    </section>
+    <script>
+        const URL_METRICAS = 'https://script.google.com/macros/s/AKfycbyQ7mkuZeShuLVH_uadejlfQkk0HD4V8NxIeR4Y4RwkHV7-DNqJJQb19of22lyVDLmO/exec';
 
-    <section aria-labelledby="titulo-expirados">
-        <h2 id="titulo-expirados" class="section-title">Ofertas Encerradas ❌</h2>
-        <div id="lista-expirados">
-            {{CONTEUDO_EXPIRADOS}}
-        </div>
-    </section>
-</main>
+        function registrarClique(loja, titulo, tipo) {
+            if (!loja || !titulo) return;
+            fetch(URL_METRICAS, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ loja, titulo, tipo })
+            }).catch(() => console.log("Erro silencioso ao registrar métricas"));
+        }
 
-<footer style="background: #222; color: #aaa; text-align: center; padding: 25px 15px; font-size: 13px; margin-top: 40px;">
-    <p style="margin: 0 0 8px 0; font-weight: 600; color: #ddd;">🔥 Caçador de Ofertas</p>
-    <p style="margin: 0 0 5px 0;">Cupons de desconto e ofertas verificadas diariamente.</p>
-    <p style="margin: 0;">© {{ANO_ATUAL}} Caçador de Ofertas. Todos os direitos reservados.</p>
-</footer>
+        // Abre a loja e o modal para quem tem CUPOM
+        function revelarCupom(linkAfiliado, codigo, loja, titulo) {
+            registrarClique(loja, titulo, 'clique_cupom');
+            const urlAtual = window.location.href.split('?')[0];
+            window.open(`${urlAtual}?cupom=${codigo}`, '_blank');
+            window.location.href = linkAfiliado;
+        }
 
-<div id="couponModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="modal-content">
-        <h3 id="modal-title">Cupom Copiado!</h3>
-        <p>Use o código abaixo no fechamento da compra:</p>
-        <div class="coupon-code" onclick="copyToClipboard()" title="Clique para copiar novamente">
-            <span id="displayCode">CÓDIGO</span>
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-        </div>
-        <p style="font-size: 12px; color: #2e7d32; font-weight: bold;">A página do produto já foi aberta em outra aba.</p>
-        <span class="close-btn" onclick="fecharModal()" tabindex="0" role="button">Fechar janela</span>
-    </div>
-</div>
+        // Abre APENAS a loja para quem NÃO TEM CUPOM (Promoção direta)
+        function abrirPromocao(linkAfiliado, loja, titulo) {
+            registrarClique(loja, titulo, 'clique_promocao');
+            window.open(linkAfiliado, '_blank');
+        }
 
-<div id="toast" class="toast">✅ Código copiado com sucesso!</div>
+        function fecharModal() {
+            document.getElementById('couponModal').style.display = 'none';
+            const urlLimpa = window.location.href.split('?')[0];
+            window.history.replaceState({}, document.title, urlLimpa);
+        }
 
-<script>
-    const URL_METRICAS = 'https://script.google.com/macros/s/AKfycbyQ7mkuZeShuLVH_uadejlfQkk0HD4V8NxIeR4Y4RwkHV7-DNqJJQb19of22lyVDLmO/exec';
+        function mostrarToast(mensagem) {
+            const toast = document.getElementById("toast");
+            if (mensagem) toast.innerHTML = mensagem;
+            toast.classList.add("show");
+            setTimeout(() => { toast.classList.remove("show"); }, 3000);
+        }
 
-    function registrarClique(loja, titulo, tipo) {
-        if(!loja || !titulo) return;
-        fetch(URL_METRICAS, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ loja, titulo, tipo })
-        }).catch(() => console.log("Erro silencioso ao registrar métricas"));
-    }
-
-    // Abre a loja e o modal para quem tem CUPOM
-    function revelarCupom(linkAfiliado, codigo, loja, titulo) {
-        registrarClique(loja, titulo, 'clique_cupom');
-        const urlAtual = window.location.href.split('?')[0];
-        window.open(`${urlAtual}?cupom=${codigo}`, '_blank');
-        window.location.href = linkAfiliado;
-    }
-
-    // Abre APENAS a loja para quem NÃO TEM CUPOM (Promoção direta)
-    function abrirPromocao(linkAfiliado, loja, titulo) {
-        registrarClique(loja, titulo, 'clique_promocao');
-        window.open(linkAfiliado, '_blank');
-    }
-
-    function fecharModal() { 
-        document.getElementById('couponModal').style.display = 'none'; 
-        const urlLimpa = window.location.href.split('?')[0];
-        window.history.replaceState({}, document.title, urlLimpa);
-    }
-
-    function mostrarToast(mensagem) {
-        const toast = document.getElementById("toast");
-        if(mensagem) toast.innerHTML = mensagem;
-        toast.classList.add("show");
-        setTimeout(() => { toast.classList.remove("show"); }, 3000);
-    }
-
-    function copyToClipboard() {
-        const code = document.getElementById('displayCode').innerText;
-        navigator.clipboard.writeText(code).then(() => {
-            mostrarToast("✅ Código copiado novamente!");
-        }).catch(() => {
-            mostrarToast("❌ Erro ao copiar. Tente manualmente.");
-        });
-    }
-
-    function checarCupomNaUrl() {
-        const parametrosDaUrl = new URLSearchParams(window.location.search);
-        const codigoNaUrl = parametrosDaUrl.get('cupom');
-
-        if (codigoNaUrl) {
-            document.getElementById('displayCode').innerText = codigoNaUrl;
-            document.getElementById('couponModal').style.display = 'flex';
-            
-            navigator.clipboard.writeText(codigoNaUrl).catch(() => {
-                console.log("O navegador exigiu clique manual para copiar.");
+        function copyToClipboard() {
+            const code = document.getElementById('displayCode').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                mostrarToast("✅ Código copiado novamente!");
+            }).catch(() => {
+                mostrarToast("❌ Erro ao copiar. Tente manualmente.");
             });
         }
-    }
 
-    // Apenas checa a URL ao carregar, os dados já virão no HTML pré-renderizado!
-    document.addEventListener('DOMContentLoaded', checarCupomNaUrl);
-</script>
+        function checarCupomNaUrl() {
+            const parametrosDaUrl = new URLSearchParams(window.location.search);
+            const codigoNaUrl = parametrosDaUrl.get('cupom');
+
+            if (codigoNaUrl) {
+                document.getElementById('displayCode').innerText = codigoNaUrl;
+                document.getElementById('couponModal').style.display = 'flex';
+
+                navigator.clipboard.writeText(codigoNaUrl).catch(() => {
+                    console.log("O navegador exigiu clique manual para copiar.");
+                });
+            }
+        }
+
+        // Apenas checa a URL ao carregar, os dados já virão no HTML pré-renderizado!
+        document.addEventListener('DOMContentLoaded', checarCupomNaUrl);
+    </script>
 
 </body>
+
 </html>

@@ -64,7 +64,7 @@ async function atualizarViaPlanilha() {
 
             if (!contagemLojas[loja]) {
                 contagemLojas[loja] = 0;
-                lojasSlugs[loja] = criarSlug(loja);
+                lojasSlugs[loja] = 'cupom-' + criarSlug(loja);
             }
             if (oferta.ativo) {
                 contagemLojas[loja]++;
@@ -137,12 +137,14 @@ async function atualizarViaPlanilha() {
                 }
 
                 if (cupom.ativo) {
+                    const dataHojeCurta = new Date().toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
                     htmlAtivos += `
                         <article class="coupon-card">
                             <div class="store-logo">${cupom.loja}</div>
                             <div class="coupon-info">
                                 <h3>${cupom.titulo}</h3>
                                 <p>${cupom.descricao}</p>
+                                <p class="coupon-date">⏳ Validado em: ${dataHojeCurta}</p>
                             </div>
                             ${htmlBotaoAtivo}
                         </article>
@@ -216,23 +218,7 @@ async function atualizarViaPlanilha() {
             ].join(', ');
         }
 
-        // Gerar breadcrumbs HTML (estilo chips igual ao menu de lojas)
-        function gerarBreadcrumbsHtml(slugAtual = null) {
-            let html = `<a href="index.html" class="store-chip ${slugAtual === null ? 'active' : ''}">Todas as Ofertas</a>`;
 
-            const lojasOrdenadas = Object.keys(contagemLojas).sort((a, b) => a.localeCompare(b));
-
-            lojasOrdenadas.forEach(lojaNome => {
-                const count = contagemLojas[lojaNome];
-                if (count === 0) return;
-
-                const slug = lojasSlugs[lojaNome];
-                const activeClass = slugAtual === slug ? 'active' : '';
-
-                html += `<a href="${slug}.html" class="store-chip ${activeClass}">${lojaNome} <span class="store-badge">${count}</span></a>`;
-            });
-            return html;
-        }
 
         // Gerar Schema.org BreadcrumbList
         function gerarBreadcrumbSchema(nomeArquivo, nomeLoja = null) {
@@ -269,9 +255,36 @@ async function atualizarViaPlanilha() {
             const nomeArquivo = slug ? `${slug}.html` : 'index.html';
             const canonicalUrl = `${baseUrl}/${nomeArquivo}`;
             const keywords = gerarKeywords(nomeLoja);
-            const breadcrumbsHtml = gerarBreadcrumbsHtml(slug);
+            
+            const menuHtml = gerarMenuLojas(slug);
             const breadcrumbSchema = gerarBreadcrumbSchema(nomeArquivo, nomeLoja);
-            const anoAtual = new Date().getFullYear().toString();
+            const anoAtual = new Date().toLocaleString('pt-BR', { year: 'numeric', timeZone: 'America/Sao_Paulo' });
+            
+            const formatter = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' });
+            const dataHoje = formatter.format(new Date());
+
+            let seoText = '';
+            if (nomeLoja) {
+                seoText = `
+                <article class="seo-text-area">
+                    <h2>Cupom de Desconto ${nomeLoja} e Ofertas</h2>
+                    <p>O <strong>Caçador de Ofertas</strong> ajuda você a economizar em todas as suas compras na <strong>${nomeLoja}</strong>. Nossa equipe avalia e testa diariamente os códigos promocionais e links de desconto mais relevantes para garantir que você sempre pague menos.</p>
+                    
+                    <h3>Como usar o cupom ${nomeLoja}?</h3>
+                    <p>Para usar um cupom de desconto na ${nomeLoja}, basta clicar no botão "PEGAR CUPOM", copiar o código revelado e colá-lo no campo correspondente no carrinho de compras do site oficial. Caso o botão indique "PEGAR PROMOÇÃO", o desconto já estará aplicado magicamente no preço do produto através do nosso link especial de afiliado.</p>
+                    
+                    <h3>A loja ${nomeLoja} é confiável?</h3>
+                    <p>Sim, todos os cupons que destacamos aqui pertencem a lojas de confiança onde milhares de usuários compram todos os dias com total segurança e respeito à privacidade dos dados. Nossa curadoria filtra qualquer lojista que não atenda a padrões rigorosos de qualidade.</p>
+                </article>`;
+            } else {
+                seoText = `
+                <article class="seo-text-area">
+                    <h2>Melhores Cupons de Desconto e Ofertas</h2>
+                    <p>Seja bem-vindo ao <strong>Caçador de Ofertas</strong>, o seu local definitivo para economizar de verdade nas maiores lojas de e-commerce da internet. Nós verificamos os nossos códigos todos os dias incansavelmente.</p>
+                    <h3>Como economizar com o Caçador de Ofertas</h3>
+                    <p>Basta navegar no nosso sumário de lojas parceiras, encontrar a oferta ou cupom ideal que você procura e aproveitar. Sem letras miúdas ou complicações. O abatimento rola fácil e vai direto pro seu bolso!</p>
+                </article>`;
+            }
 
             let htmlFinal = templateHtml
                 .replace(/{{TITLE}}/g, title)
@@ -281,9 +294,11 @@ async function atualizarViaPlanilha() {
                 .replace(/{{CONTEUDO_ATIVOS}}/g, htmlAtivos)
                 .replace(/{{CONTEUDO_EXPIRADOS}}/g, htmlExpirados)
                 .replace(/{{SCHEMA_ORG}}/g, schemaLd)
-                .replace(/{{BREADCRUMBS_HTML}}/g, breadcrumbsHtml)
+                .replace(/{{MENU_LOJAS}}/g, menuHtml)
                 .replace(/{{BREADCRUMB_SCHEMA}}/g, breadcrumbSchema)
-                .replace(/{{ANO_ATUAL}}/g, anoAtual);
+                .replace(/{{ANO_ATUAL}}/g, anoAtual)
+                .replace(/{{ULTIMA_ATUALIZACAO}}/g, dataHoje)
+                .replace(/{{SEO_TEXT_FAQ}}/g, seoText);
 
             return htmlFinal;
         }
@@ -293,8 +308,9 @@ async function atualizarViaPlanilha() {
         const ultimaModificacao = new Date().toISOString().split('T')[0];
 
         // 1. Gerar index.html (Home) - Contém todas as ofertas
-        const tituloHome = "Caçador de Ofertas | Cupons e Ofertas Mercado Livre, Amazon e mais";
-        const descHome = "Encontre os melhores cupons de desconto. Economize em suplementos, eletrodomésticos e veja nossos achadinhos!";
+        const mesAnoHome = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' }).format(new Date());
+        const tituloHome = `Caçador de Ofertas | Cupons e Ofertas - ${mesAnoHome}`;
+        const descHome = `Encontre cupons de desconto validados em ${mesAnoHome}. Economize agora nas maiores lojas com nossos achadinhos!`;
         const htmlHome = construirPagina(ofertas, tituloHome, descHome, null, null);
         fs.writeFileSync('index.html', htmlHome);
         console.log("✅ Página gerada: index.html (Principal)");
@@ -311,8 +327,9 @@ async function atualizarViaPlanilha() {
             // Não gera a página se a loja não tiver cupons ativos ou ofertas
             if (contagemLojas[nomeLoja] === 0 || ofertasDestaLoja.length === 0) continue;
 
-            const tituloLoja = `Cupons de Desconto ${nomeLoja} | Caçador de Ofertas`;
-            const descLoja = `Pegue agora os melhores cupons e ofertas exclusivas para compras na loja patrocinada ${nomeLoja}.`;
+            const mesAno = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' }).format(new Date());
+            const tituloLoja = `Cupom de Desconto ${nomeLoja} - ${mesAno} | Caçador de Ofertas`;
+            const descLoja = `Cupom ${nomeLoja} em ${mesAno}. Pegue agora os melhores cupons validados e promoções com o Caçador de Ofertas.`;
 
             const htmlLoja = construirPagina(ofertasDestaLoja, tituloLoja, descLoja, slugDaLoja, nomeLoja);
             fs.writeFileSync(`${slugDaLoja}.html`, htmlLoja);
