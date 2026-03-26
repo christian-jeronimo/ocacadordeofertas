@@ -137,7 +137,11 @@ async function atualizarViaPlanilha() {
                 }
 
                 if (cupom.ativo) {
+<<<<<<< HEAD
                     const dataHojeCurta = new Date().toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+=======
+                    const dataHojeCurta = new Date().toLocaleDateString('pt-BR');
+>>>>>>> 035a032a90e7b838bae096f887a54a24095c7efd
                     htmlAtivos += `
                         <article class="coupon-card">
                             <div class="store-logo">${cupom.loja}</div>
@@ -258,9 +262,15 @@ async function atualizarViaPlanilha() {
             
             const menuHtml = gerarMenuLojas(slug);
             const breadcrumbSchema = gerarBreadcrumbSchema(nomeArquivo, nomeLoja);
+<<<<<<< HEAD
             const anoAtual = new Date().toLocaleString('pt-BR', { year: 'numeric', timeZone: 'America/Sao_Paulo' });
             
             const formatter = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' });
+=======
+            const anoAtual = new Date().getFullYear().toString();
+            
+            const formatter = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+>>>>>>> 035a032a90e7b838bae096f887a54a24095c7efd
             const dataHoje = formatter.format(new Date());
 
             let seoText = '';
@@ -308,7 +318,11 @@ async function atualizarViaPlanilha() {
         const ultimaModificacao = new Date().toISOString().split('T')[0];
 
         // 1. Gerar index.html (Home) - Contém todas as ofertas
+<<<<<<< HEAD
         const mesAnoHome = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' }).format(new Date());
+=======
+        const mesAnoHome = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric' }).format(new Date());
+>>>>>>> 035a032a90e7b838bae096f887a54a24095c7efd
         const tituloHome = `Caçador de Ofertas | Cupons e Ofertas - ${mesAnoHome}`;
         const descHome = `Encontre cupons de desconto validados em ${mesAnoHome}. Economize agora nas maiores lojas com nossos achadinhos!`;
         const htmlHome = construirPagina(ofertas, tituloHome, descHome, null, null);
@@ -327,7 +341,11 @@ async function atualizarViaPlanilha() {
             // Não gera a página se a loja não tiver cupons ativos ou ofertas
             if (contagemLojas[nomeLoja] === 0 || ofertasDestaLoja.length === 0) continue;
 
+<<<<<<< HEAD
             const mesAno = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' }).format(new Date());
+=======
+            const mesAno = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric' }).format(new Date());
+>>>>>>> 035a032a90e7b838bae096f887a54a24095c7efd
             const tituloLoja = `Cupom de Desconto ${nomeLoja} - ${mesAno} | Caçador de Ofertas`;
             const descLoja = `Cupom ${nomeLoja} em ${mesAno}. Pegue agora os melhores cupons validados e promoções com o Caçador de Ofertas.`;
 

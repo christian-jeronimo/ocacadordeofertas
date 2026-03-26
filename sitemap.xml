@@ -2,19 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://cacadordeofertas.com.br/index.html</loc>
+<<<<<<< HEAD
     <lastmod>2026-03-26</lastmod>
+=======
+    <lastmod>2026-03-23</lastmod>
+>>>>>>> 035a032a90e7b838bae096f887a54a24095c7efd
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://cacadordeofertas.com.br/cupom-mercado-livre.html</loc>
+<<<<<<< HEAD
     <lastmod>2026-03-26</lastmod>
+=======
+    <lastmod>2026-03-23</lastmod>
+>>>>>>> 035a032a90e7b838bae096f887a54a24095c7efd
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cacadordeofertas.com.br/cupom-amazon.html</loc>
+<<<<<<< HEAD
     <lastmod>2026-03-26</lastmod>
+=======
+    <lastmod>2026-03-23</lastmod>
+>>>>>>> 035a032a90e7b838bae096f887a54a24095c7efd
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>

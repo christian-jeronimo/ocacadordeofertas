@@ -57,10 +57,17 @@
   },
   {
     "loja": "Mercado Livre",
+<<<<<<< HEAD
     "titulo": "Mercado Livre com 12% OFF",
     "descricao": "Válido em compras a partir de R$79",
     "codigo": "MODANOML",
     "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
+=======
+    "titulo": "Mercado Livre com 10% OFF",
+    "descricao": "Válido em Casa e Decoração. Ative a promoção no link",
+    "codigo": "",
+    "link": "https://meli.la/1YfWn4e",
+>>>>>>> 035a032a90e7b838bae096f887a54a24095c7efd
     "ativo": true
   },
   {
@@ -72,6 +79,7 @@
     "ativo": true
   },
   {
+<<<<<<< HEAD
     "loja": "Mercado Livre",
     "titulo": "Mercado Livre com 15% OFF",
     "descricao": "Válido em compras a partir de R$79",
@@ -80,6 +88,8 @@
     "ativo": true
   },
   {
+=======
+>>>>>>> 035a032a90e7b838bae096f887a54a24095c7efd
     "loja": "Amazon",
     "titulo": "Ganhe R$100 de desconto em Amazon",
     "descricao": "Ganhe R$100 off em compras a partir de R$999",
