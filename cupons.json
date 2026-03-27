@@ -1,6 +1,14 @@
 [
   {
     "loja": "Mercado Livre",
+    "titulo": "Mercado Livre com 15% de desconto",
+    "descricao": "Válido em compras a partir de R$79",
+    "codigo": "PROMOBBB",
+    "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
     "titulo": "20% OFF com cupom Mercado Livre",
     "descricao": "Válido em todo o site em compras a partir de R$29, limitado a R$60",
     "codigo": "VIDAMELHOR",
@@ -88,11 +96,11 @@
     "ativo": true
   },
   {
-    "loja": "Mercado Livre",
-    "titulo": "Mercado Livre com 15% de desconto",
-    "descricao": "Válido em compras a partir de R$79",
-    "codigo": "PROMOBBB",
-    "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
+    "loja": "Amazon",
+    "titulo": "Amazon concede 10% OFF em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$150",
+    "codigo": "MEUCARRINHO",
+    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
     "ativo": true
   },
   {
@@ -156,14 +164,6 @@
     "titulo": "Ganhe R$75 de desconto em compras com cupom",
     "descricao": "Oferta válida em compras a partir de R$599",
     "codigo": "SEUMOMENTO",
-    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Amazon concede 10% OFF em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$150",
-    "codigo": "MEUCARRINHO",
     "link": "https://www.amazon.com.br/?tag=camposmayara-20",
     "ativo": true
   }
