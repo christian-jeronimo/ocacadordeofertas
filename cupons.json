@@ -113,6 +113,14 @@
   },
   {
     "loja": "Amazon",
+    "titulo": "Amazon concede R$50 em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$499",
+    "codigo": "TABOMDEMAIS",
+    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
     "titulo": "Amazon concede R$150 de desconto com cupom",
     "descricao": "Ganhe R$100 off em compras a partir de R$1499",
     "codigo": "TADEGRACA",
@@ -156,14 +164,6 @@
     "titulo": "Ganhe R$70 de desconto com cupom na Amazon",
     "descricao": "Cupom válido em compras a patir de R$699",
     "codigo": "CUPOM",
-    "link": "https://www.amazon.com.br/?tag=camposmayara-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Amazon concede R$50 em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$499",
-    "codigo": "TADEGRACA",
     "link": "https://www.amazon.com.br/?tag=camposmayara-20",
     "ativo": true
   },
