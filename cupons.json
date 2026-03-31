@@ -169,9 +169,9 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Ganhe R$40 de desconto em compras com cupom",
-    "descricao": "Oferta válida para assinantes Prime e em compras a partir de R$300",
-    "codigo": "HRPRIME40",
+    "titulo": "Ganhe 10%de desconto em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$150. Limitado a R$150",
+    "codigo": "OLACUPOM",
     "link": "https://www.amazon.com.br/?tag=camposmayara-20",
     "ativo": true
   },
