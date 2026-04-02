@@ -9,9 +9,9 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "20% OFF com cupom Mercado Livre",
-    "descricao": "Válido em todo o site em compras a partir de R$29, limitado a R$60",
-    "codigo": "VIDAMELHOR",
+    "titulo": "15% OFF com cupom Mercado Livre",
+    "descricao": "Válido em itens selecionados",
+    "codigo": "OFERTASMELI",
     "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
     "ativo": false
   },
@@ -105,33 +105,33 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Ganhe R$100 de desconto em Amazon",
-    "descricao": "Ganhe R$100 off em compras a partir de R$999",
-    "codigo": "BOMDIA",
+    "titulo": "Ganhe R$20 de desconto em Amazon",
+    "descricao": "Ganhe R$20 off em compras a partir de R$200",
+    "codigo": "BORALEVAR",
     "link": "https://www.amazon.com.br/?tag=camposmayara-20",
     "ativo": true
   },
   {
     "loja": "Amazon",
-    "titulo": "Amazon concede R$50 em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$499",
-    "codigo": "TABOMDEMAIS",
+    "titulo": "Amazon concede R$40 em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$350",
+    "codigo": "AQUITEMCUPOM",
     "link": "https://www.amazon.com.br/?tag=camposmayara-20",
     "ativo": true
   },
   {
     "loja": "Amazon",
-    "titulo": "Amazon concede R$150 de desconto com cupom",
-    "descricao": "Ganhe R$100 off em compras a partir de R$1499",
-    "codigo": "TADEGRACA",
+    "titulo": "Amazon concede 10% de desconto com cupom",
+    "descricao": "Ganhe 10% off em compras a partir de R$200. Limitado a R$200",
+    "codigo": "TADEMAIS",
     "link": "https://www.amazon.com.br/?tag=camposmayara-20",
     "ativo": true
   },
   {
     "loja": "Amazon",
-    "titulo": "Ganhe 15% de desconto em ovos de Páscoa",
-    "descricao": "Oferta válida em compras a partir de R$100",
-    "codigo": "SUAPASCOA",
+    "titulo": "Ganhe R$100 de desconto com cupom na Amazon",
+    "descricao": "Oferta válida em compras a partir de R$999",
+    "codigo": "OTIMANOITE",
     "link": "https://www.amazon.com.br/?tag=camposmayara-20",
     "ativo": true
   },
