@@ -5,7 +5,7 @@
     "descricao": "Válido em compras a partir de R$99 e em itens selecionados",
     "codigo": "MAYBELLINEMELI",
     "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
-    "ativo": false
+    "ativo": true
   },
   {
     "loja": "Mercado Livre",
@@ -13,7 +13,7 @@
     "descricao": "Válido em compras a partir de R$10 e em itens selecionados",
     "codigo": "BELEZASKIN",
     "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
-    "ativo": false
+    "ativo": true
   },
   {
     "loja": "Mercado Livre",
@@ -21,7 +21,7 @@
     "descricao": "Válido em compras a partir de R$10 e em itens selecionados",
     "codigo": "BELEZAPRO",
     "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
-    "ativo": false
+    "ativo": true
   },
   {
     "loja": "Mercado Livre",
@@ -29,7 +29,7 @@
     "descricao": "Válido em compras a partir de R$79 e em itens selecionados",
     "codigo": "CASAPROMO",
     "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
-    "ativo": false
+    "ativo": true
   },
   {
     "loja": "Mercado Livre",
@@ -69,22 +69,6 @@
     "descricao": "Válido em compras a partir de R$79",
     "codigo": "TECMELI",
     "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
-    "titulo": "Ganhe 15% OFF com cupom Mercado Livre",
-    "descricao": "Válido em compras a partir de R$199 e em itens selecionados",
-    "codigo": "PROMOCASA",
-    "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
-    "ativo": false
-  },
-  {
-    "loja": "Mercado Livre",
-    "titulo": "Mercado Livre com 10% OFF",
-    "descricao": "Válido em Moda Full. Ative a promoção no link",
-    "codigo": "",
-    "link": "https://meli.la/2a5gAMs",
     "ativo": true
   },
   {
