@@ -25,9 +25,9 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "12% OFF com cupom Mercado Livre",
-    "descricao": "Válido em compras a partir de R$79 e em itens selecionados",
-    "codigo": "CASAPROMO",
+    "titulo": "10% OFF com cupom Mercado Livre",
+    "descricao": "Válido em em compras a partir de R$79",
+    "codigo": "QUEROPROMO",
     "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
     "ativo": true
   },
@@ -38,6 +38,14 @@
     "codigo": "BELEZALUXO",
     "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
     "ativo": false
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "25% OFF com cupom Mercado Livre",
+    "descricao": "Válido em compras a partir de R$99 e em itens selecionados",
+    "codigo": "LOREALMELI",
+    "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
+    "ativo": true
   },
   {
     "loja": "Mercado Livre",
@@ -53,14 +61,6 @@
     "descricao": "Válido em produtos selecionados Dark Lab",
     "codigo": "",
     "link": "https://meli.la/2mgzfKd",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
-    "titulo": "12% OFF com cupom Mercado Livre",
-    "descricao": "Válido em em compras a partir de R$79",
-    "codigo": "TUDOML",
-    "link": "https://www.mercadolivre.com.br/social/demayara20211126003025/lists/ddbd5d7f-57ec-44d3-8cae-3c3dcdbee603?matt_tool=27423350&forceInApp=truehttps://mercadolivre.com.br",
     "ativo": true
   },
   {
@@ -113,17 +113,17 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Amazon concede 10% OFF em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$200",
-    "codigo": "OLHAELE",
+    "titulo": "Amazon concede R$100 OFF em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$999",
+    "codigo": "UNICOPENTA",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
   {
     "loja": "Amazon",
-    "titulo": "Ganhe R$20 de desconto em Amazon",
-    "descricao": "Ganhe R$20 off em compras a partir de R$200",
-    "codigo": "BORALEVAR",
+    "titulo": "R$20 OFF na primeira compra com NuPay na Amazon",
+    "descricao": "Ganhe R$20 off em compras a partir de R$40",
+    "codigo": "NUPAY20OFF",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
