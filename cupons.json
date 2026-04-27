@@ -121,9 +121,9 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Amazon concede R$100 OFF em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$999",
-    "codigo": "UNICOPENTA",
+    "titulo": "R$ 300 OFF em Smartphones na Amazon",
+    "descricao": "Seleção de celulares com R$300 de desconto",
+    "codigo": "SMART300",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
