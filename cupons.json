@@ -121,6 +121,22 @@
   },
   {
     "loja": "Amazon",
+    "titulo": "R$15 OFF em compras na Amazon",
+    "descricao": "Válido em compras a partir de R$150",
+    "codigo": "COMECOU5DO5",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Amazon concede R$40 em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$160",
+    "codigo": "CARTAOMAES40",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
     "titulo": "R$ 300 OFF em Smartphones na Amazon",
     "descricao": "Seleção de celulares com R$300 de desconto",
     "codigo": "SMART300",
@@ -129,25 +145,9 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "R$20 OFF na primeira compra com NuPay na Amazon",
-    "descricao": "Ganhe R$20 off em compras a partir de R$40",
-    "codigo": "NUPAY20OFF",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Amazon concede R$40 em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$350",
-    "codigo": "AQUITEMCUPOM",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Amazon concede 10% de desconto com cupom",
-    "descricao": "Ganhe 10% off em compras a partir de R$200. Limitado a R$200",
-    "codigo": "TADEMAIS",
+    "titulo": "Amazon concede 20% de desconto com cupom",
+    "descricao": "Ganhe 20% off em produtos Insider",
+    "codigo": "INSIDER20",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
