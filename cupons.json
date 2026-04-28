@@ -137,9 +137,9 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Ganhe R$100 de desconto com cupom na Amazon",
-    "descricao": "Oferta válida em compras a partir de R$999",
-    "codigo": "OTIMANOITE",
+    "titulo": "Ganhe 10%OFF com cupom na Amazon",
+    "descricao": "Oferta válida em compras a partir de R$300 com cartão Mastercard",
+    "codigo": "MASTERHOJE",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
