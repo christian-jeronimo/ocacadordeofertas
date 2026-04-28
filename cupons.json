@@ -1,7 +1,7 @@
 [
   {
     "loja": "Mercado Livre",
-    "titulo": "20% OFF com cupom Mercado Livre",
+    "titulo": "12% OFF com cupom Mercado Livre",
     "descricao": "Válido em compras a partir de R$29 e em itens selecionados",
     "codigo": "OFERTAOFF",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
@@ -17,9 +17,9 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Mercado Livre dá 15% de desconto com cupom",
-    "descricao": "Válido em compras a partir de R$10 e em itens selecionados",
-    "codigo": "BELEZAPRO",
+    "titulo": "Mercado Livre dá 10% de desconto com cupom",
+    "descricao": "Válido em compras a partir de R$29 e em itens selecionados",
+    "codigo": "APROVEITAESSA",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
