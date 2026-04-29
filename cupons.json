@@ -1,7 +1,7 @@
 [
   {
     "loja": "Mercado Livre",
-    "titulo": "12% OFF com cupom Mercado Livre",
+    "titulo": "20% OFF com cupom Mercado Livre",
     "descricao": "Válido em compras a partir de R$29 e em itens selecionados",
     "codigo": "OFERTAOFF",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
@@ -17,7 +17,7 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Mercado Livre dá 10% de desconto com cupom",
+    "titulo": "Mercado Livre dá 18% de desconto com cupom",
     "descricao": "Válido em compras a partir de R$29 e em itens selecionados",
     "codigo": "MELIACHA",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
@@ -25,9 +25,9 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Mercado Livre com 10% OFF",
-    "descricao": "Válido em produtos selecionados, limite de R$100 de desconto",
-    "codigo": "APROVEITAESSA",
+    "titulo": "Mercado Livre com R$50 de desconto",
+    "descricao": "Válido em em compras a partir de R$599",
+    "codigo": "TECNOLOGIAML",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -41,9 +41,9 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "25% OFF com cupom Mercado Livre",
-    "descricao": "Válido em compras a partir de R$99 e em itens selecionados",
-    "codigo": "LOREALMELI",
+    "titulo": "R$200 de desconto com cupom Mercado Livre",
+    "descricao": "Válido em compras a partir de R$3.999",
+    "codigo": "MELIOFF",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -161,8 +161,8 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Ganhe R$40 off em compras a partir de R$350",
-    "descricao": "Oferta válida em compras a partir de R$500",
+    "titulo": "Ganhe R$40 off em compras na Amazon",
+    "descricao": "Oferta válida em compras a partir de R$350",
     "codigo": "AMAZONTEM",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
