@@ -9,17 +9,17 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Mercado Livre com 12% de desconto",
+    "titulo": "Mercado Livre dá 18% de desconto com cupom",
     "descricao": "Válido em compras a partir de R$29 e em itens selecionados",
-    "codigo": "OFFMELI",
+    "codigo": "MELIACHA",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Mercado Livre dá 18% de desconto com cupom",
+    "titulo": "Mercado Livre com 12% de desconto",
     "descricao": "Válido em compras a partir de R$29 e em itens selecionados",
-    "codigo": "MELIACHA",
+    "codigo": "OFFMELI",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -33,17 +33,17 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "10% OFF com cupom Mercado Livre",
-    "descricao": "Válido em em compras a partir de R$79",
-    "codigo": "QUEROPROMO",
+    "titulo": "R$200 de desconto com cupom Mercado Livre",
+    "descricao": "Válido em compras a partir de R$3.999",
+    "codigo": "MELIOFF",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "R$200 de desconto com cupom Mercado Livre",
-    "descricao": "Válido em compras a partir de R$3.999",
-    "codigo": "MELIOFF",
+    "titulo": "10% OFF com cupom Mercado Livre",
+    "descricao": "Válido em em compras a partir de R$79",
+    "codigo": "QUEROPROMO",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -101,6 +101,14 @@
     "descricao": "Válido em itens Intelbras. Ative a promoção no link",
     "codigo": "",
     "link": "https://meli.la/1w8ro3Q",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Ganhe 10% de desconto com cupom na Amazon",
+    "descricao": "Cupom válido em compras a patir de R$150",
+    "codigo": "CUPOMZAO",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
   {
@@ -164,14 +172,6 @@
     "titulo": "Ganhe R$40 off em compras na Amazon",
     "descricao": "Oferta válida em compras a partir de R$350",
     "codigo": "AMAZONTEM",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Ganhe R$70 de desconto com cupom na Amazon",
-    "descricao": "Cupom válido em compras a patir de R$699",
-    "codigo": "CUPOM",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
