@@ -129,6 +129,14 @@
   },
   {
     "loja": "Amazon",
+    "titulo": "Amazon concede R$100 OFF em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$999",
+    "codigo": "PODECOMPRAR",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
     "titulo": "Amazon concede R$40 em compras com cupom",
     "descricao": "Oferta válida em compras a partir de R$160",
     "codigo": "CARTAOMAES40",
@@ -164,14 +172,6 @@
     "titulo": "Ganhe 10%OFF com cupom na Amazon",
     "descricao": "Oferta válida em compras a partir de R$300 com cartão Mastercard",
     "codigo": "MASTERHOJE",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Amazon concede20%OFF  em tênis com cupom",
-    "descricao": "Válido na seleção de tênis, no APP Amazon",
-    "codigo": "TENIS20",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
