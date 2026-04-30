@@ -1,17 +1,25 @@
 [
   {
     "loja": "Mercado Livre",
-    "titulo": "20% OFF com cupom Mercado Livre",
+    "titulo": "Mercado Livre dá 18% de desconto com cupom",
     "descricao": "Válido em compras a partir de R$29 e em itens selecionados",
-    "codigo": "OFERTAOFF",
+    "codigo": "MELIACHA",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
     "titulo": "Mercado Livre dá 18% de desconto com cupom",
+    "descricao": "Válido em compras a partir de R$39",
+    "codigo": "LIQUIDASOHJ",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "20% OFF com cupom Mercado Livre",
     "descricao": "Válido em compras a partir de R$29 e em itens selecionados",
-    "codigo": "MELIACHA",
+    "codigo": "OFERTAOFF",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -49,18 +57,18 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Até R$30 de desconto no Mercado Livre",
-    "descricao": "Válido em produtos selecionados Dark Lab",
-    "codigo": "",
-    "link": "https://meli.la/2mgzfKd",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
     "titulo": "Ganhe 8% OFF com cupom no Mercado Livre",
     "descricao": "Válido em compras a partir de R$79",
     "codigo": "TECMELI",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "Até R$30 de desconto no Mercado Livre",
+    "descricao": "Válido em produtos selecionados Dark Lab",
+    "codigo": "",
+    "link": "https://meli.la/2mgzfKd",
     "ativo": true
   },
   {
@@ -105,9 +113,17 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Ganhe 10% de desconto com cupom na Amazon",
-    "descricao": "Cupom válido em compras a patir de R$150",
-    "codigo": "CUPOMZAO",
+    "titulo": "Ganhe R$150 de desconto na Amazon",
+    "descricao": "Oferta válida em compras a partir de R$999 com cartão Mastercad",
+    "codigo": "SOUAMAZON",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Ganhe R$50 de desconto com cupom na Amazon",
+    "descricao": "Cupom válido em compras a patir de R$300",
+    "codigo": "APROVEITAAI",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
