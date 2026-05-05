@@ -137,6 +137,14 @@
   },
   {
     "loja": "Amazon",
+    "titulo": "Ganhe 15% de desconto em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$150",
+    "codigo": "RANGEL15",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
     "titulo": "10% OFF em compras na Amazon",
     "descricao": "Válido em compras a partir de R$500",
     "codigo": "QUASE5DO5",
@@ -169,14 +177,6 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Ganhe R$50 de desconto em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$300 com cartão Master",
-    "codigo": "APROVEITAAI",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
     "titulo": "Amazon concede R$100 OFF em compras com cupom",
     "descricao": "Oferta válida em compras a partir de R$999",
     "codigo": "PODECOMPRAR",
@@ -185,9 +185,9 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Amazon concede R$40 em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$160",
-    "codigo": "CARTAOMAES40",
+    "titulo": "Amazon concede 10% OFF em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$200",
+    "codigo": "SUPER10",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
