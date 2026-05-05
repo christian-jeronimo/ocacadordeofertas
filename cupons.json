@@ -1,49 +1,41 @@
 [
   {
     "loja": "Mercado Livre",
-    "titulo": "Mercado Livre dá 10%OFF com cupom",
-    "descricao": "Válido em compras a partir de R$79 (limitado a R$40)",
-    "codigo": "MELISABADOU",
+    "titulo": "Mercado Livre com 15% de desconto",
+    "descricao": "Válido em compras a partir de R$79",
+    "codigo": "ANACASTELA15",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "Mercado Livre dá R$75 de desconto com cupom",
+    "descricao": "Válido em compras a partir de R$599",
+    "codigo": "MELIMAIS75",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
     "titulo": "Mercado Livre dá 18% de desconto com cupom",
-    "descricao": "Válido em compras a partir de R$29 e em itens selecionados",
-    "codigo": "MELIACHA",
+    "descricao": "Válido em compras a partir de R$79",
+    "codigo": "PEGAESSAPROMO",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Mercado Livre dá 18% de desconto com cupom",
-    "descricao": "Válido em compras a partir de R$39",
-    "codigo": "LIQUIDASOHJ",
+    "titulo": "Mercado Livre dá 10% de desconto com cupom",
+    "descricao": "Válido em compras a partir de R$79",
+    "codigo": "CUPOMMELI",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Mercado Livre com 12% de desconto",
-    "descricao": "Válido em compras a partir de R$29 e em itens selecionados",
-    "codigo": "OFFMELI",
-    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
-    "titulo": "20% OFF com cupom Mercado Livre",
-    "descricao": "Válido em compras a partir de R$29 e em itens selecionados",
-    "codigo": "OFERTAOFF",
-    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
-    "titulo": "Mercado Livre com 25% OFF",
-    "descricao": "Válido em compras a partir de R$99",
-    "codigo": "CONFORTOMELI",
+    "titulo": "15% OFF com cupom Mercado Livre",
+    "descricao": "Válido em compras a partir de R$79",
+    "codigo": "MELIOFERTAS",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -51,7 +43,15 @@
     "loja": "Mercado Livre",
     "titulo": "Mercado Livre com 20% de desconto",
     "descricao": "Válido em compras a partir de R$99",
-    "codigo": "MELIAPROVEITA",
+    "codigo": "OFERTASML",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "Mercado Livre com 25% OFF",
+    "descricao": "Válido em compras a partir de R$99",
+    "codigo": "MELIPROMOS",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -128,11 +128,27 @@
     "ativo": true
   },
   {
-    "loja": "Mercado Livre",
-    "titulo": "Whey Soldiers com desconto no Mercado Livre",
-    "descricao": "Whey com 60% off. Ative a promoção no link",
-    "codigo": "",
-    "link": "https://meli.la/2n5p1Ru",
+    "loja": "Amazon",
+    "titulo": "10% OFF em compras na Amazon",
+    "descricao": "Válido em compras a partir de R$500",
+    "codigo": "QUASE5DO5",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Ganhe R$80 de desconto na Amazon",
+    "descricao": "Oferta válida em compras a partir de R$499",
+    "codigo": "PRAVOCE",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Ganhe 5% de desconto com cupom na Amazon",
+    "descricao": "Cupom válido em compras a patir de R$100",
+    "codigo": "SOMEITUDO",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
   {
@@ -140,30 +156,6 @@
     "titulo": "Ganhe R$35 de desconto na Amazon",
     "descricao": "Oferta válida em compras a partir de R$299",
     "codigo": "BOMDEMAIS35",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Ganhe R$150 de desconto na Amazon",
-    "descricao": "Oferta válida em compras a partir de R$999 com cartão Mastercad",
-    "codigo": "SOUAMAZON",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Ganhe R$50 de desconto com cupom na Amazon",
-    "descricao": "Cupom válido em compras a patir de R$300",
-    "codigo": "APROVEITAAI",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "R$15 OFF em compras na Amazon",
-    "descricao": "Válido em compras a partir de R$150",
-    "codigo": "COMECOU5DO5",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
