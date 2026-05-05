@@ -1,6 +1,22 @@
 [
   {
     "loja": "Mercado Livre",
+    "titulo": "Mercado Livre com 15% de desconto",
+    "descricao": "Válido em em compras a partir de R$599",
+    "codigo": "TECNOLOMELI",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "20% OFF com cupom Mercado Livre",
+    "descricao": "Válido em em compras a partir de R$29",
+    "codigo": "PROMOHOJE",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
     "titulo": "Mercado Livre dá R$75 de desconto com cupom",
     "descricao": "Válido em compras a partir de R$599",
     "codigo": "MELIMAIS75",
@@ -65,25 +81,9 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "18% OFF com cupom Mercado Livre",
-    "descricao": "Válido em em compras a partir de R$79",
-    "codigo": "MELIBARATO",
-    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
     "titulo": "Mercado Livre dá 12% OFF com cupom",
     "descricao": "Válido em compras a partir de R$79",
     "codigo": "SUPERMODA",
-    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
-    "titulo": "Mercado Livre com R$50 de desconto",
-    "descricao": "Válido em em compras a partir de R$599",
-    "codigo": "TECNOLOGIAML",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -129,6 +129,14 @@
   },
   {
     "loja": "Amazon",
+    "titulo": "Ganhe 10% de desconto em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$250",
+    "codigo": "EXCLUSIVO10",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
     "titulo": "Ganhe R$35 de desconto com cupom na Amazon",
     "descricao": "Oferta válida em compras a partir de R$299",
     "codigo": "TOPDEMAIS",
@@ -145,9 +153,9 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "10% OFF em compras na Amazon",
-    "descricao": "Válido em compras a partir de R$500",
-    "codigo": "QUASE5DO5",
+    "titulo": "R$60 OFF em compras na Amazon",
+    "descricao": "Válido em compras a partir de R$599",
+    "codigo": "5DO5TOP",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
@@ -220,14 +228,6 @@
     "titulo": "Ganhe R$40 off em compras na Amazon",
     "descricao": "Oferta válida em compras a partir de R$350",
     "codigo": "AMAZONTEM",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Ganhe R$75 de desconto em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$599",
-    "codigo": "SEUMOMENTO",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   }
