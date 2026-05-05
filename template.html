@@ -8,6 +8,12 @@
     <meta name="robots" content="index, follow">
     <meta name="author" content="Caçador de Ofertas">
 
+    <script>
+        if (location.protocol === 'http:') {
+            location.replace(`https:${location.href.substring(location.protocol.length)}`);
+        }
+    </script>
+
     <title>{{TITLE}}</title>
     <link rel="icon" type="image/svg+xml" href="https://cacadordeofertas.com.br/icon.svg">
     <!-- Adicione um apple-touch-icon posteriormente se quiser -->

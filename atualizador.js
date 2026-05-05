@@ -195,9 +195,13 @@ async function atualizarViaPlanilha() {
 
         // Gerar keywords dinâmicas por loja
         function gerarKeywords(nomeLoja = null) {
-            const keywordsBase = ['cupom de desconto', 'ofertas', 'promoção', 'descontos', 'economizar'];
+            const keywordsBase = ['cupom de desconto', 'ofertas', 'promoção', 'descontos', 'economizar', 'caçador de cupom', 'melhores sites de cupons'];
             if (nomeLoja) {
                 const lojaLower = nomeLoja.toLowerCase();
+                let extraKeywords = [];
+                if (lojaLower === 'mercado livre') {
+                    extraKeywords = ['cupom ml', 'cupom ml hoje', 'cupom meli', 'cupom de desconto ml hoje', 'código meli'];
+                }
                 return [
                     `cupom ${lojaLower}`,
                     `desconto ${lojaLower}`,
@@ -205,6 +209,7 @@ async function atualizarViaPlanilha() {
                     `ofertas ${lojaLower}`,
                     `cupom de desconto ${lojaLower}`,
                     `código promocional ${lojaLower}`,
+                    ...extraKeywords,
                     ...keywordsBase
                 ].join(', ');
             }
@@ -253,7 +258,7 @@ async function atualizarViaPlanilha() {
             const { htmlAtivos, htmlExpirados, schemaLd } = gerarCardsESchema(listaOfertas, title);
 
             const nomeArquivo = slug ? `${slug}.html` : 'index.html';
-            const canonicalUrl = `${baseUrl}/${nomeArquivo}`;
+            const canonicalUrl = nomeArquivo === 'index.html' ? `${baseUrl}/` : `${baseUrl}/${nomeArquivo}`;
             const keywords = gerarKeywords(nomeLoja);
             
             const menuHtml = gerarMenuLojas(slug);
@@ -265,22 +270,48 @@ async function atualizarViaPlanilha() {
 
             let seoText = '';
             if (nomeLoja) {
-                seoText = `
-                <article class="seo-text-area">
-                    <h2>Cupom de Desconto ${nomeLoja} e Ofertas</h2>
-                    <p>O <strong>Caçador de Ofertas</strong> ajuda você a economizar em todas as suas compras na <strong>${nomeLoja}</strong>. Nossa equipe avalia e testa diariamente os códigos promocionais e links de desconto mais relevantes para garantir que você sempre pague menos.</p>
-                    
-                    <h3>Como usar o cupom ${nomeLoja}?</h3>
-                    <p>Para usar um cupom de desconto na ${nomeLoja}, basta clicar no botão "PEGAR CUPOM", copiar o código revelado e colá-lo no campo correspondente no carrinho de compras do site oficial. Caso o botão indique "PEGAR PROMOÇÃO", o desconto já estará aplicado magicamente no preço do produto através do nosso link especial de afiliado.</p>
-                    
-                    <h3>A loja ${nomeLoja} é confiável?</h3>
-                    <p>Sim, todos os cupons que destacamos aqui pertencem a lojas de confiança onde milhares de usuários compram todos os dias com total segurança e respeito à privacidade dos dados. Nossa curadoria filtra qualquer lojista que não atenda a padrões rigorosos de qualidade.</p>
-                </article>`;
+                if (nomeLoja.toLowerCase() === 'mercado livre') {
+                    seoText = `
+                    <article class="seo-text-area">
+                        <h2>Cupom Mercado Livre Válido Hoje (ML)</h2>
+                        <p>Buscando um <strong>cupom de desconto no ML para usar hoje</strong>? O <strong>Caçador de Ofertas</strong> ajuda você a economizar em todas as suas compras no Mercado Livre. Nossa equipe avalia e testa diariamente os códigos promocionais e links de desconto mais relevantes para garantir que você sempre pague menos.</p>
+                        
+                        <h3>Como usar o Cupom ML Hoje?</h3>
+                        <p>Para usar um cupom de desconto no Mercado Livre, basta clicar no botão "PEGAR CUPOM", copiar o código revelado e colá-lo no aplicativo ou site oficial. Caso o botão indique "PEGAR PROMOÇÃO", o desconto já estará aplicado no preço do produto através do nosso link especial de ofertas.</p>
+                        
+                        <h3>Códigos de Desconto Meli são confiáveis?</h3>
+                        <p>Sim, todos os <strong>cupons Meli</strong> que destacamos aqui pertencem a promoções oficiais do Mercado Livre, onde milhares de usuários compram todos os dias com total segurança. Atualizamos a lista diariamente para que você sempre encontre um código ativo.</p>
+                    </article>`;
+                } else if (nomeLoja.toLowerCase() === 'amazon') {
+                    seoText = `
+                    <article class="seo-text-area">
+                        <h2>Cupom de Desconto Amazon e Ofertas Prime</h2>
+                        <p>No <strong>Caçador de Ofertas</strong>, você encontra o <strong>cupom Amazon</strong> perfeito para a sua compra. Testamos códigos promocionais diariamente, seja para <strong>frete grátis</strong>, <strong>primeira compra</strong> ou descontos em categorias como Kindle, Eletrônicos e Casa.</p>
+                        
+                        <h3>Como usar o cupom de desconto Amazon?</h3>
+                        <p>Clique em "PEGAR CUPOM" para revelar o código e copie-o. Na tela de pagamento do site ou aplicativo da Amazon, cole o código no campo "Adicionar vale-presente ou código promocional" e clique em aplicar. Se o botão for "PEGAR PROMOÇÃO", a oferta já estará embutida no link!</p>
+                        
+                        <h3>Dica do Caçador de Cupom para a Amazon</h3>
+                        <p>Muitas vezes, os maiores descontos da Amazon não exigem código, eles são aplicados diretamente no link da oferta relâmpago ou na assinatura do <strong>Amazon Prime</strong>. Fique de olho nas tags de "Oferta do Dia" na nossa lista.</p>
+                    </article>`;
+                } else {
+                    seoText = `
+                    <article class="seo-text-area">
+                        <h2>Cupom de Desconto ${nomeLoja} e Ofertas</h2>
+                        <p>O <strong>Caçador de Ofertas</strong> ajuda você a economizar em todas as suas compras na <strong>${nomeLoja}</strong>. Nossa equipe avalia e testa diariamente os códigos promocionais e links de desconto mais relevantes para garantir que você sempre pague menos.</p>
+                        
+                        <h3>Como usar o cupom ${nomeLoja}?</h3>
+                        <p>Para usar um cupom de desconto na ${nomeLoja}, basta clicar no botão "PEGAR CUPOM", copiar o código revelado e colá-lo no campo correspondente no carrinho de compras do site oficial. Caso o botão indique "PEGAR PROMOÇÃO", o desconto já estará aplicado magicamente no preço do produto através do nosso link especial de afiliado.</p>
+                        
+                        <h3>A loja ${nomeLoja} é confiável?</h3>
+                        <p>Sim, todos os cupons que destacamos aqui pertencem a lojas de confiança onde milhares de usuários compram todos os dias com total segurança e respeito à privacidade dos dados. Nossa curadoria filtra qualquer lojista que não atenda a padrões rigorosos de qualidade.</p>
+                    </article>`;
+                }
             } else {
                 seoText = `
                 <article class="seo-text-area">
-                    <h2>Melhores Cupons de Desconto e Ofertas</h2>
-                    <p>Seja bem-vindo ao <strong>Caçador de Ofertas</strong>, o seu local definitivo para economizar de verdade nas maiores lojas de e-commerce da internet. Nós verificamos os nossos códigos todos os dias incansavelmente.</p>
+                    <h2>Caçador de Ofertas: Um dos Melhores Sites de Cupons de Desconto do Brasil</h2>
+                    <p>Seja bem-vindo ao <strong>Caçador de Ofertas</strong> (também conhecido por muitos como seu <strong>caçador de cupom</strong> favorito!), o seu local definitivo para economizar de verdade nas maiores lojas de e-commerce da internet. Nós verificamos nossos códigos todos os dias incansavelmente.</p>
                     <h3>Como economizar com o Caçador de Ofertas</h3>
                     <p>Basta navegar no nosso sumário de lojas parceiras, encontrar a oferta ou cupom ideal que você procura e aproveitar. Sem letras miúdas ou complicações. O abatimento rola fácil e vai direto pro seu bolso!</p>
                 </article>`;
@@ -309,8 +340,8 @@ async function atualizarViaPlanilha() {
 
         // 1. Gerar index.html (Home) - Contém todas as ofertas
         const mesAnoHome = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' }).format(new Date());
-        const tituloHome = `Caçador de Ofertas | Cupons e Ofertas - ${mesAnoHome}`;
-        const descHome = `Encontre cupons de desconto validados em ${mesAnoHome}. Economize agora nas maiores lojas com nossos achadinhos!`;
+        const tituloHome = `Caçador de Ofertas 🎯 | Os Melhores Cupons - ${mesAnoHome}`;
+        const descHome = `Encontre cupons de desconto validados em ${mesAnoHome}. Economize agora nas maiores lojas com nossos achadinhos! O seu Caçador de Cupom.`;
         const htmlHome = construirPagina(ofertas, tituloHome, descHome, null, null);
         fs.writeFileSync('index.html', htmlHome);
         console.log("✅ Página gerada: index.html (Principal)");
@@ -328,8 +359,16 @@ async function atualizarViaPlanilha() {
             if (contagemLojas[nomeLoja] === 0 || ofertasDestaLoja.length === 0) continue;
 
             const mesAno = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' }).format(new Date());
-            const tituloLoja = `Cupom de Desconto ${nomeLoja} - ${mesAno} | Caçador de Ofertas`;
-            const descLoja = `Cupom ${nomeLoja} em ${mesAno}. Pegue agora os melhores cupons validados e promoções com o Caçador de Ofertas.`;
+            let tituloLoja = `Cupom de Desconto ${nomeLoja} - ${mesAno} 🤑 | Caçador de Ofertas`;
+            let descLoja = `Cupom ${nomeLoja} em ${mesAno}. Pegue agora os melhores cupons validados e promoções com o Caçador de Ofertas.`;
+            
+            if (nomeLoja.toLowerCase() === 'mercado livre') {
+                tituloLoja = `Cupom Mercado Livre (ML) Válido Hoje ✅ - ${mesAno}`;
+                descLoja = `Pegue seu Cupom ML Hoje! Lista atualizada de Códigos Meli, Cupons de Desconto Mercado Livre válidos e testados para você economizar agora.`;
+            } else if (nomeLoja.toLowerCase() === 'amazon') {
+                tituloLoja = `Cupom Amazon: Descontos e Frete Grátis 📦 - ${mesAno}`;
+                descLoja = `Pegue seu Cupom de Desconto Amazon! Códigos promocionais para primeira compra, frete grátis, Kindle e muito mais. Testados hoje!`;
+            }
 
             const htmlLoja = construirPagina(ofertasDestaLoja, tituloLoja, descLoja, slugDaLoja, nomeLoja);
             fs.writeFileSync(`${slugDaLoja}.html`, htmlLoja);
@@ -342,7 +381,7 @@ async function atualizarViaPlanilha() {
         // Limpeza de arquivos .html órfãos (lojas removidas ou vazias)
         const htmlFiles = fs.readdirSync('.').filter(f => f.endsWith('.html'));
         for (const arquivo of htmlFiles) {
-            if (arquivo === 'template.html' || arquivo === 'dashboard.html') continue;
+            if (arquivo === 'template.html' || arquivo === 'dashboard.html' || arquivo === 'grupo-suplementos.html') continue;
             
             const slugName = arquivo.replace('.html', '');
             if (!slugsAtivos.includes(slugName)) {
