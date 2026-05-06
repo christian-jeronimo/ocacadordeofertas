@@ -2,40 +2,24 @@
   {
     "loja": "Mercado Livre",
     "titulo": "Mercado Livre com 15% de desconto",
-    "descricao": "Válido em em compras a partir de R$599",
-    "codigo": "TECNOLOMELI",
-    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
-    "titulo": "20% OFF com cupom Mercado Livre",
     "descricao": "Válido em em compras a partir de R$29",
-    "codigo": "PROMOHOJE",
+    "codigo": "PROMOML",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Mercado Livre dá R$75 de desconto com cupom",
-    "descricao": "Válido em compras a partir de R$599",
-    "codigo": "MELIMAIS75",
+    "titulo": "18% OFF com cupom Mercado Livre",
+    "descricao": "Válido em em compras a partir de R$29",
+    "codigo": "OFERTAMELI",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Mercado Livre com 15% de desconto",
-    "descricao": "Válido em compras a partir de R$79",
-    "codigo": "ANACASTELA15",
-    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
-    "titulo": "Mercado Livre dá 10% de desconto com cupom",
-    "descricao": "Válido em compras a partir de R$79",
-    "codigo": "10NEYMAR",
+    "titulo": "Mercado Livre dá 18% de desconto com cupom",
+    "descricao": "Válido em compras a partir de R$319",
+    "codigo": "ELETROMELI",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -145,9 +129,9 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Ganhe 15% de desconto em compras com cupom",
+    "titulo": "Ganhe 10% de desconto em compras com cupom",
     "descricao": "Oferta válida em compras a partir de R$150",
-    "codigo": "RANGEL15",
+    "codigo": "PEGALOGO",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
