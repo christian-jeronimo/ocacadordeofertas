@@ -1,9 +1,17 @@
 [
   {
     "loja": "Mercado Livre",
-    "titulo": "20% OFF com cupom Mercado Livre",
-    "descricao": "Válido em em compras a partir de R$79",
-    "codigo": "LIQUIDACASA",
+    "titulo": "15% OFF com cupom Mercado Livre",
+    "descricao": "Válido em em compras a partir de R$29",
+    "codigo": "ECONOMIZA",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "Mercado Livre dá 18% OFF com cupom",
+    "descricao": "Válido em compras a partir de R$29",
+    "codigo": "SUPERPROMO",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -12,6 +20,14 @@
     "titulo": "Mercado Livre dá 18% de desconto com cupom",
     "descricao": "Válido em compras a partir de R$29",
     "codigo": "MELICASA",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "20% OFF com cupom Mercado Livre",
+    "descricao": "Válido em em compras a partir de R$79",
+    "codigo": "LIQUIDACASA",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
