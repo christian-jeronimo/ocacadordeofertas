@@ -57,9 +57,9 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "20% OFF com cupom Mercado Livre",
-    "descricao": "Válido em em compras a partir de R$79",
-    "codigo": "LIQUIDACASA",
+    "titulo": "r$150 OFF com cupom Mercado Livre",
+    "descricao": "Válido em em compras a partir de R$999",
+    "codigo": "MOVEISMELI",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -129,9 +129,17 @@
   },
   {
     "loja": "Amazon",
+    "titulo": "Amazon concede 10% de desconto com cupom",
+    "descricao": "Oferta válida em compras a partir de R$200",
+    "codigo": "SEMANABEBE",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
     "titulo": "Ganhe 10% de desconto em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$150",
-    "codigo": "BRASIL",
+    "descricao": "Oferta válida em compras a partir de R$300",
+    "codigo": "ESFRIOU",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
@@ -196,14 +204,6 @@
     "titulo": "Amazon concede 10% OFF em compras com cupom",
     "descricao": "Oferta válida em compras a partir de R$200",
     "codigo": "SUPER10",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Amazon concede 20% de desconto com cupom",
-    "descricao": "Ganhe 20% off em produtos Insider",
-    "codigo": "INSIDER20",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
