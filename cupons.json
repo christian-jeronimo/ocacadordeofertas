@@ -17,9 +17,17 @@
   },
   {
     "loja": "Mercado Livre",
+    "titulo": "Mercado Livre dá 20% OFF com cupom",
+    "descricao": "Válido em compras a partir de R$79",
+    "codigo": "GLORIA",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
     "titulo": "Mercado Livre dá 15% OFF com cupom",
     "descricao": "Válido em compras a partir de R$79",
-    "codigo": "MELICONVOCA",
+    "codigo": "TEMPROMO",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -57,9 +65,17 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Mercado Livre dá 15% OFF com cupom",
-    "descricao": "Válido em compras a partir de R$79",
-    "codigo": "TEMPROMO",
+    "titulo": "10% de desconto com cupom Mercado Livre",
+    "descricao": "Válido em compras a partir de R$3.999",
+    "codigo": "OPORTUNIDADE",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "7% de desconto com cupom Mercado Livre",
+    "descricao": "Válido em compras a partir de R$1.999",
+    "codigo": "SUPERTV",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -105,14 +121,6 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "R$200 de desconto com cupom Mercado Livre",
-    "descricao": "Válido em compras a partir de R$3.999",
-    "codigo": "MELIOFF",
-    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
     "titulo": "Ganhe 8% OFF com cupom no Mercado Livre",
     "descricao": "Válido em compras a partir de R$79",
     "codigo": "TECMELI",
@@ -139,23 +147,31 @@
     "loja": "Amazon",
     "titulo": "Ganhe 10% de desconto em compras com cupom",
     "descricao": "Oferta válida em compras a partir de R$300",
-    "codigo": "ESFRIOU",
+    "codigo": "CANARINHO",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
   {
     "loja": "Amazon",
-    "titulo": "Ganhe R$250 de desconto em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$1500",
-    "codigo": "CAMISA12",
+    "titulo": "Amazon concede R$100 OFF em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$999",
+    "codigo": "BRASIL2026",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
   {
     "loja": "Amazon",
-    "titulo": "15% de desconto com cupom na Amazon",
-    "descricao": "Oferta válida em compras a partir de R$300",
-    "codigo": "CAMISA11",
+    "titulo": "Ganhe R$50 de desconto em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$299",
+    "codigo": "GOLEADA",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "50% de desconto com cupom na Amazon",
+    "descricao": "Oferta válida em compras a partir de R$80",
+    "codigo": "CUPOMZAO",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
@@ -188,14 +204,6 @@
     "titulo": "Ganhe R$200 de desconto na Amazon",
     "descricao": "Oferta válida em compras a partir de R$1999",
     "codigo": "POUPAAI",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Amazon concede R$100 OFF em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$999",
-    "codigo": "PODECOMPRAR",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
