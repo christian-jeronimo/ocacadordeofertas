@@ -113,6 +113,14 @@
   },
   {
     "loja": "Amazon",
+    "titulo": "Amazon concede 10% de desconto com cupom",
+    "descricao": "Oferta válida em compras a partir de R$150",
+    "codigo": "TORCIDA",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
     "titulo": "Amazon concede R$50 de desconto com cupom",
     "descricao": "Oferta válida em compras a partir de R$450",
     "codigo": "BOLANAREDE",
