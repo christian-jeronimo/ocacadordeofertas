@@ -59,7 +59,7 @@
     "loja": "Mercado Livre",
     "titulo": "Mercado Livre dá 20% de desconto com cupom",
     "descricao": "Válido em compras a partir de R$79",
-    "codigo": "PARACASA",
+    "codigo": "OFFPRACASA",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -113,17 +113,17 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Amazon concede 10% de desconto com cupom",
-    "descricao": "Oferta válida em compras a partir de R$150",
-    "codigo": "TORCIDA",
+    "titulo": "Amazon concede R$35 de desconto com cupom",
+    "descricao": "Oferta válida em compras a partir de R$299",
+    "codigo": "PODECOMPRAR",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
   {
     "loja": "Amazon",
-    "titulo": "Amazon concede R$50 de desconto com cupom",
-    "descricao": "Oferta válida em compras a partir de R$450",
-    "codigo": "BOLANAREDE",
+    "titulo": "Amazon concede 10% de desconto com cupom",
+    "descricao": "Oferta válida em compras a partir de R$200",
+    "codigo": "QUARTOUU",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
