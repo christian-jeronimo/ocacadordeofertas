@@ -3,15 +3,7 @@
     "loja": "Mercado Livre",
     "titulo": "20% OFF no Mercado Livre com cupom",
     "descricao": "Válido em compras a partir de R$49",
-    "codigo": "C4S4T3RC4",
-    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
-    "titulo": "Mercado Livre dá 10% de desconto com cupom",
-    "descricao": "Válido em compras a partir de R$79",
-    "codigo": "MENOSHOJE",
+    "codigo": "APROVEITA",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -27,7 +19,15 @@
     "loja": "Mercado Livre",
     "titulo": "Ganhe R$75 de desconto com cupom Mercado Livre",
     "descricao": "Válido em compras a partir de R$599",
-    "codigo": "75MELIMAIS",
+    "codigo": "PROMONOMELI",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "15% OFF com cupom Mercado Livre",
+    "descricao": "Válido em compras a partir de R$79",
+    "codigo": "OFERTASMELI",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -65,14 +65,6 @@
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "15% OFF com cupom Mercado Livre",
-    "descricao": "Válido em compras a partir de R$79",
-    "codigo": "OFERTAML",
-    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
     "titulo": "Mercado Livre dá 15% OFF com cupom",
     "descricao": "Válido em compras a partir de R$49",
     "codigo": "MODANOML",
@@ -100,6 +92,14 @@
     "titulo": "Mercado Livre dá 20% de desconto com cupom",
     "descricao": "Válido em compras a partir de R$79",
     "codigo": "OFFPRACASA",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "Mercado Livre dá 10% de desconto com cupom",
+    "descricao": "Válido em compras a partir de R$79",
+    "codigo": "MENOSHOJE",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
