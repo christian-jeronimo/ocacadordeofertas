@@ -1,6 +1,14 @@
 [
   {
     "loja": "Mercado Livre",
+    "titulo": "Mercado Livre dá 10% OFF com cupom",
+    "descricao": "Válido em compras a partir de R$129",
+    "codigo": "JOGOCERTO",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
     "titulo": "Mercado Livre dá 12% OFF com cupom",
     "descricao": "Válido em compras a partir de R$49",
     "codigo": "SEMPREMODA",
@@ -113,9 +121,9 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Amazon concede R$50 de desconto com cupom",
-    "descricao": "Oferta válida em compras a partir de R$450",
-    "codigo": "ALOCUPOM",
+    "titulo": "Amazon concede R$100 de desconto com cupom",
+    "descricao": "Oferta válida em compras a partir de R$999",
+    "codigo": "AQUITEMCUPOM",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
