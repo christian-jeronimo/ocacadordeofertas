@@ -121,17 +121,17 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Ganhe R$50 de desconto em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$450",
-    "codigo": "CUPOMAGORA50",
+    "titulo": "Ganhe 10% de desconto em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$79",
+    "codigo": "NAREDE",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
   {
     "loja": "Amazon",
     "titulo": "Amazon concede 10% de desconto com cupom",
-    "descricao": "Oferta válida em compras a partir de R$200",
-    "codigo": "SEMANANOVA",
+    "descricao": "Oferta válida em compras a partir de R$800",
+    "codigo": "JOGACO",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
