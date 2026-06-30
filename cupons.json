@@ -145,9 +145,9 @@
   },
   {
     "loja": "Amazon",
-    "titulo": "Amazon concede 10% de desconto com cupom",
+    "titulo": "Amazon concede 15% de desconto com cupom",
     "descricao": "Oferta válida em compras a partir de R$800",
-    "codigo": "JOGACO",
+    "codigo": "PRIMECOMECA",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
