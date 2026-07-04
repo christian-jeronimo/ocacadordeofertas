@@ -1,17 +1,25 @@
 [
   {
     "loja": "Mercado Livre",
-    "titulo": "Ganhe 10% OFF com cupom Mercado Livre",
-    "descricao": "Válido em em compras a partir de R$149",
-    "codigo": "SALVAESSA",
+    "titulo": "Ganhe 15% OFF com cupom Mercado Livre",
+    "descricao": "Válido em em compras a partir de R$79",
+    "codigo": "DESCONTOMELI",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Ganhe 20% OFF com cupom Mercado Livre",
-    "descricao": "Válido em em compras a partir de R$29",
-    "codigo": "PROMOML",
+    "titulo": "Ganhe 10% OFF com cupom Mercado Livre",
+    "descricao": "Válido em em compras a partir de R$99",
+    "codigo": "TORCEDOR",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "20% OFF com cupom Mercado Livre",
+    "descricao": "Válido em em compras a partir de R$1.199",
+    "codigo": "7DO7INFORMATICA",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -20,14 +28,6 @@
     "titulo": "Ganhe 12% OFF com cupom Mercado Livre",
     "descricao": "Válido em em compras a partir de R$79",
     "codigo": "CARRINHOCHEIOML",
-    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
-    "titulo": "20% OFF com cupom Mercado Livre",
-    "descricao": "Válido em em compras a partir de R$149",
-    "codigo": "BEAUTY20",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -153,41 +153,41 @@
   },
   {
     "loja": "Amazon",
+    "titulo": "Ganhe R$300 de desconto em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$2.499",
+    "codigo": "COPAMAZON",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Amazon concede 50% de desconto com cupom",
+    "descricao": "Oferta válida em compras a partir de R$80",
+    "codigo": "NACAIXA50",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Amazon concede R$200 de desconto com cupom",
+    "descricao": "Oferta válida em compras a partir de R$1.999",
+    "codigo": "CORREPRIME",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
+    "titulo": "Amazon concede 10% OFF em compras com cupom",
+    "descricao": "Oferta válida em compras a partir de R$800",
+    "codigo": "NOVOCUPOM",
+    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
+    "ativo": true
+  },
+  {
+    "loja": "Amazon",
     "titulo": "Ganhe R$150 de desconto em compras com cupom",
     "descricao": "Oferta válida em compras a partir de R$1.499",
     "codigo": "POUPE150",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Amazon concede 15% de desconto com cupom",
-    "descricao": "Oferta válida em compras a partir de R$800",
-    "codigo": "PRIMECOMECA",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Amazon concede R$40 de desconto com cupom",
-    "descricao": "Oferta válida em compras a partir de R$299",
-    "codigo": "GOL40OFF",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Amazon concede R$150 OFF em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$1.499",
-    "codigo": "PRIME150",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Ganhe R$50 de desconto em compras com cupom",
-    "descricao": "Oferta válida em compras a partir de R$299",
-    "codigo": "GOLEADA",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
@@ -212,14 +212,6 @@
     "titulo": "Ganhe R$250 off na Amazon",
     "descricao": "Oferta válida em compras a partir de R$1500",
     "codigo": "TORCIDA12",
-    "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
-    "ativo": true
-  },
-  {
-    "loja": "Amazon",
-    "titulo": "Ganhe 5% de desconto com cupom na Amazon",
-    "descricao": "Cupom válido em compras a patir de R$100",
-    "codigo": "SOMEITUDO",
     "link": "https://www.amazon.com.br/?tag=camposmayar0f-20",
     "ativo": true
   },
