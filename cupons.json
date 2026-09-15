@@ -1,81 +1,81 @@
 [
   {
     "loja": "Mercado Livre",
-    "titulo": "Mercado Livre dá 25% OFF com cupom",
+    "titulo": "Mercado Livre dá 20% OFF com cupom",
     "descricao": "Válido em compras a partir de R$1",
-    "codigo": "PAGARPOUCO",
+    "codigo": "SUPERPROMO20",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Mercado Livre dá 30% de desconto com cupom",
-    "descricao": "Válido em compras a partir de R$1",
-    "codigo": "GARANTINOTOP",
+    "titulo": "Mercado Livre dá 20% de desconto com cupom",
+    "descricao": "Válido em compras a partir de R$79",
+    "codigo": "DESCONTOEMCASA",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "Ganhe 18% OFF com cupom Mercado Livre",
+    "descricao": "Válido em em compras a partir de R$29",
+    "codigo": "DESCONTONAREDA",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
     "titulo": "Ganhe 30% OFF com cupom Mercado Livre",
-    "descricao": "Válido em em compras a partir de R$1",
-    "codigo": "ECONOMIALOCAL",
+    "descricao": "Válido em em compras a partir de R$29",
+    "codigo": "PECHINCHA",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Ganhe 25% OFF com cupom Mercado Livre",
-    "descricao": "Válido em em compras a partir de R$1",
-    "codigo": "COMPRAESPERTA",
+    "titulo": "30% OFF com cupom Mercado Livre",
+    "descricao": "Válido em compras a partir de R$1",
+    "codigo": "APROVEITAESSA",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "20% OFF com cupom Mercado Livre",
-    "descricao": "Acessórios para Veículos | Compra mínima: R$79",
-    "codigo": "OFERTACERTA",
+    "titulo": "Ganhe 30% OFF com cupom Mercado Livre",
+    "descricao": "Válido em compras a partir de R$1",
+    "codigo": "OFERTASMELI",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
     "titulo": "25% OFF com cupom Mercado Livre",
-    "descricao": "Indústria e Comércio | Compra mínima: R$19",
-    "codigo": "VALEMELI",
+    "descricao": "Válido em compras a partir de R$1",
+    "codigo": "OFERTAAQUI",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "15% OFF com cupom Mercado Livre",
+    "titulo": "Mercado Livre dá 30% de desconto com cupom",
+    "descricao": "Válido em compras a partir de R$29",
+    "codigo": "GARIMPEI",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "Mercado Livre dá 15% de desconto com cupom",
     "descricao": "Casas Bahia | Compra mínima: R$50",
-    "codigo": "ACHEINOMELI",
+    "codigo": "DESCONTOJA",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
   {
     "loja": "Mercado Livre",
-    "titulo": "Mercado Livre dá 8% de desconto com cupom",
-    "descricao": "Válido em compras a partir de R$150",
-    "codigo": "OMELHORDOML",
-    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
-    "titulo": "Mercado Livre dá 25% de desconto com cupom",
-    "descricao": "Categoria Casa & Decor | Compra mínima: R$79",
-    "codigo": "CORREQUEACABA",
-    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
-    "titulo": "Mercado Livre dá 20%OFF com cupom",
-    "descricao": "Moda | Compra mínima: R$49",
-    "codigo": "MEUSDESCONTOS",
+    "titulo": "Mercado Livre dá 10%OFF com cupom",
+    "descricao": "Tecnologia | Compra mínima: R$149",
+    "codigo": "BAIXOUTUDO",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
@@ -83,15 +83,7 @@
     "loja": "Mercado Livre",
     "titulo": "12% OFF com cupom Mercado Livre",
     "descricao": "Tecnologia | Compra mínima: R$149",
-    "codigo": "QUEROOFF",
-    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
-    "ativo": true
-  },
-  {
-    "loja": "Mercado Livre",
-    "titulo": "15% de desconto com cupom Mercado Livre",
-    "descricao": "Válido em compras a partir de R$199",
-    "codigo": "VOLTEMELI",
+    "codigo": "OFFNOML",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
     "ativo": true
   },
