@@ -378,11 +378,9 @@ async function atualizarViaPlanilha() {
             slugsAtivos.push(slugDaLoja);
         }
 
-        // Limpeza de arquivos .html órfãos (lojas removidas ou vazias)
-        const htmlFiles = fs.readdirSync('.').filter(f => f.endsWith('.html'));
+        // Somente páginas de lojas são geradas a partir do feed. Preserve páginas institucionais.
+        const htmlFiles = fs.readdirSync('.').filter(f => /^cupom-.*\.html$/.test(f));
         for (const arquivo of htmlFiles) {
-            if (arquivo === 'template.html' || arquivo === 'dashboard.html' || arquivo === 'grupo-suplementos.html') continue;
-            
             const slugName = arquivo.replace('.html', '');
             if (!slugsAtivos.includes(slugName)) {
                 fs.unlinkSync(arquivo);
