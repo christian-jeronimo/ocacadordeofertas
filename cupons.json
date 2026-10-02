@@ -518,5 +518,57 @@
     "conferido_em": "01/10/2026",
     "aprovado_em": "01/10/2026",
     "id": "d6f0a5c1-09a2-4d53-87f2-986e3855c8af"
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "10% OFF no Mercado Livre",
+    "descricao": "10% de desconto em compras a partir de R$79, limitado a R$100 de desconto.",
+    "codigo": "SEMPREPROMO",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true,
+    "status": "APROVADO",
+    "validade": "",
+    "conferido_em": "02/10/2026",
+    "aprovado_em": "02/10/2026",
+    "id": "2b88a928-6a08-4e54-9b1f-d0a763dcff7d"
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "25% OFF no Mercado Livre",
+    "descricao": "25% de desconto em compras a partir de R$1, limitado a R$500 de desconto.",
+    "codigo": "DESCONTO",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true,
+    "status": "APROVADO",
+    "validade": "",
+    "conferido_em": "02/10/2026",
+    "aprovado_em": "02/10/2026",
+    "id": "9bc4366e-4fce-48af-bf3d-0d702e86de22"
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "30% OFF no Mercado Livre",
+    "descricao": "30% de desconto em compras a partir de R$1, limitado a R$500 de desconto.",
+    "codigo": "VALEPROMO",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true,
+    "status": "APROVADO",
+    "validade": "",
+    "conferido_em": "02/10/2026",
+    "aprovado_em": "02/10/2026",
+    "id": "b18515ab-5ee1-403d-a823-c06e762eb5b5"
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "30% OFF no Mercado Livre",
+    "descricao": "30% de desconto em compras a partir de R$1, limitado a R$500 de desconto.",
+    "codigo": "MEUVALE",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true,
+    "status": "APROVADO",
+    "validade": "",
+    "conferido_em": "02/10/2026",
+    "aprovado_em": "02/10/2026",
+    "id": "23bba500-904a-472f-b6cc-b9ccb9a04faf"
   }
 ]

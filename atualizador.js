@@ -1,10 +1,138 @@
 const fs = require('fs');
+const path = require('path');
 
 // COLE O LINK DA SUA PLANILHA AQUI (Tem que ser o link gerado no "Publicar na Web")
-const urlPlanilha = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR2REpLC9EdFoSD2Fs5kl7MjOeEhYzSjoi7152nupjhb-rGMC8zkkkd3qB8c3ZroDljaklkkA35pXbZ/pub?output=tsv';
+const urlPlanilha = process.env.URL_PLANILHA_TSV || 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR2REpLC9EdFoSD2Fs5kl7MjOeEhYzSjoi7152nupjhb-rGMC8zkkkd3qB8c3ZroDljaklkkA35pXbZ/pub?output=tsv';
 
 // DOMÍNIO REAL DO SITE (usado no sitemap, canonical URLs e robots.txt)
 const baseUrl = 'https://cacadordeofertas.com.br';
+const pastaSaida = process.env.GERADOR_SAIDA_DIR || __dirname;
+const lojasPersistentes = ['Mercado Livre', 'Amazon'];
+
+const fusoHorario = 'America/Sao_Paulo';
+const diasSemReconfirmacao = 7;
+
+function normalizarCabecalho(valor) {
+    return String(valor || '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+}
+
+function normalizarNomeCampo(valor) {
+    const campo = normalizarCabecalho(valor);
+    if (['aprovadoem', 'conferidoem', 'validadoem'].includes(campo)) {
+        return campo === 'aprovadoem' ? 'aprovado_em' : 'conferido_em';
+    }
+    if (['datavalidade', 'expiracao', 'validuntil'].includes(campo)) return 'validade';
+    return campo;
+}
+
+function converterDataPlanilha(valor) {
+    if (!valor) return null;
+    const texto = String(valor).trim();
+    let partes;
+    if ((partes = texto.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) {
+        return validarDataUtc(Number(partes[1]), Number(partes[2]), Number(partes[3]), texto);
+    }
+    if ((partes = texto.match(/^(\d{1,2})[/.](\d{1,2})[/.](\d{4})(?:\s+.*)?$/))) {
+        return validarDataUtc(Number(partes[3]), Number(partes[2]), Number(partes[1]), texto);
+    }
+    const data = new Date(texto);
+    if (!Number.isNaN(data.getTime())) {
+        return new Date(Date.UTC(data.getUTCFullYear(), data.getUTCMonth(), data.getUTCDate()));
+    }
+    throw new Error(`Data inválida na planilha: "${texto}".`);
+}
+
+function validarDataUtc(ano, mes, dia, textoOriginal) {
+    const data = new Date(Date.UTC(ano, mes - 1, dia));
+    if (data.getUTCFullYear() !== ano || data.getUTCMonth() !== mes - 1 || data.getUTCDate() !== dia) {
+        throw new Error(`Data inválida na planilha: "${textoOriginal}".`);
+    }
+    return data;
+}
+
+function dataHojeNoFuso() {
+    const partes = new Intl.DateTimeFormat('en-CA', {
+        timeZone: fusoHorario, year: 'numeric', month: '2-digit', day: '2-digit'
+    }).formatToParts(new Date());
+    const valores = Object.fromEntries(partes.map(parte => [parte.type, parte.value]));
+    return new Date(Date.UTC(Number(valores.year), Number(valores.month) - 1, Number(valores.day)));
+}
+
+function formatarDataConferencia(valor) {
+    const data = converterDataPlanilha(valor);
+    return data ? data.toLocaleDateString('pt-BR', { timeZone: 'UTC' }) : '';
+}
+
+function ofertaEstaAprovada(status) {
+    return ['aprovado', 'aprovada', 'publicado', 'publicada', 'expirado', 'expirada', 'rever'].includes(
+        String(status || '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    );
+}
+
+function prepararOfertasTSV(textoTSV) {
+    const texto = String(textoTSV || '').replace(/^\uFEFF/, '').trim();
+    if (!texto || /^<!doctype html|^<html/i.test(texto)) {
+        throw new Error('O endereço do Google Sheets retornou uma página vazia ou HTML, em vez de TSV.');
+    }
+
+    const linhas = texto.split(/\r?\n/);
+    const cabecalhos = linhas[0].split('\t').map(h => h.trim());
+    const indices = Object.fromEntries(cabecalhos.map((nome, indice) => [normalizarCabecalho(nome), indice]));
+    const obrigatorios = ['loja', 'titulo', 'descricao', 'codigo', 'link', 'ativo'];
+    const ausentes = obrigatorios.filter(nome => indices[normalizarCabecalho(nome)] === undefined);
+    if (ausentes.length) {
+        throw new Error(`TSV do Google Sheets sem colunas obrigatórias: ${ausentes.join(', ')}.`);
+    }
+
+    const temColunaStatus = indices.status !== undefined;
+    const hoje = dataHojeNoFuso();
+    const ofertas = [];
+    let linhasIgnoradas = 0;
+
+    for (let numeroLinha = 1; numeroLinha < linhas.length; numeroLinha++) {
+        if (!linhas[numeroLinha].trim()) continue;
+        const valores = linhas[numeroLinha].split('\t');
+        const produto = {};
+        cabecalhos.forEach((cabecalho, indice) => {
+            produto[normalizarNomeCampo(cabecalho)] = valores[indice] ? valores[indice].trim() : '';
+        });
+
+        const valorStatus = String(produto.status || '').trim();
+        if (temColunaStatus && valorStatus && !ofertaEstaAprovada(valorStatus)) {
+            linhasIgnoradas++;
+            continue;
+        }
+
+        const valorAtivo = String(produto.ativo || '').trim().toLowerCase();
+        let ativo = ['true', 'verdadeiro', 'sim', '1'].includes(valorAtivo);
+        const statusNormalizado = valorStatus.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        if (['expirado', 'expirada', 'rever'].includes(statusNormalizado)) {
+            ativo = false;
+        }
+
+        const validade = produto.validade || '';
+        const conferidoEm = produto.aprovado_em || produto.conferido_em || '';
+        if (valorStatus && ofertaEstaAprovada(valorStatus) && ativo) {
+            if (validade) {
+                if (hoje > converterDataPlanilha(validade)) ativo = false;
+            } else if (conferidoEm) {
+                const dataConferencia = converterDataPlanilha(conferidoEm);
+                const diasDesdeConferencia = Math.floor((hoje.getTime() - dataConferencia.getTime()) / 86400000);
+                if (diasDesdeConferencia >= diasSemReconfirmacao) ativo = false;
+            } else {
+                ativo = false;
+            }
+        }
+
+        produto.ativo = ativo;
+        ofertas.push(produto);
+    }
+
+    if (linhasIgnoradas) {
+        console.log(`ℹ️ ${linhasIgnoradas} linha(s) ignorada(s) por não estarem aprovadas.`);
+    }
+    return ofertas;
+}
 
 function criarSlug(texto) {
     return texto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -14,45 +142,20 @@ async function atualizarViaPlanilha() {
     console.log("Conectando ao Google Sheets...");
 
     try {
-        const resposta = await fetch(urlPlanilha);
+        const resposta = await fetch(urlPlanilha, { signal: AbortSignal.timeout(15000) });
+        if (!resposta.ok) throw new Error(`Google Sheets respondeu com HTTP ${resposta.status}.`);
         const textoTSV = await resposta.text();
-
-        // Separa o texto em linhas
-        const linhas = textoTSV.split('\n');
-
-        // Pega a primeira linha para ser as chaves do nosso JSON (loja, titulo, etc)
-        const cabecalhos = linhas[0].split('\t').map(h => h.trim());
-        const ofertas = [];
-
-        // Começa a ler a partir da segunda linha (i = 1)
-        for (let i = 1; i < linhas.length; i++) {
-            if (!linhas[i].trim()) continue; // Pula linhas vazias
-
-            const valores = linhas[i].split('\t');
-            const produto = {};
-
-            cabecalhos.forEach((cabecalho, index) => {
-                let valor = valores[index] ? valores[index].trim() : '';
-
-                // Se a coluna for "ativo", converte o texto para booleano (verdadeiro/falso)
-                if (cabecalho === 'ativo') {
-                    produto[cabecalho] = (valor.toLowerCase() === 'true' || valor.toLowerCase() === 'verdadeiro' || valor.toLowerCase() === 'sim' || valor === '1');
-                } else {
-                    produto[cabecalho] = valor;
-                }
-            });
-
-            ofertas.push(produto);
-        }
+        const ofertas = prepararOfertasTSV(textoTSV);
 
         // Salva os produtos no nosso banco de dados JSON
-        fs.writeFileSync('cupons.json', JSON.stringify(ofertas, null, 2));
+        fs.mkdirSync(pastaSaida, { recursive: true });
+        fs.writeFileSync(path.join(pastaSaida, 'cupons.json'), JSON.stringify(ofertas, null, 2));
         console.log(`✅ Sucesso! JSON gerado: ${ofertas.length} ofertas salvas.`);
 
         // --- INÍCIO DA GERAÇÃO ESTÁTICA (SSG) ---
         console.log("Iniciando geração das páginas estáticas (SSG)...");
 
-        const templateHtml = fs.readFileSync('template.html', 'utf8');
+        const templateHtml = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf8');
 
         // Agrupar e contar ofertas ativas por loja
         const contagemLojas = {};
@@ -71,16 +174,22 @@ async function atualizarViaPlanilha() {
             }
         });
 
+        // Páginas de lojas já publicadas continuam acessíveis quando os cupons acabam.
+        lojasPersistentes.forEach(loja => {
+            if (contagemLojas[loja] === undefined) contagemLojas[loja] = 0;
+            lojasSlugs[loja] = 'cupom-' + criarSlug(loja);
+        });
+
         // Função auxiliar para gerar o menu de lojas
         function gerarMenuLojas(lojaAtualSlug = null) {
-            let htmlMenu = `<a href="index.html" class="store-chip ${lojaAtualSlug === null ? 'active' : ''}">Todas as Ofertas</a>`;
+            let htmlMenu = `<a href="/" class="store-chip ${lojaAtualSlug === null ? 'active' : ''}">Todas as Ofertas</a>`;
 
             // Ordenar lojas pelo nome
             const lojasOrdenadas = Object.keys(contagemLojas).sort((a, b) => a.localeCompare(b));
 
             lojasOrdenadas.forEach(lojaNome => {
                 const count = contagemLojas[lojaNome];
-                if (count === 0) return; // Não exibe no menu se não tem oferta ativa nesta avaliação
+                if (count === 0 && !lojasPersistentes.includes(lojaNome)) return;
 
                 const slug = lojasSlugs[lojaNome];
                 const activeClass = lojaAtualSlug === slug ? 'active' : '';
@@ -95,9 +204,16 @@ async function atualizarViaPlanilha() {
             let htmlAtivos = '';
             let htmlExpirados = '';
             let schemaOfertas = [];
-            let inativeMessage = ""; // Se não tiver a gente adiciona
-
+            const ofertasUnicas = [];
+            const chavesVistas = new Set();
             listaOfertas.forEach(cupom => {
+                const chave = [cupom.loja, cupom.codigo, cupom.titulo, cupom.descricao, cupom.link, cupom.ativo].map(valor => String(valor || '').trim().toLowerCase()).join('|');
+                if (chavesVistas.has(chave)) return;
+                chavesVistas.add(chave);
+                ofertasUnicas.push(cupom);
+            });
+
+            ofertasUnicas.forEach(cupom => {
                 const temCodigo = cupom.codigo && cupom.codigo.trim() !== '';
 
                 // Codificar para garantir
@@ -137,14 +253,17 @@ async function atualizarViaPlanilha() {
                 }
 
                 if (cupom.ativo) {
-                    const dataHojeCurta = new Date().toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+                    const dataConferencia = cupom.conferido_em || cupom.aprovado_em || '';
+                    const textoDataConferencia = dataConferencia ? formatarDataConferencia(dataConferencia) : '';
+                    const textoValidade = cupom.validade ? formatarDataConferencia(cupom.validade) : '';
                     htmlAtivos += `
                         <article class="coupon-card">
                             <div class="store-logo">${cupom.loja}</div>
                             <div class="coupon-info">
                                 <h3>${cupom.titulo}</h3>
                                 <p>${cupom.descricao}</p>
-                                <p class="coupon-date">⏳ Validado em: ${dataHojeCurta}</p>
+                                ${textoValidade ? `<p class="coupon-date">Validade informada: ${textoValidade}</p>` : ''}
+                                ${textoDataConferencia ? `<p class="coupon-date">Conferido em: ${textoDataConferencia}</p>` : ''}
                             </div>
                             ${htmlBotaoAtivo}
                         </article>
@@ -155,13 +274,16 @@ async function atualizarViaPlanilha() {
                         "name": cupom.titulo + " em " + cupom.loja,
                         "description": cupom.descricao,
                         "url": cupom.link,
-                        "availability": "https://schema.org/InStock"
+                        ...(cupom.validade ? { "validThrough": converterDataPlanilha(cupom.validade).toISOString().slice(0, 10) } : {})
                     });
 
                 } else {
+                    const statusInativo = String(cupom.status || '').trim().toLowerCase() === 'rever'
+                        ? 'AGUARDANDO RECONFIRMAÇÃO'
+                        : 'EXPIRADO';
                     htmlExpirados += `
                         <article class="coupon-card expired">
-                            <div class="expired-badge">EXPIRADO</div>
+                            <div class="expired-badge">${statusInativo}</div>
                             <div class="store-logo">${cupom.loja}</div>
                             <div class="coupon-info">
                                 <h3>${cupom.titulo}</h3>
@@ -173,7 +295,7 @@ async function atualizarViaPlanilha() {
                 }
             });
 
-            if (htmlAtivos === '') { htmlAtivos = `<p style="text-align:center; padding: 20px; color: #666;">Nenhuma oferta ativa no momento para esta categoria.</p>` }
+            if (htmlAtivos === '') { htmlAtivos = `<p class="empty-offers">Nenhum cupom ativo informado no momento. Confira as condições diretamente na loja antes de comprar.</p>` }
             if (htmlExpirados === '') { htmlExpirados = `<p style="text-align:center; padding: 20px; color: #666;">Nenhuma oferta expirada registrada nesta categoria.</p>` }
 
             let schemaLd = '';
@@ -255,7 +377,7 @@ async function atualizarViaPlanilha() {
 
         // Função para instanciar as marcações e criar de fato o HTML da página
         function construirPagina(listaOfertas, title, metadescription, slug, nomeLoja = null) {
-            const { htmlAtivos, htmlExpirados, schemaLd } = gerarCardsESchema(listaOfertas, title);
+            const { htmlAtivos, htmlExpirados, schemaLd } = gerarCardsESchema(listaOfertas, nomeLoja);
 
             const nomeArquivo = slug ? `${slug}.html` : 'index.html';
             const canonicalUrl = nomeArquivo === 'index.html' ? `${baseUrl}/` : `${baseUrl}/${nomeArquivo}`;
@@ -263,57 +385,52 @@ async function atualizarViaPlanilha() {
             
             const menuHtml = gerarMenuLojas(slug);
             const breadcrumbSchema = gerarBreadcrumbSchema(nomeArquivo, nomeLoja);
-            const anoAtual = new Date().toLocaleString('pt-BR', { year: 'numeric', timeZone: 'America/Sao_Paulo' });
-            
-            const formatter = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' });
-            const dataHoje = formatter.format(new Date());
-
+            const headerTitle = nomeLoja === 'Mercado Livre'
+                ? 'Cupons do Mercado Livre: códigos e ofertas'
+                : nomeLoja === 'Amazon' ? 'Cupons e ofertas da Amazon'
+                : nomeLoja ? `Cupons e ofertas ${nomeLoja}` : 'Caçador de Ofertas';
+            const headerSubtitle = nomeLoja
+                ? `Veja as ofertas informadas para ${nomeLoja} e confira as condições antes de comprar.`
+                : 'Cupons e promoções com condições informadas';
+            const introLoja = nomeLoja === 'Mercado Livre' ? `
+                <section class="page-intro" aria-label="Sobre os cupons do Mercado Livre">
+                    <p>Procura um cupom ML para usar agora? Veja abaixo os códigos disponíveis e as condições informadas para cada oferta. A elegibilidade pode depender do produto, da conta e do estoque.</p>
+                    <p>Toque em <strong>PEGAR CUPOM</strong> para copiar o código, abra o Mercado Livre e confirme o desconto no carrinho antes de pagar.</p>
+                </section>` : '';
             let seoText = '';
             if (nomeLoja) {
                 if (nomeLoja.toLowerCase() === 'mercado livre') {
                     seoText = `
                     <article class="seo-text-area">
-                        <h2>Cupom Mercado Livre Válido Hoje (ML)</h2>
-                        <p>Buscando um <strong>cupom de desconto no ML para usar hoje</strong>? O <strong>Caçador de Ofertas</strong> ajuda você a economizar em todas as suas compras no Mercado Livre. Nossa equipe avalia e testa diariamente os códigos promocionais e links de desconto mais relevantes para garantir que você sempre pague menos.</p>
+                        <h2>Como escolher um código do Mercado Livre</h2>
+                        <p>Compare o desconto, a compra mínima, o limite de abatimento, as categorias participantes e a validade descritos em cada cupom. Um código disponível na lista ainda pode depender das regras da sua conta ou de produtos específicos.</p>
                         
-                        <h3>Como usar o Cupom ML Hoje?</h3>
-                        <p>Para usar um cupom de desconto no Mercado Livre, basta clicar no botão "PEGAR CUPOM", copiar o código revelado e colá-lo no aplicativo ou site oficial. Caso o botão indique "PEGAR PROMOÇÃO", o desconto já estará aplicado no preço do produto através do nosso link especial de ofertas.</p>
+                        <h3>Como aplicar o cupom?</h3>
+                        <p>Revele e copie o código. No aplicativo ou site do Mercado Livre, adicione um produto elegível ao carrinho, insira o código no campo de cupons e confira o valor final antes de concluir o pedido.</p>
                         
-                        <h3>Códigos de Desconto Meli são confiáveis?</h3>
-                        <p>Sim, todos os <strong>cupons Meli</strong> que destacamos aqui pertencem a promoções oficiais do Mercado Livre, onde milhares de usuários compram todos os dias com total segurança. Atualizamos a lista diariamente para que você sempre encontre um código ativo.</p>
-                    </article>`;
-                } else if (nomeLoja.toLowerCase() === 'amazon') {
-                    seoText = `
-                    <article class="seo-text-area">
-                        <h2>Cupom de Desconto Amazon e Ofertas Prime</h2>
-                        <p>No <strong>Caçador de Ofertas</strong>, você encontra o <strong>cupom Amazon</strong> perfeito para a sua compra. Testamos códigos promocionais diariamente, seja para <strong>frete grátis</strong>, <strong>primeira compra</strong> ou descontos em categorias como Kindle, Eletrônicos e Casa.</p>
-                        
-                        <h3>Como usar o cupom de desconto Amazon?</h3>
-                        <p>Clique em "PEGAR CUPOM" para revelar o código e copie-o. Na tela de pagamento do site ou aplicativo da Amazon, cole o código no campo "Adicionar vale-presente ou código promocional" e clique em aplicar. Se o botão for "PEGAR PROMOÇÃO", a oferta já estará embutida no link!</p>
-                        
-                        <h3>Dica do Caçador de Cupom para a Amazon</h3>
-                        <p>Muitas vezes, os maiores descontos da Amazon não exigem código, eles são aplicados diretamente no link da oferta relâmpago ou na assinatura do <strong>Amazon Prime</strong>. Fique de olho nas tags de "Oferta do Dia" na nossa lista.</p>
+                        <h3>Por que um código pode não funcionar?</h3>
+                        <p>A oferta pode ter atingido o limite de uso, exigir uma compra mínima ou se aplicar apenas a produtos e contas elegíveis. Se o desconto não aparecer no carrinho, não conclua a compra contando com ele.</p>
                     </article>`;
                 } else {
                     seoText = `
                     <article class="seo-text-area">
-                        <h2>Cupom de Desconto ${nomeLoja} e Ofertas</h2>
-                        <p>O <strong>Caçador de Ofertas</strong> ajuda você a economizar em todas as suas compras na <strong>${nomeLoja}</strong>. Nossa equipe avalia e testa diariamente os códigos promocionais e links de desconto mais relevantes para garantir que você sempre pague menos.</p>
+                        <h2>Cupons e ofertas de ${nomeLoja}</h2>
+                        <p>Confira as condições informadas em cada cupom. A disponibilidade e a elegibilidade podem variar conforme o produto, a conta e as regras da loja. Confirme o desconto no carrinho antes de concluir a compra.</p>
                         
-                        <h3>Como usar o cupom ${nomeLoja}?</h3>
-                        <p>Para usar um cupom de desconto na ${nomeLoja}, basta clicar no botão "PEGAR CUPOM", copiar o código revelado e colá-lo no campo correspondente no carrinho de compras do site oficial. Caso o botão indique "PEGAR PROMOÇÃO", o desconto já estará aplicado magicamente no preço do produto através do nosso link especial de afiliado.</p>
+                        <h3>Como usar um cupom?</h3>
+                        <p>Clique em "PEGAR CUPOM" para revelar e copiar o código. Insira-o no campo indicado pela loja e confira as condições antes de pagar.</p>
                         
-                        <h3>A loja ${nomeLoja} é confiável?</h3>
-                        <p>Sim, todos os cupons que destacamos aqui pertencem a lojas de confiança onde milhares de usuários compram todos os dias com total segurança e respeito à privacidade dos dados. Nossa curadoria filtra qualquer lojista que não atenda a padrões rigorosos de qualidade.</p>
+                        <h3>O que conferir antes de comprar?</h3>
+                        <p>Leia o valor mínimo, as categorias participantes, a validade e as restrições descritas na oferta. A loja confirma a aplicação do desconto no carrinho.</p>
                     </article>`;
                 }
             } else {
                 seoText = `
                 <article class="seo-text-area">
-                    <h2>Caçador de Ofertas: Um dos Melhores Sites de Cupons de Desconto do Brasil</h2>
-                    <p>Seja bem-vindo ao <strong>Caçador de Ofertas</strong> (também conhecido por muitos como seu <strong>caçador de cupom</strong> favorito!), o seu local definitivo para economizar de verdade nas maiores lojas de e-commerce da internet. Nós verificamos nossos códigos todos os dias incansavelmente.</p>
-                    <h3>Como economizar com o Caçador de Ofertas</h3>
-                    <p>Basta navegar no nosso sumário de lojas parceiras, encontrar a oferta ou cupom ideal que você procura e aproveitar. Sem letras miúdas ou complicações. O abatimento rola fácil e vai direto pro seu bolso!</p>
+                    <h2>Cupons e ofertas</h2>
+                    <p>Veja as condições informadas em cada oferta, revele o código quando houver e confira sua aplicação no carrinho da loja parceira. A disponibilidade pode mudar conforme as regras da loja.</p>
+                    <h3>Como usar um cupom</h3>
+                    <p>Abra a oferta, copie o código e aplique-o no campo indicado pela loja. Confira o valor final antes de concluir a compra.</p>
                 </article>`;
             }
 
@@ -322,30 +439,31 @@ async function atualizarViaPlanilha() {
                 .replace(/{{META_DESCRIPTION}}/g, metadescription)
                 .replace(/{{META_KEYWORDS}}/g, keywords)
                 .replace(/{{CANONICAL_URL}}/g, canonicalUrl)
+                .replace(/{{HEADER_TITLE}}/g, headerTitle)
+                .replace(/{{HEADER_SUBTITLE}}/g, headerSubtitle)
+                .replace(/{{INTRO_LOJA}}/g, introLoja)
                 .replace(/{{CONTEUDO_ATIVOS}}/g, htmlAtivos)
                 .replace(/{{CONTEUDO_EXPIRADOS}}/g, htmlExpirados)
                 .replace(/{{SCHEMA_ORG}}/g, schemaLd)
                 .replace(/{{MENU_LOJAS}}/g, menuHtml)
                 .replace(/{{BREADCRUMB_SCHEMA}}/g, breadcrumbSchema)
-                .replace(/{{ANO_ATUAL}}/g, anoAtual)
-                .replace(/{{ULTIMA_ATUALIZACAO}}/g, dataHoje)
-                .replace(/{{SEO_TEXT_FAQ}}/g, seoText);
+                .replace(/{{SEO_TEXT_FAQ}}/g, seoText)
+                .replace(/{{ANO_ATUAL}}/g, String(dataHojeNoFuso().getUTCFullYear()));
 
-            return htmlFinal;
+            return htmlFinal.replace(/[ \t]+$/gm, '');
         }
 
         // Setup para gerar o Sitemap XML
         let urlsParaSitemap = [];
-        const ultimaModificacao = new Date().toISOString().split('T')[0];
+        // Datas de build não representam alterações reais de conteúdo.
 
         // 1. Gerar index.html (Home) - Contém todas as ofertas
-        const mesAnoHome = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' }).format(new Date());
-        const tituloHome = `Caçador de Ofertas 🎯 | Os Melhores Cupons - ${mesAnoHome}`;
-        const descHome = `Encontre cupons de desconto validados em ${mesAnoHome}. Economize agora nas maiores lojas com nossos achadinhos! O seu Caçador de Cupom.`;
+        const tituloHome = 'Caçador de Ofertas | Cupons e Promoções';
+        const descHome = 'Confira cupons e promoções com condições informadas e links para lojas parceiras. Aplique o cupom no carrinho e confirme o desconto antes de pagar.';
         const htmlHome = construirPagina(ofertas, tituloHome, descHome, null, null);
-        fs.writeFileSync('index.html', htmlHome);
+        fs.writeFileSync(path.join(pastaSaida, 'index.html'), htmlHome);
         console.log("✅ Página gerada: index.html (Principal)");
-        urlsParaSitemap.push(`${baseUrl}/index.html`);
+        urlsParaSitemap.push(`${baseUrl}/`);
 
         // 2. Gerar páginas individuais por loja e apagar as antigas sem cupons
         const nomesLojas = Object.keys(contagemLojas);
@@ -355,23 +473,22 @@ async function atualizarViaPlanilha() {
             const slugDaLoja = lojasSlugs[nomeLoja];
             const ofertasDestaLoja = ofertas.filter(o => o.loja.trim() === nomeLoja);
 
-            // Não gera a página se a loja não tiver cupons ativos ou ofertas
-            if (contagemLojas[nomeLoja] === 0 || ofertasDestaLoja.length === 0) continue;
+            // Preserva as páginas das lojas principais mesmo sem cupons ativos.
+            if (contagemLojas[nomeLoja] === 0 && !lojasPersistentes.includes(nomeLoja)) continue;
 
-            const mesAno = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' }).format(new Date());
-            let tituloLoja = `Cupom de Desconto ${nomeLoja} - ${mesAno} 🤑 | Caçador de Ofertas`;
-            let descLoja = `Cupom ${nomeLoja} em ${mesAno}. Pegue agora os melhores cupons validados e promoções com o Caçador de Ofertas.`;
+            let tituloLoja = `Cupons e Ofertas ${nomeLoja} | Caçador de Ofertas`;
+            let descLoja = `Confira cupons e ofertas de ${nomeLoja}, leia as condições e confirme o desconto no carrinho da loja.`;
             
             if (nomeLoja.toLowerCase() === 'mercado livre') {
-                tituloLoja = `Cupom Mercado Livre (ML) Válido Hoje ✅ - ${mesAno}`;
-                descLoja = `Pegue seu Cupom ML Hoje! Lista atualizada de Códigos Meli, Cupons de Desconto Mercado Livre válidos e testados para você economizar agora.`;
+                tituloLoja = 'Cupom Mercado Livre: códigos e ofertas | Caçador de Ofertas';
+                descLoja = 'Veja cupons do Mercado Livre, descontos e condições informadas. Copie o código e confirme sua aplicação no carrinho antes de pagar.';
             } else if (nomeLoja.toLowerCase() === 'amazon') {
-                tituloLoja = `Cupom Amazon: Descontos e Frete Grátis 📦 - ${mesAno}`;
-                descLoja = `Pegue seu Cupom de Desconto Amazon! Códigos promocionais para primeira compra, frete grátis, Kindle e muito mais. Testados hoje!`;
+                tituloLoja = 'Cupons e Ofertas Amazon | Caçador de Ofertas';
+                descLoja = 'Confira os cupons e as condições das ofertas Amazon. Confirme a aplicação do desconto no carrinho antes de pagar.';
             }
 
             const htmlLoja = construirPagina(ofertasDestaLoja, tituloLoja, descLoja, slugDaLoja, nomeLoja);
-            fs.writeFileSync(`${slugDaLoja}.html`, htmlLoja);
+            fs.writeFileSync(path.join(pastaSaida, `${slugDaLoja}.html`), htmlLoja);
             console.log(`✅ Página gerada: ${slugDaLoja}.html (${nomeLoja})`);
 
             urlsParaSitemap.push(`${baseUrl}/${slugDaLoja}.html`);
@@ -379,37 +496,35 @@ async function atualizarViaPlanilha() {
         }
 
         // Somente páginas de lojas são geradas a partir do feed. Preserve páginas institucionais.
-        const htmlFiles = fs.readdirSync('.').filter(f => /^cupom-.*\.html$/.test(f));
+        const htmlFiles = fs.readdirSync(pastaSaida).filter(f => /^cupom-.*\.html$/.test(f));
         for (const arquivo of htmlFiles) {
             const slugName = arquivo.replace('.html', '');
             if (!slugsAtivos.includes(slugName)) {
-                fs.unlinkSync(arquivo);
+                fs.unlinkSync(path.join(pastaSaida, arquivo));
                 console.log(`🗑️ Página apagada: ${arquivo} (Sem cupons válidos)`);
             }
         }
 
-        // 3. Gerar Sitemap.xml para SEO do Google (com changefreq)
+        // 3. Gerar sitemap sem datas ou frequências artificiais.
         let xmlSitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
         urlsParaSitemap.forEach(url => {
-            const priority = url.includes('index.html') ? '1.0' : '0.8';
-            const changefreq = 'daily';
-            xmlSitemap += `  <url>\n    <loc>${url}</loc>\n    <lastmod>${ultimaModificacao}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>\n`;
+            xmlSitemap += `  <url>\n    <loc>${url}</loc>\n  </url>\n`;
         });
         xmlSitemap += `</urlset>`;
-        fs.writeFileSync('sitemap.xml', xmlSitemap);
+        fs.writeFileSync(path.join(pastaSaida, 'sitemap.xml'), xmlSitemap);
         console.log("✅ Sitemap gerado: sitemap.xml");
 
         // 4. Gerar robots.txt
         const robotsTxt = `User-agent: *\nAllow: /\n\nSitemap: ${baseUrl}/sitemap.xml\n`;
-        fs.writeFileSync('robots.txt', robotsTxt);
+        fs.writeFileSync(path.join(pastaSaida, 'robots.txt'), robotsTxt);
         console.log("✅ robots.txt gerado");
 
         console.log("🎉 Processo de Geração Estática finalizado!");
 
     } catch (erro) {
         console.error("❌ Erro ao ler a planilha e gerar o site:", erro);
+        process.exitCode = 1;
     }
 }
 
 atualizarViaPlanilha();
-
