@@ -213,7 +213,26 @@ async function atualizarViaPlanilha() {
                 ofertasUnicas.push(cupom);
             });
 
-            ofertasUnicas.forEach(cupom => {
+            function dataPostagem(cupom) {
+                const valor = cupom.aprovado_em || cupom.conferido_em;
+                if (!valor) return null;
+                try {
+                    return converterDataPlanilha(valor).getTime();
+                } catch {
+                    return null;
+                }
+            }
+
+            const ativosOrdenados = ofertasUnicas.filter(cupom => cupom.ativo).sort((a, b) => {
+                const dataA = dataPostagem(a);
+                const dataB = dataPostagem(b);
+                if (dataA === null) return dataB === null ? 0 : 1;
+                if (dataB === null) return -1;
+                return dataB - dataA;
+            });
+            const ofertasOrdenadas = [...ativosOrdenados, ...ofertasUnicas.filter(cupom => !cupom.ativo)];
+
+            ofertasOrdenadas.forEach(cupom => {
                 const temCodigo = cupom.codigo && cupom.codigo.trim() !== '';
 
                 // Codificar para garantir
