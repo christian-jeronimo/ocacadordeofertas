@@ -570,5 +570,31 @@
     "conferido_em": "02/10/2026",
     "aprovado_em": "02/10/2026",
     "id": "23bba500-904a-472f-b6cc-b9ccb9a04faf"
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "R$10 OFF em Casa e Decoração",
+    "descricao": "R$10 de desconto em Casa e Decoração, em produtos selecionados. Compra mínima: R$99. Desconto máximo: R$10. O print indica término em 3 horas.",
+    "codigo": "DECORA10",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true,
+    "status": "APROVADO",
+    "validade": "",
+    "conferido_em": "02/10/2026",
+    "aprovado_em": "02/10/2026",
+    "id": "f84077c4-688e-4be1-a79c-9ef3fd2b4520"
+  },
+  {
+    "loja": "Mercado Livre",
+    "titulo": "10% OFF em Moda e Bem-estar",
+    "descricao": "10% de desconto em Moda e Bem-estar, em produtos selecionados. Compra mínima: R$89. Desconto máximo: R$20. O print indica término em 3 horas.",
+    "codigo": "MODA10BELEZA",
+    "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
+    "ativo": true,
+    "status": "APROVADO",
+    "validade": "",
+    "conferido_em": "02/10/2026",
+    "aprovado_em": "02/10/2026",
+    "id": "65415c91-7c19-4474-9100-3261eb0086f1"
   }
 ]
