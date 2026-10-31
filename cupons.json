@@ -395,7 +395,7 @@
     "descricao": "20% de desconto. Compra mínima: R$1. Desconto máximo: R$500. Válido até 30.10 ou enquanto durarem os estoques, em produtos elegíveis.",
     "codigo": "MELIOFF20",
     "link": "https://www.mercadolivre.com.br/social/jernimodasilvacamposchrist/lists",
-    "ativo": true,
+    "ativo": false,
     "status": "APROVADO",
     "validade": "2026-10-30",
     "conferido_em": "01/10/2026",
