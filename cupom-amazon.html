@@ -536,6 +536,13 @@
     </style>
 
 
+                <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "ItemList",
+                    "itemListElement": [{"@type":"Offer","name":"Ganhe R$100 de desconto em compras com cupom em Amazon","description":"Ganhe R$ 100 em compras acima de R$ 999","url":"https://www.amazon.com.br/?tag=camposmayar0f-20","validThrough":"2026-11-20"}]
+                }
+                </script>
 
                 <script type="application/ld+json">
                 {
@@ -576,7 +583,7 @@
 
         <!-- Navegação / Menu de Lojas -->
         <nav class="store-menu" aria-label="Navegação de Lojas">
-            <a href="/" class="store-chip ">Todas as Ofertas</a><a href="cupom-amazon.html" class="store-chip active">Amazon <span class="store-badge">0</span></a><a href="cupom-mercado-livre.html" class="store-chip ">Mercado Livre <span class="store-badge">0</span></a>
+            <a href="/" class="store-chip ">Todas as Ofertas</a><a href="cupom-amazon.html" class="store-chip active">Amazon <span class="store-badge">1</span></a><a href="cupom-mercado-livre.html" class="store-chip ">Mercado Livre <span class="store-badge">17</span></a>
         </nav>
 
 
@@ -584,23 +591,29 @@
         <section aria-labelledby="titulo-ativos">
             <h2 id="titulo-ativos" class="section-title">Cupons e Promoções ✅</h2>
             <div id="lista-ativos" style="min-height: 200px;">
-                <p class="empty-offers">Nenhum cupom ativo informado no momento. Confira as condições diretamente na loja antes de comprar.</p>
+
+                        <article class="coupon-card">
+                            <div class="store-logo">Amazon</div>
+                            <div class="coupon-info">
+                                <h3>Ganhe R$100 de desconto em compras com cupom</h3>
+                                <p>Ganhe R$ 100 em compras acima de R$ 999</p>
+                                <p class="coupon-date">Validade informada: 20/11/2026</p>
+                                <p class="coupon-date">Conferido em: 17/11/2026</p>
+                            </div>
+
+                             <button class="btn-spoiler" onclick="revelarCupom('https://www.amazon.com.br/?tag=camposmayar0f-20', 'CURTE11DO11', 'Amazon', 'Ganhe R$100 de desconto em compras com cupom')" aria-label="Pegar cupom para Ganhe R$100 de desconto em compras com cupom">
+                                 <span class="spoiler-left">PEGAR CUPOM<span class="spoiler-fold"></span></span>
+                                 <span class="spoiler-right">O11</span>
+                             </button>
+
+                        </article>
+
             </div>
         </section>
 
         <section aria-labelledby="titulo-expirados">
             <h2 id="titulo-expirados" class="section-title">Ofertas Encerradas ❌</h2>
             <div id="lista-expirados">
-
-                        <article class="coupon-card expired">
-                            <div class="expired-badge">EXPIRADO</div>
-                            <div class="store-logo">Amazon</div>
-                            <div class="coupon-info">
-                                <h3>Ganhe 10% de desconto em compras com cupom</h3>
-                                <p>Oferta válida em compras a partir de R$350</p>
-                            </div>
-                            <button class="btn-get" disabled aria-label="Oferta expirada para Ganhe 10% de desconto em compras com cupom">ESGOTADO</button>
-                        </article>
 
                         <article class="coupon-card expired">
                             <div class="expired-badge">EXPIRADO</div>
