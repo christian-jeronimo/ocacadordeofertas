@@ -409,6 +409,7 @@
         }
 
         .coupon-code {
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -433,6 +434,10 @@
 
         .coupon-code svg {
             flex-shrink: 0;
+        }
+
+        #displayCode {
+            user-select: all;
         }
 
         .close-btn {
@@ -936,18 +941,19 @@
 
     <div id="couponModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content">
-            <h3 id="modal-title">Cupom Copiado!</h3>
+            <h3 id="modal-title">Seu cupom</h3>
             <p>Use o código abaixo no fechamento da compra:</p>
-            <div class="coupon-code" onclick="copyToClipboard()" title="Clique para copiar novamente">
+            <button type="button" class="coupon-code" onclick="copyToClipboard()" title="Copiar código">
                 <span id="displayCode">CÓDIGO</span>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
                     stroke-linecap="round" stroke-linejoin="round">
                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                     <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                 </svg>
-            </div>
+            </button>
             <p style="font-size: 12px; color: #2e7d32; font-weight: bold;">Confira as condições e aplique o código no carrinho da loja.</p>
-            <span class="close-btn" onclick="fecharModal()" tabindex="0" role="button">Fechar janela</span>
+            <a id="couponStoreLink" target="_blank" rel="noopener sponsored" hidden>Ir para a loja</a>
+            <button type="button" class="close-btn" onclick="fecharModal()">Fechar janela</button>
         </div>
     </div>
 
@@ -966,12 +972,20 @@
             }).catch(() => console.log("Erro silencioso ao registrar métricas"));
         }
 
-        // Abre a loja e o modal para quem tem CUPOM
+        // Revela o código antes de abrir a loja.
         function revelarCupom(linkAfiliado, codigo, loja, titulo) {
             registrarClique(loja, titulo, 'clique_cupom');
-            const urlAtual = window.location.href.split('?')[0];
-            window.open(`${urlAtual}?cupom=${codigo}`, '_blank');
-            window.location.href = linkAfiliado;
+            mostrarCupom(codigo, linkAfiliado);
+            copyToClipboard();
+        }
+
+        function mostrarCupom(codigo, linkAfiliado) {
+            document.getElementById('displayCode').textContent = codigo;
+            const link = document.getElementById('couponStoreLink');
+            link.hidden = !linkAfiliado;
+            if (linkAfiliado) link.href = linkAfiliado;
+            document.getElementById('couponModal').style.display = 'flex';
+            document.querySelector('#couponModal .coupon-code').focus();
         }
 
         // Abre APENAS a loja para quem NÃO TEM CUPOM (Promoção direta)
@@ -993,13 +1007,14 @@
             setTimeout(() => { toast.classList.remove("show"); }, 3000);
         }
 
-        function copyToClipboard() {
-            const code = document.getElementById('displayCode').innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                mostrarToast("✅ Código copiado novamente!");
-            }).catch(() => {
-                mostrarToast("❌ Erro ao copiar. Tente manualmente.");
-            });
+        async function copyToClipboard() {
+            const code = document.getElementById('displayCode').textContent;
+            try {
+                await navigator.clipboard.writeText(code);
+                mostrarToast('✅ Código copiado!');
+            } catch {
+                mostrarToast('Selecione e copie o código manualmente.');
+            }
         }
 
         function checarCupomNaUrl() {
@@ -1007,12 +1022,7 @@
             const codigoNaUrl = parametrosDaUrl.get('cupom');
 
             if (codigoNaUrl) {
-                document.getElementById('displayCode').innerText = codigoNaUrl;
-                document.getElementById('couponModal').style.display = 'flex';
-
-                navigator.clipboard.writeText(codigoNaUrl).catch(() => {
-                    console.log("O navegador exigiu clique manual para copiar.");
-                });
+                mostrarCupom(codigoNaUrl);
             }
         }
 
